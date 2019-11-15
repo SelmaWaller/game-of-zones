@@ -37,7 +37,7 @@
 
 body {
   margin: 0;
-  background-image: url("/images/boardgame-background.jpg");
+  background-image: url("images/boardgame-background.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: -600px;
@@ -88,6 +88,58 @@ p, h3, h4, h5, h6 {
   width: 35px;
 }
 
+.introAnimationMusic p {
+  font-size: 1.125rem;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(197, 197, 197, 0.8);
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  font-weight: bold;
+  padding: 10px;
+  right: 65px;
+  top: 50px;
+  opacity: 0;
+  z-index: 9999;
+  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.4);
+  animation: introAnimation 4s, introAnimationFade 4s ease-in-out;
+  animation-delay: 500ms;
+}
+
+.introAnimationHelp p {
+  font-size: 1.125rem;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(197, 197, 197, 0.8);
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  font-weight: bold;
+  padding: 10px;
+  left: 65px;
+  bottom: 50px;
+  opacity: 0;
+  z-index: 9999;
+  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.4);
+  animation: introAnimation 4s, introAnimationFade 4s ease-in-out;
+  animation-delay: 4500ms;
+}
+
+@keyframes introAnimation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  30%, 70% {
+    transform: translateY(-2px);
+  }
+}
+@keyframes introAnimationFade {
+  0%, 100% {
+    opacity: 0;
+  }
+  20%, 50%, 80% {
+    opacity: 1;
+  }
+}
 .music:hover {
   opacity: 1;
 }
@@ -189,9 +241,23 @@ p, h3, h4, h5, h6 {
     top: 15px;
     right: 15px;
   }
+
+  .introAnimationMusic p {
+    padding: 10px;
+    right: 50px;
+    top: 40px;
+    font-size: 1rem;
+  }
+
+  .introAnimationHelp p {
+    padding: 10px;
+    left: 65px;
+    bottom: 50px;
+    font-size: 1rem;
+  }
 }
 .intro {
-  background-image: url("../images/background-warm.jpg");
+  background-image: url("images/background-warm.jpg");
   background-size: 130% 130%;
   cursor: default;
   animation: introBackground 32s infinite;
@@ -249,6 +315,7 @@ p, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
   margin-bottom: 0;
   animation: title 5000ms infinite, introFade 2300ms ease-in;
+  cursor: pointer;
 }
 @keyframes introFade {
   0% {
@@ -296,7 +363,7 @@ p, h3, h4, h5, h6 {
 
 @media only screen and (max-width: 450px) {
   .intro {
-    background-image: url("../images/background-warm.jpg");
+    background-image: url("images/background-warm.jpg");
     background-size: 220% 100%;
     cursor: default;
     animation: introBackground 32s infinite;
@@ -339,7 +406,7 @@ p, h3, h4, h5, h6 {
 }
 @media only screen and (min-width: 451px) and (max-width: 800px) {
   .intro {
-    background-image: url("../images/background-warm.jpg");
+    background-image: url("images/background-warm.jpg");
     background-size: 100% 100%;
     cursor: default;
     animation: introBackground 32s infinite;
@@ -574,7 +641,7 @@ footer p {
 @media only screen and (min-width: 500px) {
   body {
     margin: 0;
-    background-image: url("../images/boardgame-background.jpg");
+    background-image: url("images/boardgame-background.jpg");
     background-size: cover;
     background-attachment: fixed;
     background-position: 0;
@@ -616,7 +683,7 @@ footer p {
 @media only screen and (min-width: 1230px) {
   body {
     margin: 0;
-    background-image: url("../images/boardgame-background.jpg");
+    background-image: url("images/boardgame-background.jpg");
     background-size: 110% 110%;
     background-position: 0% 0%;
     cursor: default;
