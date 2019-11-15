@@ -8,21 +8,21 @@
     <meta property="og:title" content="Game of Zones">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wallerweave.com/game-of-zones">
-    <meta property="og:image" content="/images/og-image.jpg">
+    <meta property="og:image" content="images/og-image.jpg">
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
     <meta property="og:image:alt" content="gameofzones.jpg">
     <meta property="og:alt" content="game-of-zones.jpg">
     <meta property="og:description"
         content="In Game of Zones, players roll dice to move through the seven kingdoms and reach the iron throne in The North. Watch out for traps!">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
     <title>Game of Zones</title>
 </head>
 
 <body>
 
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" onplay="musicOn()" onpause="musicOff()">
+        <audio id="music" preload="auto" autoplay onplay="musicOn()" onpause="musicOff()">
             <source src="music/main.mp3">
         </audio>
         <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="images/sound.svg" alt="toggle-music"></a>
@@ -35,9 +35,9 @@
             <h2>How it works:</h2>
             <p>Players: 2</p>
             <p>Roll your dice and be the first to reach the Iron Throne in the North!</p>
-            <p><span class="bold">14, 17, 24, 28</span>: You got lost on the way! Move to <img src="/images/star.png"
+            <p><span class="bold">14, 17, 24, 28</span>: You got lost on the way! Move to <img src="images/star.png"
                     alt="star-with-circle">. On your next turn, roll a [6] or pass your turn to find your way back</p>
-            <p><img src="/images/star-2.png" alt="star">: You found a shortcut! Move three tiles forward</p>
+            <p><img src="images/star-2.png" alt="star">: You found a shortcut! Move three tiles forward</p>
 
             <button class="closeHelp" id="closeBtn"><a onclick="closeHelp()"><img src="images/help.svg" alt="help"></a>
             </button>

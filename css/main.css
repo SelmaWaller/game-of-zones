@@ -197,7 +197,6 @@ p, h3, h4, h5, h6 {
   animation: introBackground 32s infinite;
   user-select: none;
   -webkit-user-drag: none;
-  display: none;
 }
 @keyframes introBackground {
   0%, 1%, 100% {
@@ -424,7 +423,7 @@ footer p {
   }
 }
 #main {
-  display: block;
+  display: none;
 }
 #main .overlay {
   display: flex;
