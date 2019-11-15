@@ -32,7 +32,7 @@
     </div>
 
     <div class="infoPopup">
-        <button class="help" id="helpBtn"><a onclick="toggleHelp()"><img src="images/help.svg" alt="help"></a>
+        <button class="help" id="helpBtn"><a onclick="toggleHelp()"><img src="images/help.png" alt="help"></a>
         </button>
         <div id="helpContent">
             <h2>How it works:</h2>
@@ -66,9 +66,35 @@
             <div class="overlay">
                 <div class="container">
                     <h2>Choose your characters</h2>
-                    <input id="player1" value="">
-                    <input id="player2" value="">
-                    <button id="startGame" onclick="selectChar()">Play</button>
+                    <div class="row chooseCharacter">
+                        <select id="player1">
+                            <option value="Player 1">Player 1</option>
+                            <option value="Robert Arryn">Robert Arryn</option>
+                            <option value="Tommen Baratheon">Tommen Baratheon</option>
+                            <option value="Sandor Clegane">Sandor Clegane</option>
+                            <option value="Theon Greyjoy">Theon Greyjoy</option>
+                            <option value="Tyrion Lannister">Tyrion Lannister</option>
+                            <option value="Oberyn Nymeros Martell">Oberyn Martell</option>
+                            <option value="Lyra Mormont">Lyra Mormont</option>
+                            <option value="Arya Stark">Arya Stark</option>
+                            <option value="Daenerys Targaryen">Daenerys Targaryen</option>
+                            <option value="Margaery Tyrell">Margaery Tyrell</option>
+                        </select>
+                        <select id="player2">
+                            <option value="Player 2">Player 2</option>
+                            <option value="Robert Arryn">Robert Arryn</option>
+                            <option value="Tommen Baratheon">Tommen Baratheon</option>
+                            <option value="Sandor Clegane">Sandor Clegane</option>
+                            <option value="Theon Greyjoy">Theon Greyjoy</option>
+                            <option value="Tyrion Lannister">Tyrion Lannister</option>
+                            <option value="Oberyn Nymeros Martell">Oberyn Martell</option>
+                            <option value="Lyra Mormont">Lyra Mormont</option>
+                            <option value="Arya Stark">Arya Stark</option>
+                            <option value="Daenerys Targaryen">Daenerys Targaryen</option>
+                            <option value="Margaery Tyrell">Margaery Tyrell</option>
+                        </select>
+                    </div>
+                    <button id="startGame">Play</button>
                     <div class="characters" id="characters"></div>
                 </div>
             </div>
