@@ -19,7 +19,7 @@ getCharacters().then(chars => {
     characters = chars;
     console.log(chars);
     for (i = 0; i < chars.length; i++) {
-        images = ['/images/arryn-badge.png', '/images/baratheon-badge.png', '/images/clegane-badge.png', '/images/greyjoy-badge.png', '/images/lannister-badge.png', '/images/martell-badge.png', '/images/mormont-badge.png', '/images/stark-badge.png', '/images/targaryen-badge.png', '/images/tyrell-badge.png'];
+        images = ['images/arryn-badge.png', 'images/baratheon-badge.png', 'images/clegane-badge.png', 'images/greyjoy-badge.png', 'images/lannister-badge.png', 'images/martell-badge.png', 'images/mormont-badge.png', 'images/stark-badge.png', 'images/targaryen-badge.png', 'images/tyrell-badge.png'];
         let container = document.getElementById('characters');
         badge = document.createElement('div');
         badge.setAttribute('class', 'badge');
