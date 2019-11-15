@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="234" height="232" viewBox="0 0 234 232">
+  <defs>
+    <filter id="Polygon_133" x="0" y="0" width="234" height="232" filterUnits="userSpaceOnUse">
+      <feOffset dx="-5" dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#8d8d8d" stop-opacity="0.541"/>
+      <stop offset="1" stop-color="#d6d6d6" stop-opacity="0.2"/>
+    </radialGradient>
+    <filter id="Polygon_135" x="13" y="15" width="208" height="206" filterUnits="userSpaceOnUse">
+      <feOffset dx="-5" dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_115" data-name="Group 115" transform="translate(-62 -505)">
+    <g transform="matrix(1, 0, 0, 1, 62, 505)" filter="url(#Polygon_133)">
+      <path id="Polygon_133-2" data-name="Polygon 133" d="M102,0l81.8,40.009,20.2,89.9L147.394,202H56.606L0,129.907l20.2-89.9Z" transform="translate(20 10)" fill="rgba(200,200,200,0.2)"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 62, 505)" filter="url(#Polygon_135)">
+      <path id="Polygon_135-2" data-name="Polygon 135" d="M89,0l71.372,34.859L178,113.186,128.609,176H49.391L0,113.186,17.628,34.859Z" transform="translate(33 25)" fill="url(#radial-gradient)"/>
+    </g>
+  </g>
+</svg>

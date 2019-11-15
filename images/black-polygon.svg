@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="204" height="202" viewBox="0 0 204 202">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0"/>
+      <stop offset="1" stop-opacity="0.729"/>
+    </radialGradient>
+  </defs>
+  <g id="Group_116" data-name="Group 116" transform="translate(-1613 -515)">
+    <path id="Polygon_119" data-name="Polygon 119" d="M102,0l81.8,40.009,20.2,89.9L147.394,202H56.606L0,129.907l20.2-89.9Z" transform="translate(1613 515)" fill="rgba(0,0,0,0.62)"/>
+    <path id="Polygon_134" data-name="Polygon 134" d="M89,0l71.372,34.859L178,113.186,128.609,176H49.391L0,113.186,17.628,34.859Z" transform="translate(1626 530)" fill="url(#radial-gradient)"/>
+  </g>
+</svg>
