@@ -62,5 +62,16 @@ getCharacters().then(chars => {
         about.appendChild(died);
         about.appendChild(title);
         about.appendChild(culture);
+
+        idBtn.onclick = function () {
+            let player1 = document.getElementById('player1');
+            let player2 = document.getElementById('player2');
+            for (i = 0; i < chars.length; i++) {
+                player1.value = chars[i].name;
+                player2.value = chars[i].name;
+                localStorage.setItem('Player 1: ', player1.value);
+                localStorage.setItem('Player 2: ', player2.value);
+            }
+        }
     }
-})
+});
