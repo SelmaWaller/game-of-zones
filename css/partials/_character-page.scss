@@ -1,5 +1,5 @@
 #main {
-    display: block;
+    display: none;
 
         .overlay {
             display: flex;
@@ -209,19 +209,8 @@
         background-attachment: fixed;
         background-position: 0;
         cursor: default;
-        animation: mainBackground 2500ms;
         user-select: none;
         -webkit-user-drag: none;
-    
-            @keyframes mainBackground {
-                from {
-                    background-position: 0% 50%;
-                }
-    
-                to {
-                    background-position: 0% 0%;
-                }
-            }
     }
     
     @supports (display: grid) {
@@ -258,10 +247,10 @@
 }
 
 @media only screen and(min-width: 1230px) {
-    body {
+    #main {
         margin: 0;
-        background-image: url('../images/boardgame-background.jpg');
-        background-size: 110% 110%;
+        background-image: url('../images/background-cold.jpg');
+        background-size: 105% 105%;
         background-position: 0% 0%;
         cursor: default;
         animation: mainBackground 2500ms;
@@ -270,7 +259,7 @@
 
         @keyframes mainBackground {
             from {
-                background-position: 0% 50%;
+                background-position: 0% 100%;
             }
 
             to {

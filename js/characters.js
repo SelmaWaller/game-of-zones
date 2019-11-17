@@ -66,7 +66,7 @@ function createCharacter(character, index) {
     about.appendChild(title);
     about.appendChild(culture);
 
-    /*select chars on click
+    /*select chars on card click
     idBtn.onclick = () => {
         let player1 = document.getElementById('player1');
         let player2 = document.getElementById('player2');
@@ -90,6 +90,7 @@ function createCharacter(character, index) {
         let chosenCharacter2 = localStorage.getItem('player2', player2.value);
         console.log('Player 1: ' + chosenCharacter1);
         console.log('Player 2: ' + chosenCharacter2);
+        window.location = 'board-game/index.html';
     });
 }
 

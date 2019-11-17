@@ -37,23 +37,10 @@
 
 body {
   margin: 0;
-  background-image: url("../images/boardgame-background.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: -600px;
   cursor: default;
-  animation: mainBackground 2500ms;
   user-select: none;
   background-color: #000000;
   -webkit-user-drag: none;
-}
-@keyframes mainBackground {
-  from {
-    background-position: 0% 50%;
-  }
-  to {
-    background-position: 0% 0%;
-  }
 }
 
 button:focus {
@@ -268,7 +255,6 @@ p, h3, h4, h5, h6 {
   animation: introBackground 32s infinite;
   user-select: none;
   -webkit-user-drag: none;
-  display: none;
 }
 @keyframes introBackground {
   0%, 1%, 100% {
@@ -496,7 +482,7 @@ footer p {
   }
 }
 #main {
-  display: block;
+  display: none;
 }
 #main .overlay {
   display: flex;
@@ -681,17 +667,8 @@ footer p {
     background-attachment: fixed;
     background-position: 0;
     cursor: default;
-    animation: mainBackground 2500ms;
     user-select: none;
     -webkit-user-drag: none;
-  }
-  @keyframes mainBackground {
-    from {
-      background-position: 0% 50%;
-    }
-    to {
-      background-position: 0% 0%;
-    }
   }
 
   @supports (display: grid) {
@@ -716,10 +693,10 @@ footer p {
   }
 }
 @media only screen and (min-width: 1230px) {
-  body {
+  #main {
     margin: 0;
-    background-image: url("../images/boardgame-background.jpg");
-    background-size: 110% 110%;
+    background-image: url("../images/background-cold.jpg");
+    background-size: 105% 105%;
     background-position: 0% 0%;
     cursor: default;
     animation: mainBackground 2500ms;
@@ -728,7 +705,7 @@ footer p {
   }
   @keyframes mainBackground {
     from {
-      background-position: 0% 50%;
+      background-position: 0% 100%;
     }
     to {
       background-position: 0% 0%;
@@ -754,6 +731,163 @@ footer p {
   #main .container .badge {
     margin: 10px 0;
   }
+}
+#boardgame {
+  margin: 0;
+  background-image: url("../images/boardgame-background.jpg");
+  background-size: 105% 105%;
+  background-position: 99% 100%;
+  cursor: default;
+  animation: gameBackground 2500ms;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+@keyframes gameBackground {
+  from {
+    background-position: 99% 0%;
+  }
+  to {
+    background-position: 99% 100%;
+  }
+}
+#boardgame .overlay {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  animation: introFilter 2500ms ease-out;
+  z-index: 99;
+}
+#boardgame .board-background {
+  width: 1230px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.8);
+}
+#boardgame .board-background h1 {
+  background-image: -webkit-linear-gradient(#3D3D3D, #B4B4B4, #3D3D3D);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.125rem;
+}
+@supports (display: grid) {
+  #boardgame .board {
+    width: 700px;
+    margin: 0 auto;
+    display: grid;
+    color: #000000;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}
+#boardgame .tile {
+  width: 40px;
+  height: 35px;
+  padding-top: 5px;
+  background: #C5C5C5;
+  border-radius: 100px;
+  margin: 30px;
+  font-weight: bold;
+  font-size: 1.625rem;
+  text-align: center;
+}
+#boardgame #start, #boardgame #goal {
+  width: 100px;
+  height: 50px;
+  margin: 20px 30px 10px 0;
+  right: 0;
+  border-radius: 0;
+  background: -webkit-linear-gradient(#3D3D3D, #B4B4B4, #3D3D3D);
+}
+#boardgame #goal {
+  margin-top: 10px;
+  height: 70px;
+  width: 115px;
+}
+#boardgame #goal img {
+  width: 120px;
+}
+#boardgame .empty-3, #boardgame .empty-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+}
+#boardgame .empty-3 h2, #boardgame .empty-2 h2 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 2.1875rem;
+}
+#boardgame .empty-2 {
+  width: 200px;
+}
+#boardgame .dorne {
+  background: radial-gradient(#B89A55, #2c2315);
+  color: #2c2315;
+}
+#boardgame #dorne {
+  color: #C7B37B;
+}
+#boardgame .stormlands {
+  background: radial-gradient(#E9E381, #333018);
+  color: #333018;
+}
+#boardgame #stormlands {
+  color: #E9E381;
+}
+#boardgame .reach {
+  background: radial-gradient(#94A77C, #19260B);
+  color: #19260B;
+}
+#boardgame #reach {
+  color: #94A77C;
+}
+#boardgame .riverlands {
+  background: radial-gradient(#3D788E, #0B1A26);
+  color: #0B1A26;
+}
+#boardgame #riverlands {
+  color: #89b0c0;
+}
+#boardgame .north {
+  background: radial-gradient(#596683, #0D1016);
+  color: #0D1016;
+}
+#boardgame #north {
+  color: #8EA0BD;
+}
+#boardgame .crownlands, #boardgame .westerlands, #boardgame .vale, #boardgame .isles {
+  background: radial-gradient(#916F8F, #2A1529);
+  color: #2A1529;
+  margin-top: 22px;
+  width: 50px;
+  height: 40px;
+  padding-top: 10px;
+  font-size: 1.75rem;
+}
+#boardgame #crownlands {
+  color: #D2BAE3;
+}
+#boardgame .westerlands {
+  background: radial-gradient(#8b5660, #230C11);
+  color: #230C11;
+}
+#boardgame #westerlands {
+  color: #B99898;
+}
+#boardgame .vale {
+  background: radial-gradient(#60659e, #090B1C);
+  color: #090B1C;
+}
+#boardgame #vale {
+  color: #B3AACF;
+}
+#boardgame .isles {
+  background: radial-gradient(#A89069, #261C0D);
+  color: #261C0D;
+}
+#boardgame #isles {
+  color: #A8A48A;
 }
 
 /*# sourceMappingURL=main.css.map */

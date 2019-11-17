@@ -1,0 +1,123 @@
+#boardgame {
+    margin: 0;
+    background-image: url('../images/boardgame-background.jpg');
+    background-size: 105% 105%;
+    background-position: 99% 100%;
+    cursor: default;
+    animation: gameBackground 2500ms;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    @keyframes gameBackground {
+        from {
+            background-position: 99% 0%;
+        }
+
+        to {
+            background-position: 99% 100%;
+        }
+    }
+
+    .overlay {
+        display: flex;
+        text-align: center;
+        width: 100%;
+        height: 100vh;
+        animation: introFilter 2500ms ease-out;
+        z-index: 99;
+    }
+    
+    .board-background {
+        width: 1230px;
+        margin: 0 auto;
+        background: rgba($goz-black, 0.8);
+
+            h1 {
+                background-image: $goz-iron-title;
+                background-clip: text;
+                -webkit-background-clip: text;
+                -moz-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                @include calcRem(50);
+            }
+    }
+
+    @supports (display: grid) {
+        .board {
+            width: 700px;
+            margin: 0 auto;
+            display: grid;
+            color: $goz-black;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+    }
+
+    .tile {
+        width: 40px;
+        height: 35px;
+        padding-top: 5px;
+        background: $goz-white;
+        border-radius: 100px;
+        margin: 30px;
+        font-weight: bold;
+        @include calcRem(26);
+        text-align: center;
+    }
+
+    #start, #goal {
+        width: 100px;
+        height: 50px;
+        margin: 20px 30px 10px 0;
+        right: 0;
+        border-radius: 0;
+        background: $goz-iron-title;
+    }
+
+    #goal {
+        margin-top: 10px;
+        height: 70px;
+        width: 115px;
+
+            img {
+                width: 120px;
+            }
+    }
+
+    .empty-3, .empty-2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+
+            h2 {
+                margin: 0;
+                font-weight: normal;
+                @include calcRem(35);
+            }
+    }
+
+    .empty-2 {
+        width: 200px;
+    }
+
+    //zones
+    .dorne {background: radial-gradient($goz-dorne-2, $goz-dorne-1);color: $goz-dorne-1;}
+    #dorne {color: $goz-dorne-3;}
+    .stormlands {background: radial-gradient($goz-stormlands-3, $goz-stormlands-1);color: $goz-stormlands-1;}
+    #stormlands {color: $goz-stormlands-3;}
+    .reach {background: radial-gradient($goz-reach-3, $goz-reach-1);color: $goz-reach-1;}
+    #reach {color: $goz-reach-3;}
+    .riverlands {background: radial-gradient($goz-riverlands-2, $goz-riverlands-1);color: $goz-riverlands-1;}
+    #riverlands {color: $goz-riverlands-3;}
+    .north {background: radial-gradient($goz-north-3, $goz-north-1);color: $goz-north-1;}
+    #north {color: $goz-north-4;}
+    //extra
+    .crownlands, .westerlands, .vale, .isles {background: radial-gradient($goz-crownlands-2, $goz-crownlands-1);color: $goz-crownlands-1; margin-top: 22px; width: 50px; height: 40px; padding-top: 10px; @include calcRem(28);}
+    #crownlands {color: $goz-crownlands-3;}
+    .westerlands {background: radial-gradient($goz-westerlands-2, $goz-westerlands-1);color: $goz-westerlands-1;}
+    #westerlands {color: $goz-westerlands-3;}
+    .vale {background: radial-gradient($goz-vale-2, $goz-vale-1);color: $goz-vale-1;}
+    #vale {color: $goz-vale-3;}
+    .isles {background: radial-gradient($goz-iron-isles-2, $goz-iron-isles-1);color: $goz-iron-isles-1;}
+    #isles {color: $goz-iron-isles-3;}
+}

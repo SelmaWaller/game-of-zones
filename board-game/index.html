@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="Game of Zones">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wallerweave.com/game-of-zones">
+    <meta property="og:image" content="../images/og-image.jpg">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+    <meta property="og:image:alt" content="gameofzones.jpg">
+    <meta property="og:alt" content="game-of-zones.jpg">
+    <meta property="og:description"
+        content="In Game of Zones, players roll dice to move through the seven kingdoms and reach the iron throne in The North. Watch out for traps!">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <title>Game of Zones</title>
+</head>
+
+<body>
+
+    <button class="music" id="musicBtn">
+        <audio id="music" preload="auto" allow="autoplay" autplay onplay="musicOn()" onpause="musicOff()">
+            <source src="../music/dragonstone.mp3">
+        </audio>
+        <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg"
+                alt="toggle-music"></a>
+    </button>
+    <div class="introAnimationMusic">
+        <p>Click here to toggle the music</p>
+    </div>
+
+    <div class="infoPopup">
+        <button class="help" id="helpBtn"><a onclick="toggleHelp()"><img src="../images/help.png" alt="help"></a>
+        </button>
+        <div id="helpContent">
+            <h2>How it works:</h2>
+            <p>Players: 2</p>
+            <p>Roll your dice and be the first to reach the Iron Throne in the North!</p>
+            <p><span class="bold">14, 17, 24, 28</span>: You got lost on the way! Move to <img src="../images/star.png"
+                    alt="star-with-circle">. On your next turn, roll a [6] or pass your turn to find your way back</p>
+            <p><img src="../images/star-2.png" alt="star">: You found a shortcut! Move three tiles forward</p>
+
+            <button class="closeHelp" id="closeBtn"><a onclick="closeHelp()"><img src="../images/help.svg"
+                        alt="help"></a>
+            </button>
+        </div>
+    </div>
+    <div class="introAnimationHelp">
+        <p>Need help? Click here!</p>
+    </div>
+
+    <main id="boardgame">
+        <div class="overlay">
+            <div class="board-background">
+                <h1><span id="player1">Player 1</span> VS <span id="player2">Player 2</span></h1>
+                <div class="board">
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty-3" id="dorne">
+                        <h2>Dorne</2>
+                    </div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty" id="start">
+                        <h2>Start</h2>
+                    </div>
+                    <div class="tile dorne">1</div>
+                    <div class="tile dorne">2</div>
+                    <div class="tile dorne">3</div>
+                    <div class="tile dorne">4</div>
+                    <div class="tile dorne">5</div>
+                    <div class="tile dorne">6</div>
+                    <div class="empty-3" id="stormlands">
+                        <h2>Stormlands</h2>
+                    </div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="tile dorne">7</div>
+                    <div class="tile dorne">8</div>
+                    <div class="tile dorne">9</div>
+                    <div class="tile dorne">10</div>
+                    <div class="tile stormlands">11</div>
+                    <div class="tile stormlands">12</div>
+                    <div class="tile stormlands">13</div>
+                    <div class="tile crownlands">14</div>
+                    <div class="empty-3" id="reach">
+                        <h2>The Reach</h2>
+                    </div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="tile stormlands">15</div>
+                    <div class="tile stormlands">16</div>
+                    <div class="tile westerlands">17</div>
+                    <div class="tile reach">18</div>
+                    <div class="tile reach">19</div>
+                    <div class="tile reach">20</div>
+                    <div class="tile reach">21</div>
+                    <div class="empty-2" id="riverlands">
+                        <h2>Riverlands</h2>
+                    </div>
+                    <div class="empty"></div>
+                    <div class="tile riverlands">22</div>
+                    <div class="tile riverlands">23</div>
+                    <div class="tile vale">24</div>
+                    <div class="tile riverlands">25</div>
+                    <div class="tile riverlands">26</div>
+                    <div class="tile north">27</div>
+                    <div class="tile isles">28</div>
+                    <div class="tile north">29</div>
+                    <div class="tile north">30</div>
+                    <div class="tile north" id="goal"><img src="../images/throne.png"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty-3" id="north">
+                        <h2>The North</h2>
+                    </div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © Selma Waller 2019</p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/music.js"></script>
+    <script src="../js/help.js"></script>
+</body>
+
+</html>

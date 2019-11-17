@@ -35,25 +35,10 @@
 
 body {
     margin: 0;
-    background-image: url('../images/boardgame-background.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: -600px;
     cursor: default;
-    animation: mainBackground 2500ms;
     user-select: none;
     background-color: $goz-black;
     -webkit-user-drag: none;
-
-        @keyframes mainBackground {
-            from {
-                background-position: 0% 50%;
-            }
-
-            to {
-                background-position: 0% 0%;
-            }
-        }
 }
 
 button:focus {
