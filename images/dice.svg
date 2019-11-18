@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="126" height="126" viewBox="0 0 126 126">
+  <defs>
+    <filter id="Ellipse_107" x="82.5" y="10.5" width="33" height="33" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_110" x="10.5" y="10.5" width="33" height="33" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_15" x="35.269" y="33.289" width="54.859" height="32.857" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_112" data-name="Group 112" transform="translate(-1174 -677)">
+    <rect id="Rectangle_111" data-name="Rectangle 111" width="126" height="126" rx="5" transform="translate(1174 677)" fill="rgba(255,255,255,0)"/>
+    <g transform="matrix(1, 0, 0, 1, 1174, 677)" filter="url(#Ellipse_107)">
+      <circle id="Ellipse_107-2" data-name="Ellipse 107" cx="9" cy="9" r="9" transform="translate(90 18)" fill="#242424"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1174, 677)" filter="url(#Ellipse_110)">
+      <circle id="Ellipse_110-2" data-name="Ellipse 110" cx="9" cy="9" r="9" transform="translate(18 18)" fill="#242424"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1174, 677)" filter="url(#Path_15)">
+      <path id="Path_15-2" data-name="Path 15" d="M7306-2067.04a20.866,20.866,0,0,0,10.748,5.553c4.186.7,9.9-.483,14.972-5.553" transform="translate(-7256.16 2114.9)" fill="none" stroke="#242424" stroke-linecap="round" stroke-width="10"/>
+    </g>
+  </g>
+</svg>

@@ -22,7 +22,7 @@
 <body>
 
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" allow="autoplay" autplay onplay="musicOn()" onpause="musicOff()">
+        <audio id="music" preload="auto" allow="autoplay" autplay loop onplay="musicOn()" onpause="musicOff()">
             <source src="../music/dragonstone.mp3">
         </audio>
         <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg"
@@ -39,7 +39,7 @@
             <h2>How it works:</h2>
             <p>Players: 2</p>
             <p>Roll your dice and be the first to reach the Iron Throne in the North!</p>
-            <p><span class="bold">14, 17, 24, 28</span>: You got lost on the way! Move to <img src="../images/star.png"
+            <p><span class="bold">7, 13, 20, 25</span>: You got lost on the way! Move to <img src="../images/star.png"
                     alt="star-with-circle">. On your next turn, roll a [6] or pass your turn to find your way back</p>
             <p><img src="../images/star-2.png" alt="star">: You found a shortcut! Move three tiles forward</p>
 
@@ -54,76 +54,106 @@
 
     <main id="boardgame">
         <div class="overlay">
+            <div class="snowAnimation">
+                <div class="snow"></div>
+                <div class="snow"></div>
+                <div class="snow"></div>
+                <div class="snow"></div>
+                <div class="snow"></div>
+            </div>
             <div class="board-background">
-                <h1><span id="player1">Player 1</span> VS <span id="player2">Player 2</span></h1>
-                <div class="board">
+                <h1><span id="player1Name">&nbsp;</span> VS <span id="player2Name">&nbsp;</span></h1>
+                <button id="dice" onclick="roll()"><img id="diceImg" src="../images/dice-1.svg"></button>
+                <div id="board">
                     <div class="empty"></div>
                     <div class="empty"></div>
-                    <div class="empty"></div>
-                    <div class="empty-3" id="dorne">
-                        <h2>Dorne</2>
-                    </div>
-                    <div class="empty"></div>
-                    <div class="empty"></div>
-                    <div class="empty"></div>
-                    <div class="empty" id="start">
-                        <h2>Start</h2>
-                    </div>
-                    <div class="tile dorne">1</div>
-                    <div class="tile dorne">2</div>
-                    <div class="tile dorne">3</div>
-                    <div class="tile dorne">4</div>
-                    <div class="tile dorne">5</div>
-                    <div class="tile dorne">6</div>
-                    <div class="empty-3" id="stormlands">
-                        <h2>Stormlands</h2>
-                    </div>
-                    <div class="empty"></div>
-                    <div class="empty"></div>
-                    <div class="tile dorne">7</div>
-                    <div class="tile dorne">8</div>
-                    <div class="tile dorne">9</div>
-                    <div class="tile dorne">10</div>
-                    <div class="tile stormlands">11</div>
-                    <div class="tile stormlands">12</div>
-                    <div class="tile stormlands">13</div>
-                    <div class="tile crownlands">14</div>
-                    <div class="empty-3" id="reach">
-                        <h2>The Reach</h2>
-                    </div>
-                    <div class="empty"></div>
-                    <div class="empty"></div>
-                    <div class="tile stormlands">15</div>
-                    <div class="tile stormlands">16</div>
-                    <div class="tile westerlands">17</div>
-                    <div class="tile reach">18</div>
-                    <div class="tile reach">19</div>
-                    <div class="tile reach">20</div>
-                    <div class="tile reach">21</div>
-                    <div class="empty-2" id="riverlands">
-                        <h2>Riverlands</h2>
-                    </div>
-                    <div class="empty"></div>
-                    <div class="tile riverlands">22</div>
-                    <div class="tile riverlands">23</div>
-                    <div class="tile vale">24</div>
-                    <div class="tile riverlands">25</div>
-                    <div class="tile riverlands">26</div>
-                    <div class="tile north">27</div>
-                    <div class="tile isles">28</div>
-                    <div class="tile north">29</div>
-                    <div class="tile north">30</div>
-                    <div class="tile north" id="goal"><img src="../images/throne.png"></div>
-                    <div class="empty"></div>
-                    <div class="empty"></div>
-                    <div class="empty"></div>
-                    <div class="empty-3" id="north">
+                    <div class="empty-3" id="titleNorth">
                         <h2>The North</h2>
                     </div>
                     <div class="empty"></div>
                     <div class="empty"></div>
                     <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div id="n26" class="tile north">26</div>
+                    <div id="n27" class="tile north">27</div>
+                    <div id="n28" class="tile north">28</div>
+                    <div id="n29" class="tile north">29</div>
+                    <div id="n30" class="tile"><img src="../images/throne-white.png"></div>
+                    <div class="empty"></div>
+                    <div class="bonusTile isles"><img class="starTile2" src="../images/star.png">
+                        <div id="isles">Iron Isles</div>
+                    </div>
+                    <div id="n25" class="tile isles">25</div>
+                    <div class="empty-3" id="riverlands">
+                        <h2>Riverlands</h2>
+                    </div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div id="n24" class="tile riverlands">24</div>
+                    <div id="n23" class="tile riverlands">23</div>
+                    <div id="n22" class="tile riverlands">22</div>
+                    <div id="n21" class="tile riverlands">21</div>
+                    <div id="n20" class="tile vale">20</div>
+                    <div class="bonusTile vale"><img class="starTile2" src="../images/star.png">
+                        <div id="vale">The Vale</div>
+                    </div>
+                    <div class="bonusTile westerlands"><img class="starTile2" src="../images/star.png">
+                        <div id="westerlands">Westerlands</div>
+                    </div>
+                    <div class="empty-2" id="reach">
+                        <h2>The Reach</h2>
+                    </div>
+                    <div class="empty"></div>
+                    <div id="n17" class="tile reach">17</div>
+                    <div id="n18" class="tile reach">18</div>
+                    <div id="n19" class="tile reach">19</div>
+                    <div class="empty"></div>
+                    <div id="n13" class="tile westerlands">13</div>
+                    <div id="n14" class="tile reach">14</div>
+                    <div id="n15" class="tile reach">15</div>
+                    <div id="n16" class="tile reach"><img class="starTile" src="../images/star-2.png"></div>
+                    <div class="empty-2" id="stormlands">
+                        <h2>Stormlands</h2>
+                    </div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div id="n12" class="tile stormlands">12</div>
+                    <div id="n11" class="tile stormlands">11</div>
+                    <div id="n10" class="tile stormlands">10</div>
+                    <div id="n09" class="tile stormlands">9</div>
+                    <div id="n08" class="tile stormlands">8</div>
+                    <div id="n07" class="tile crownlands">7</div>
+                    <div class="bonusTile crownlands"><img class="starTile2" src="../images/star.png">
+                        <div id="crownlands">Crownlands</div>
+                    </div>
+                    <div id="n01" class="tile dorne">1</div>
+                    <div id="n02" class="tile dorne">2</div>
+                    <div id="n03" class="tile dorne">3</div>
+                    <div id="n04" class="tile dorne">4</div>
+                    <div id="n05" class="tile dorne">5</div>
+                    <div id="n06" class="tile dorne"><img class="starTile" src="../images/star-2.png"></div>
+                    <div class="empty"></div>
+                    <div class="empty-2">
+                        <div class="players"><img id="token1" src="../images/white-polygon.svg"></div>
+                        <div class="players"><img id="token2" src="../images/black-polygon.svg"></div>
+                    </div>
+                    <div class="empty-3" id="dorne">
+                        <h2>Dorne</2>
+                    </div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
                 </div>
+            </div>
+            <div class="glowAnimation">
+                <div class="glow"></div>
+                <div class="glow"></div>
+                <div class="glow"></div>
+                <div class="glow"></div>
+                <div class="glow"></div>
             </div>
         </div>
     </main>
@@ -131,7 +161,7 @@
     <footer>
         <p>Copyright © Selma Waller 2019</p>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/boardgame.js"></script>
     <script src="js/music.js"></script>
     <script src="../js/help.js"></script>
 </body>

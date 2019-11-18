@@ -732,12 +732,119 @@ footer p {
     margin: 10px 0;
   }
 }
+.snowAnimation {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+.snowAnimation .snow {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 10px;
+  background: radial-gradient(rgba(197, 197, 197, 0.3), rgba(0, 0, 0, 0));
+  top: 5px;
+  left: 5px;
+  animation: snowY 15s ease-out infinite;
+  overflow: hidden;
+  opacity: 0;
+  animation-delay: 1s;
+}
+.snowAnimation .snow:nth-child(2) {
+  left: 70px;
+  animation: snowY 25s ease-out infinite;
+  animation-delay: 5s;
+}
+.snowAnimation .snow:nth-child(3) {
+  left: 270px;
+  animation: snowY 18s ease-out infinite;
+  animation-delay: 10s;
+}
+.snowAnimation .snow:nth-child(4) {
+  left: 310px;
+  animation: snowY 10s ease-out infinite;
+  animation-delay: 15s;
+}
+.snowAnimation .snow:nth-child(5) {
+  left: 150px;
+  animation: snowY 13s linear infinite;
+  animation-delay: 20s;
+}
+@keyframes snowY {
+  0% {
+    opacity: 0;
+  }
+  10%, 50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50vh);
+  }
+}
+
+.glowAnimation {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+.glowAnimation .glow {
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  border-radius: 10%;
+  background: radial-gradient(rgba(102, 60, 40, 0.8), rgba(0, 0, 0, 0));
+  bottom: 5px;
+  right: 5px;
+  animation: glowY 10s ease-out infinite;
+  overflow: hidden;
+  opacity: 0;
+  animation-delay: 1s;
+}
+.glowAnimation .glow:nth-child(2) {
+  right: 70px;
+  animation: glowY 20s ease-out infinite;
+  animation-delay: 5s;
+}
+.glowAnimation .glow:nth-child(3) {
+  right: 270px;
+  animation: glowY 13s ease-out infinite;
+  animation-delay: 10s;
+}
+.glowAnimation .glow:nth-child(4) {
+  right: 310px;
+  animation: glowY 10s ease-out infinite;
+  animation-delay: 15s;
+}
+.glowAnimation .glow:nth-child(5) {
+  right: 150px;
+  animation: glowY 8s linear infinite;
+  animation-delay: 20s;
+}
+@keyframes glowY {
+  0% {
+    opacity: 0;
+  }
+  10%, 50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80vh);
+  }
+}
+
 #boardgame {
   margin: 0;
   background-image: url("../images/boardgame-background.jpg");
   background-size: 105% 105%;
   background-position: 99% 100%;
   cursor: default;
+  min-height: 100%;
   animation: gameBackground 2500ms;
   user-select: none;
   -webkit-user-drag: none;
@@ -748,6 +855,14 @@ footer p {
   }
   to {
     background-position: 99% 100%;
+  }
+}
+@keyframes fadeInGame {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 #boardgame .overlay {
@@ -761,51 +876,71 @@ footer p {
 #boardgame .board-background {
   width: 1230px;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.8);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), #000000, rgba(0, 0, 0, 0.8));
 }
 #boardgame .board-background h1 {
+  margin-bottom: 5px;
   background-image: -webkit-linear-gradient(#3D3D3D, #B4B4B4, #3D3D3D);
   background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 3.125rem;
+  animation: fadeInGame 2500ms;
+}
+#boardgame .board-background h1 span {
+  font-size: 2.5rem;
+}
+#boardgame .board-background h2, #boardgame .board-background h3, #boardgame .board-background h4 {
+  animation: fadeInGame 2500ms;
 }
 @supports (display: grid) {
-  #boardgame .board {
-    width: 700px;
+  #boardgame #board {
+    width: 750px;
     margin: 0 auto;
     display: grid;
     color: #000000;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
 }
-#boardgame .tile {
+#boardgame .tile, #boardgame .bonusTile {
   width: 40px;
   height: 35px;
   padding-top: 5px;
   background: #C5C5C5;
   border-radius: 100px;
-  margin: 30px;
+  margin: 20px;
   font-weight: bold;
   font-size: 1.625rem;
   text-align: center;
+  animation: fadeInGame 2500ms ease-out;
 }
-#boardgame #start, #boardgame #goal {
-  width: 100px;
-  height: 50px;
-  margin: 20px 30px 10px 0;
-  right: 0;
-  border-radius: 0;
-  background: -webkit-linear-gradient(#3D3D3D, #B4B4B4, #3D3D3D);
+#boardgame .tile .starTile, #boardgame .bonusTile .starTile {
+  width: 30px;
 }
-#boardgame #goal {
-  margin-top: 10px;
-  height: 70px;
-  width: 115px;
+#boardgame .tile .starTile2, #boardgame .bonusTile .starTile2 {
+  width: 50px;
+  margin-top: -10px;
+  margin-left: 0;
 }
-#boardgame #goal img {
+#boardgame #n30 {
+  background: none;
+  margin-left: -45px;
+  margin-top: -25px;
   width: 120px;
+}
+#boardgame #n30 img {
+  width: 180px;
+  opacity: 0.8;
+  animation: ironThrone 3s infinite;
+}
+@keyframes ironThrone {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.65;
+  }
 }
 #boardgame .empty-3, #boardgame .empty-2 {
   display: flex;
@@ -816,7 +951,7 @@ footer p {
 #boardgame .empty-3 h2, #boardgame .empty-2 h2 {
   margin: 0;
   font-weight: normal;
-  font-size: 2.1875rem;
+  font-size: 1.875rem;
 }
 #boardgame .empty-2 {
   width: 200px;
@@ -853,19 +988,24 @@ footer p {
   background: radial-gradient(#596683, #0D1016);
   color: #0D1016;
 }
-#boardgame #north {
+#boardgame #titleNorth {
   color: #8EA0BD;
 }
 #boardgame .crownlands, #boardgame .westerlands, #boardgame .vale, #boardgame .isles {
   background: radial-gradient(#916F8F, #2A1529);
   color: #2A1529;
-  margin-top: 22px;
+  margin-top: 15px;
+  margin-left: 15px;
   width: 50px;
   height: 40px;
   padding-top: 10px;
-  font-size: 1.75rem;
 }
 #boardgame #crownlands {
+  font-family: "IM Fell Great Primer SC", serif;
+  font-weight: normal;
+  font-size: 1.25rem;
+  margin-left: -30px;
+  margin-top: -90px;
   color: #D2BAE3;
 }
 #boardgame .westerlands {
@@ -873,6 +1013,11 @@ footer p {
   color: #230C11;
 }
 #boardgame #westerlands {
+  font-family: "IM Fell Great Primer SC", serif;
+  font-weight: normal;
+  font-size: 1.25rem;
+  margin-left: -30px;
+  margin-top: -90px;
   color: #B99898;
 }
 #boardgame .vale {
@@ -880,6 +1025,12 @@ footer p {
   color: #090B1C;
 }
 #boardgame #vale {
+  font-family: "IM Fell Great Primer SC", serif;
+  font-weight: normal;
+  font-size: 1.25rem;
+  margin-left: -30px;
+  margin-top: -90px;
+  width: 100px;
   color: #B3AACF;
 }
 #boardgame .isles {
@@ -887,7 +1038,79 @@ footer p {
   color: #261C0D;
 }
 #boardgame #isles {
+  font-family: "IM Fell Great Primer SC", serif;
+  font-weight: normal;
+  font-size: 1.25rem;
+  margin-left: -30px;
+  margin-top: -90px;
+  width: 100px;
   color: #A8A48A;
+}
+#boardgame .players {
+  position: absolute;
+}
+#boardgame .players img {
+  margin-top: 15px;
+  margin-right: 120px;
+  width: 70px;
+  animation: fadeInGame 2500ms ease-in, diceIntro 2000ms ease;
+  z-index: 9;
+}
+@keyframes tokenJump {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  75% {
+    transform: translateY(0);
+  }
+  85% {
+    transform: translateY(-5px);
+  }
+}
+#boardgame .players #token2 {
+  margin-right: -30px;
+  z-index: 8;
+}
+#boardgame #dice {
+  position: relative;
+  margin: 0 30px 20px;
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 7px;
+  box-shadow: inset 0 0 10px black;
+  font-size: 1.875rem;
+  cursor: pointer;
+  animation: diceIntro 2000ms ease-in-out;
+}
+@keyframes diceIntro {
+  0%, 100% {
+    transform: translate(0) rotate(0deg);
+  }
+  45% {
+    transform: translateY(0) rotate(0deg);
+  }
+  70% {
+    transform: translateY(-10px) rotate(20deg);
+  }
+  80% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  85% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+  90% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  95% {
+    transform: translateX(0) rotate(-5deg);
+  }
+}
+#boardgame #dice img {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 50px;
 }
 
 /*# sourceMappingURL=main.css.map */
