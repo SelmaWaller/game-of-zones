@@ -14,7 +14,7 @@
     <meta property="og:image:alt" content="gameofzones.jpg">
     <meta property="og:alt" content="game-of-zones.jpg">
     <meta property="og:description"
-        content="In Game of Zones, players roll dice to move through the seven kingdoms and reach the iron throne in The North. Watch out for traps!">
+        content="In Game of Zones, players roll a die to move through the seven kingdoms and reach the iron throne in The North. Watch out for traps!">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <title>Game of Zones</title>
 </head>
@@ -22,8 +22,8 @@
 <body>
 
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" allow="autoplay" autplay loop onplay="musicOn()" onpause="musicOff()">
-            <source src="../music/dragonstone.mp3">
+        <audio id="music" preload="auto" allow="autoplay" autoplay loop onplay="musicOn()" onpause="musicOff()">
+            <source src="../music/arrival-to-winterfell.mp3">
         </audio>
         <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg"
                 alt="toggle-music"></a>
@@ -38,11 +38,12 @@
         <div id="helpContent">
             <h2>How it works:</h2>
             <p>Players: 2</p>
-            <p>Roll your dice and be the first to reach the Iron Throne in the North!</p>
-            <p><span class="bold">7, 13, 20, 25</span>: You got lost on the way! Move to <img src="../images/star.png"
-                    alt="star-with-circle">. On your next turn, roll a [6] or pass your turn to find your way back</p>
+            <p><span id="chosenCharacter1">Player 1</span> starts</p>
+            <p>Roll the die and be the first to reach the Iron Throne in the North!</p>
             <p><img src="../images/star-2.png" alt="star">: You found a shortcut! Move three tiles forward</p>
-
+            <p><span style="font-weight: bold; font-size: 36px; padding-left: 5px; padding-top: 10px;">! </span>: Some
+                trap tiles are hidden
+                around the board... Watch your step!</p>
             <button class="closeHelp" id="closeBtn"><a onclick="closeHelp()"><img src="../images/help.svg"
                         alt="help"></a>
             </button>
@@ -65,6 +66,8 @@
                 <h1><span id="player1Name">&nbsp;</span> VS <span id="player2Name">&nbsp;</span></h1>
                 <button id="dice" onclick="roll()"><img id="diceImg" src="../images/dice-1.svg"></button>
                 <div id="board">
+                    <div class="players" id="token1holder"><img id="token1" src="../images/white-polygon.svg"></div>
+                    <div class="players" id="token2holder"><img id="token2" src="../images/black-polygon.svg"></div>
                     <div class="empty"></div>
                     <div class="empty"></div>
                     <div class="empty-3" id="titleNorth">
@@ -75,16 +78,26 @@
                     <div class="empty"></div>
                     <div class="empty"></div>
                     <div class="empty"></div>
-                    <div id="n26" class="tile north">26</div>
-                    <div id="n27" class="tile north">27</div>
-                    <div id="n28" class="tile north">28</div>
-                    <div id="n29" class="tile north">29</div>
-                    <div id="n30" class="tile"><img src="../images/throne-white.png"></div>
+                    <div id="tile26" class="tile north">26
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile27" class="tile north">27
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile28" class="tile north">28
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile29" class="tile north">29
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile30" class="tile"><img src="../images/throne-white.png"></div>
                     <div class="empty"></div>
                     <div class="bonusTile isles"><img class="starTile2" src="../images/star.png">
                         <div id="isles">Iron Isles</div>
                     </div>
-                    <div id="n25" class="tile isles">25</div>
+                    <div id="tile25" class="tile north">25
+                        <div class="lineY2"></div>
+                    </div>
                     <div class="empty-3" id="riverlands">
                         <h2>Riverlands</h2>
                     </div>
@@ -93,11 +106,20 @@
                     <div class="empty"></div>
                     <div class="empty"></div>
                     <div class="empty"></div>
-                    <div id="n24" class="tile riverlands">24</div>
-                    <div id="n23" class="tile riverlands">23</div>
-                    <div id="n22" class="tile riverlands">22</div>
-                    <div id="n21" class="tile riverlands">21</div>
-                    <div id="n20" class="tile vale">20</div>
+                    <div id="tile24" class="tile riverlands">24
+                        <div class="lineY2"></div>
+                        <div class="lineX2"></div>
+                    </div>
+                    <div id="tile23" class="tile riverlands">23
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile22" class="tile riverlands">22
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile21" class="tile riverlands">21
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile20" class="tile riverlands">20</div>
                     <div class="bonusTile vale"><img class="starTile2" src="../images/star.png">
                         <div id="vale">The Vale</div>
                     </div>
@@ -108,44 +130,84 @@
                         <h2>The Reach</h2>
                     </div>
                     <div class="empty"></div>
-                    <div id="n17" class="tile reach">17</div>
-                    <div id="n18" class="tile reach">18</div>
-                    <div id="n19" class="tile reach">19</div>
+                    <div id="tile17" class="tile reach">17
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile18" class="tile reach">18
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile19" class="tile reach">19
+                        <div class="lineY2"></div>
+                    </div>
                     <div class="empty"></div>
-                    <div id="n13" class="tile westerlands">13</div>
-                    <div id="n14" class="tile reach">14</div>
-                    <div id="n15" class="tile reach">15</div>
-                    <div id="n16" class="tile reach"><img class="starTile" src="../images/star-2.png"></div>
+                    <div id="tile13" class="tile reach">13
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile14" class="tile reach">14
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile15" class="tile reach">15
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile16" class="tile reach"><img class="starTile" src="../images/star-2.png">
+                        <div class="lineY"></div>
+                    </div>
                     <div class="empty-2" id="stormlands">
                         <h2>Stormlands</h2>
                     </div>
                     <div class="empty"></div>
                     <div class="empty"></div>
-                    <div id="n12" class="tile stormlands">12</div>
-                    <div id="n11" class="tile stormlands">11</div>
-                    <div id="n10" class="tile stormlands">10</div>
-                    <div id="n09" class="tile stormlands">9</div>
-                    <div id="n08" class="tile stormlands">8</div>
-                    <div id="n07" class="tile crownlands">7</div>
+                    <div id="tile12" class="tile stormlands">12
+                        <div class="lineY2"></div>
+                        <div class="lineX2"></div>
+                    </div>
+                    <div id="tile11" class="tile stormlands">11
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile10" class="tile stormlands">10
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile9" class="tile stormlands">9
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile8" class="tile stormlands">8
+                        <div class="lineX"></div>
+                    </div>
+                    <div id="tile7" class="tile stormlands">7
+                    </div>
                     <div class="bonusTile crownlands"><img class="starTile2" src="../images/star.png">
                         <div id="crownlands">Crownlands</div>
                     </div>
-                    <div id="n01" class="tile dorne">1</div>
-                    <div id="n02" class="tile dorne">2</div>
-                    <div id="n03" class="tile dorne">3</div>
-                    <div id="n04" class="tile dorne">4</div>
-                    <div id="n05" class="tile dorne">5</div>
-                    <div id="n06" class="tile dorne"><img class="starTile" src="../images/star-2.png"></div>
-                    <div class="empty"></div>
-                    <div class="empty-2">
-                        <div class="players"><img id="token1" src="../images/white-polygon.svg"></div>
-                        <div class="players"><img id="token2" src="../images/black-polygon.svg"></div>
+                    <div id="tile1" class="tile dorne">1<div class="lineX"></div>
                     </div>
+                    <div id="tile2" class="tile dorne">2<div class="lineX"></div>
+                    </div>
+                    <div id="tile3" class="tile dorne">3<div class="lineX"></div>
+                    </div>
+                    <div id="tile4" class="tile dorne">4<div class="lineX"></div>
+                    </div>
+                    <div id="tile5" class="tile dorne"><img class="starTile" src="../images/star-2.png">
+                        <div class="lineX"></div>
+                    </div>
+
+                    <div id="tile6" class="tile dorne">6
+                        <div class="lineY"></div>
+                    </div>
+                    <div class="empty"></div>
+                    <div class="empty" id="tile0"></div>
+                    <div class="empty"></div>
                     <div class="empty-3" id="dorne">
                         <h2>Dorne</2>
                     </div>
                     <div class="empty"></div>
                     <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty"></div>
+                    <div class="empty-3">
+                        <button id="playAgain" onclick="playAgain()">Restart</button>
+                    </div>
                 </div>
             </div>
             <div class="glowAnimation">
@@ -155,11 +217,13 @@
                 <div class="glow"></div>
                 <div class="glow"></div>
             </div>
+            <div id="winnerOverlay">
+            </div>
         </div>
     </main>
 
     <footer>
-        <p>Copyright © Selma Waller 2019</p>
+        <p>Copyright © <a href="https://wallerweave.com">Selma Waller</a> 2019</p>
     </footer>
     <script src="js/boardgame.js"></script>
     <script src="js/music.js"></script>

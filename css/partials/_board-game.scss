@@ -122,6 +122,7 @@
 }
 
 #boardgame {
+    position: relative;
     margin: 0;
     background-image: url('../images/boardgame-background.jpg');
     background-size: 105% 105%;
@@ -190,6 +191,7 @@
 
     @supports (display: grid) {
         #board {
+            position: relative;
             width: 750px;
             margin: 0 auto;
             display: grid;
@@ -215,33 +217,61 @@
             }
             
             .starTile2 {
-                width: 50px;
-                margin-top: -10px;
+                width: 40px;
+                margin-top: -5px;
                 margin-left: 0;
             }
     }
 
-    #n30 {
-        background: none;
-        margin-left: -45px;
-        margin-top: -25px;
-        width: 120px;
+    .lineX, .lineX2 {
+        width: 67px;
+        height: 1px;
+        margin-top: -17px;
+        margin-left: 40px;
+        background: linear-gradient(to left, #00000000, rgba(129, 129, 129, 0.486), #00000000);
+      }
+      
+      .lineY, .lineY2 {
+        width: 1px;
+        height: 40px;
+        margin-top: -82px;
+        margin-left: 20px;
+        background: linear-gradient(to top, #00000000, rgba(129, 129, 129, 0.486), #00000000);
+      }
+      
+      .lineX2 {
+        margin-top: 17px;
+      }
+      
+      .lineY2 {
+        margin-top: -75px;
+      }
 
-            img {
-                width: 180px;
-                opacity: 0.8;
+    #tile30 {
+        background: none;
+
+            img {    
+                width: 80px;
+                margin-top: -30px;
+                margin-left: -20px;
+                opacity: 0.6;
                 animation: ironThrone 3s infinite;
+                z-index: 0;
             }
 
             @keyframes ironThrone {
                 0%, 100% {
-                    opacity: 0.8;
+                    opacity: 0.6;
                 }
 
                 50% {
-                    opacity: 0.65;
+                    opacity: 0.5;
                 }
             }
+    }
+
+    #tile0 {
+        margin-left: 10px;
     }
 
     .empty-3, .empty-2 {
@@ -274,26 +304,26 @@
     #titleNorth {color: $goz-north-4;}
 
     //extra
-    .crownlands, .westerlands, .vale, .isles {background: radial-gradient($goz-crownlands-2, $goz-crownlands-1);color: $goz-crownlands-1; margin-top: 15px; margin-left: 15px; width: 50px; height: 40px; padding-top: 10px;}
-    #crownlands {font-family: 'IM Fell Great Primer SC', serif; font-weight: normal; @include calcRem(20);  margin-left: -30px; margin-top: -90px; color: $goz-crownlands-3;}
+    .crownlands, .westerlands, .vale, .isles {background: radial-gradient($goz-crownlands-2, $goz-crownlands-1);color: $goz-crownlands-1;}
+    #crownlands, #westerlands, #vale, #isles {font-family: 'IM Fell Great Primer SC', serif; font-weight: normal; @include calcRem(20);  margin-left: -30px; margin-top: -90px; color: $goz-crownlands-3;}
     .westerlands {background: radial-gradient($goz-westerlands-2, $goz-westerlands-1);color: $goz-westerlands-1;}
-    #westerlands {font-family: 'IM Fell Great Primer SC', serif; font-weight: normal; @include calcRem(20); margin-left: -30px; margin-top: -90px; color: $goz-westerlands-3;}
+    #westerlands {color: $goz-westerlands-3;}
     .vale {background: radial-gradient($goz-vale-2, $goz-vale-1);color: $goz-vale-1;}
-    #vale {font-family: 'IM Fell Great Primer SC', serif; font-weight: normal; @include calcRem(20); margin-left: -30px; margin-top: -90px; width:
-        100px; color: $goz-vale-3;}
+    #vale {width: 100px; color: $goz-vale-3;}
     .isles {background: radial-gradient($goz-iron-isles-2, $goz-iron-isles-1);color: $goz-iron-isles-1;}
-    #isles {font-family: 'IM Fell Great Primer SC', serif; font-weight: normal; @include calcRem(20); margin-left: -30px; margin-top: -90px; width:
-        100px; color: $goz-iron-isles-3;}
+    #isles {width: 100px; color: $goz-iron-isles-3;}
 
     .players {
         position: absolute;
+        width: 70px;
+        transition: 0.2s all;
+        margin-top: -15px;
+        margin-left: -18px;
+        z-index: 99;
 
             img {
-                margin-top: 15px;
-                margin-right: 120px;
                 width: 70px;
                 animation: fadeInGame 2500ms ease-in, diceIntro 2000ms ease;
-                z-index: 9;
             }
 
             @keyframes tokenJump {
@@ -309,16 +339,11 @@
                     transform: translateY(-5px);
                 }
             }
-
-            #token2 {
-                margin-right: -30px;
-                z-index: 8;
-            }
     }
 
     #dice {
         position: relative;
-        margin: 0 30px 20px;
+        margin: 10px 30px 30px 0;
         width: 55px;
         height: 55px;
         border: none;
@@ -365,5 +390,48 @@
                 width: 50px;
             }
     }
+
+    #playAgain {
+        padding: 10px 20px;
+        margin-top: 30px;
+        bottom: -40px;
+        z-index: 99;
+        background: rgba($goz-white, 0.1);
+        color: rgba($goz-white, 0.5);
+        font-family: 'Simonetta', serif;
+        @include calcRem(20);
+        border-radius: 3px;
+        border: $goz-black;
+        transition: 200ms;
+        cursor: pointer;
+    }
+
+    #playAgain:hover {
+        background: rgba($goz-white, 0.2);
+        color: rgba($goz-white, 0.9);
+        transition: 200ms;
+    }
     
+}
+
+#winnerOverlay {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    background: $goz-black;
+    animation: winner 1s ease-in;
+    z-index: 999;
+    opacity: 1;
+    display: none;
+}
+
+@keyframes winner {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

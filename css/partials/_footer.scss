@@ -1,15 +1,23 @@
 footer {
+    position: relative;
     display: block;
     bottom: 0;
     max-width: 100%;
+    text-align: right;
     background: linear-gradient(to right, rgba($goz-black, 0.7) 0%, rgba($goz-black, 0.9) 30%, rgba($goz-black, 0.95) 50%, rgba($goz-black, 0.9) 80%, rgba($goz-black, 0.7) 100%);
- 
+
+
     p {
         color: rgba($goz-white, 0.3);
         padding: 10px;
         margin: 0;
-        text-align: center;
+        right: 0;
         cursor: default;
+
+            a {
+                color: rgba($goz-white, 0.4);
+                cursor: pointer;
+            }
     }
 }
 
@@ -26,6 +34,15 @@ footer {
             padding-right: 14px;
             cursor: default;
             float: right;
+            
+            a {
+                color: rgba($goz-white, 0.3);
+                cursor: pointer;
+            }
+
+            a:hover {
+                color: rgba($goz-white, 0.5);
+            }
         }
     }
 }

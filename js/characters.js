@@ -4,7 +4,7 @@ let gotApi = async (characterName) => {
         const fetchResult = await fetch(`https://anapioficeandfire.com/api/characters?name=${characterName.split(' ').join('+')}`); //inserts names correctly
         const data = await fetchResult.json();
         return data[0];
-    } catch (e) {
+    } catch (error) {
         console.log('Fetch error', error);
     }
 };
@@ -20,10 +20,19 @@ const images = ['images/arryn-badge.png', 'images/baratheon-badge.png', 'images/
 
 function createCharacter(character, index) {
     let container = document.getElementById('characters');
-    badge = document.createElement('div');
+    let badge = document.createElement('div');
     badge.setAttribute('class', 'badge');
     let idBtn = document.createElement('button');
-    idBtn.setAttribute('id', character.playedBy);
+    idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms;';
+    idBtn.onmouseout = function () {
+        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms;';
+    };
+    idBtn.onmouseover = function () {
+        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; transition: 400ms; transform: translateY(-4px); background: #00000099; border: 1px solid #C5C5C533; box-shadow: 0 0 10px #C5C5C580; animation: badgeShadow 2s infinite;'
+    };
+    idBtn.onfocus = function () {
+        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; transition: 400ms; transform: translateY(-4px); background: #00000099; border: 1px solid #C5C5C533; box-shadow: 0 0 10px #C5C5C580; animation: badgeShadow 2s infinite;'
+    }
     let name = document.createElement('h3');
     name.textContent = (character.name);
     let img = document.createElement('img');
@@ -39,7 +48,7 @@ function createCharacter(character, index) {
     gender.textContent = ('Gender: ' + character.gender);
     let born = document.createElement('p');
     born.textContent = ('Born: ' + character.born);
-    died = document.createElement('p');
+    let died = document.createElement('p');
     died.textContent = ('Died: ' + character.died);
     if (character.died === "") {
         died.textContent = ('Died: Still alive/unknown');
@@ -66,32 +75,54 @@ function createCharacter(character, index) {
     about.appendChild(title);
     about.appendChild(culture);
 
-    /*select chars on card click
+    //select chars on click
     idBtn.onclick = () => {
-        let player1 = document.getElementById('player1');
-        let player2 = document.getElementById('player2');
-
+        let startGame = document.getElementById('startGame');
+        startGame.disabled = true;
+        let player1 = document.getElementById('selectPlayer1');
+        let player2 = document.getElementById('selectPlayer2');
         player1.value = character.name;
         player2.value = character.name;
-        localStorage.setItem('player1', character.name);
-        localStorage.setItem('player2', character.name);
-        const chosenPlayer1 = localStorage.getItem('player1');
-        const chosenPlayer2 = localStorage.getItem('player2');
-        console.log('Player 1: ' + chosenPlayer1);
-        console.log('Player 2: ' + chosenPlayer2);
-    }*/
+        if (player1.value == player2.value) {
+            player2.value = '';
+            document.getElementById('confirm').onclick = function () {
+                localStorage.setItem('player1', character.name);
+                player2.style.opacity = '1';
 
-    document.getElementById('startGame').addEventListener('click', function () {
-        let player1 = document.getElementById('player1');
-        let player2 = document.getElementById('player2');
-        localStorage.setItem('player1', player1.value);
-        localStorage.setItem('player2', player2.value);
-        let chosenCharacter1 = localStorage.getItem('player1', player1.value);
-        let chosenCharacter2 = localStorage.getItem('player2', player2.value);
-        console.log('Player 1: ' + chosenCharacter1);
-        console.log('Player 2: ' + chosenCharacter2);
-        window.location = 'board-game/index.html';
-    });
+                let mobile = window.matchMedia('(max-width: 680px)');
+                mobile.addListener(fitScreen);
+                function fitScreen(mobile) {
+                    if (mobile.matches) {
+                        player2.style.margin = '70px 20px 0';
+                        document.getElementById('versus').style.marginTop = '0';
+                    }
+                }
+
+                fitScreen(mobile);
+
+                if (localStorage.getItem('player1', character.name)) {
+                    badge.style.opacity = '0.5';
+                    badge.style.animation = 'none';
+                    idBtn.disabled = true;
+                    document.getElementById('confirm').style.opacity = '0';
+                    document.getElementById('versus').style.opacity = '1';
+                }
+            }
+        }
+        if (localStorage.getItem('player1', character.name)) {
+            player1.value = localStorage.getItem('player1', character.name);
+            player2.value = character.name;
+            localStorage.setItem('player2', character.name);
+        }
+        if (localStorage.getItem('player2', character.name)) {
+            startGame.style = 'opacity: 1; cursor: pointer; margin-bottom: 20px';
+            startGame.disabled = false;
+        }
+
+        startGame.onclick = function () {
+            window.location = 'board-game/index.html';
+        }
+    }
 }
 
 getCharacters().then(chars => {

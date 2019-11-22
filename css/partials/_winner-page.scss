@@ -1,0 +1,259 @@
+.winnerPage {
+    background-image: url('../images/background-warm.jpg');
+    background-attachment: cover;
+    cursor: default;
+    user-select: none;
+    -webkit-user-drag: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+
+        .overlay {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba($goz-black, 0.85);
+            animation: introFade 1800ms ease, darkFilter 8s infinite;
+        }
+
+        @keyframes darkFilter {
+            0%, 100% {
+                background-color: rgba($goz-black, 0.75);
+            }
+
+            50% {
+                background-color: rgba($goz-black, 0.85);
+            }
+        }
+
+        .winner {
+            height: 45vh;
+            background: radial-gradient($goz-black 10%, rgba($goz-black, 0) 70%);
+        }
+        .transitionOverlay {
+            position: absolute;
+            height: 100vh;
+            width: 100%;
+            top: 0;
+            opacity: 0;
+            background-color: $goz-black;
+            animation: outroFade 2s ease-out;
+        }
+        
+        h2 {
+            color: rgba($goz-white, 0.7);
+            font-weight: normal;
+            @include calcRem(40);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            @include calcRem(80);
+            margin: 0 0 0 25px;
+            background-image: $goz-white-title;
+            background-size: 100% 150%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: title 5000ms infinite, introFade 2300ms ease-in, winner 4s ease-in-out infinite;
+            display: block;
+        }
+
+        #winnerToken {
+            width: 200px;
+            animation: winner 4s ease-in-out infinite;
+        }
+        
+        @keyframes winner {
+            0%, 100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: translateY(-3px);
+            }
+        }
+        @keyframes outroFade {
+            0%, 30% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+        @keyframes introFade {
+            0% {
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes title {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 0% 100%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .transitionOverlay {
+            position: absolute;
+            height: 100vh;
+            width: 100%;
+            top: 0;
+            opacity: 0;
+            background-color: $goz-black;
+            animation: outroFade 2s ease-out;
+        }
+
+        button {
+            background: none;
+            border: none;
+        }
+
+}
+
+@media only screen and(max-width: 450px) {
+    .intro {
+        background-image: url('/images/background-warm.jpg');
+        background-size: 220% 100%;
+        cursor: default;
+        animation: introBackground 32s infinite;
+        user-select: none;
+        -webkit-user-drag: none;
+    
+            @keyframes introBackground {
+                0%, 1%, 100% {
+                    background-position: 0% 0%;
+                    background-size: 240% 100%;
+                }
+    
+                20% {
+                    background-position: 0% 50%;
+                    background-size: 340% 150%;
+                }
+    
+                40% {
+                    background-position: 50% 100%;
+                    background-size: 270% 130%;
+                }
+    
+                60% {
+                    background-position: 100% 50%;
+                    background-size: 260% 120%;
+                }
+                
+                80% {            
+                    background-position: 100% 100%;
+                    background-size: 320% 160%;
+                }
+            }
+
+        h1 {
+            padding: 0 20px;
+            @include calcRem(33);
+
+                span {
+                    @include calcRem(38);
+                }
+        }
+
+        p {
+            margin-top: 10px;
+            @include calcRem(16);
+        }
+    }
+}
+
+@media only screen and(min-width: 451px) and(max-width: 800px) {
+    .intro {
+        background-image: url('/images/background-warm.jpg');
+        background-size: 100% 100%;
+        cursor: default;
+        animation: introBackground 32s infinite;
+        user-select: none;
+        -webkit-user-drag: none;
+    
+        @keyframes introBackground {
+            0%, 1%, 100% {
+                background-position: 0% 0%;
+                background-size: 180% 100%;
+            }
+
+            20% {
+                background-position: 0% 50%;
+                background-size: 260% 150%;
+            }
+
+            40% {
+                background-position: 50% 100%;
+                background-size: 240% 130%;
+            }
+
+            60% {
+                background-position: 100% 50%;
+                background-size: 210% 120%;
+            }
+            
+            80% {            
+                background-position: 100% 100%;
+                background-size: 280% 160%;
+            }
+        }
+        
+        h1 {
+            padding: 0 20px;
+            @include calcRem(53);
+
+                span {
+                    @include calcRem(58);
+                }
+        }
+
+        p {
+            margin-top: 10px;
+            @include calcRem(16);
+        }
+    }
+}
+
+@media only screen and(min-width: 801) and (max-width: 1200px) {
+    .intro {
+        
+        h1 {
+            padding: 0 20px;
+            @include calcRem(63);
+
+                span {
+                    @include calcRem(68);
+                }
+        }
+
+        p {
+            margin-top: 10px;
+            @include calcRem(16);
+        }
+    }
+}

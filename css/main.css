@@ -37,9 +37,12 @@
 
 body {
   margin: 0;
+  background-image: url("../images/boardgame-background.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: -450px 0;
   cursor: default;
   user-select: none;
-  background-color: #000000;
   -webkit-user-drag: none;
 }
 
@@ -157,7 +160,7 @@ p, h3, h4, h5, h6 {
 }
 .infoPopup #helpContent {
   padding: 0px 20px;
-  top: -441px;
+  top: -438px;
   left: 60px;
   width: 300px;
   border-radius: 10px;
@@ -176,7 +179,7 @@ p, h3, h4, h5, h6 {
     transform: scale(0);
   }
   to {
-    top: -441px;
+    top: -438px;
     left: 60px;
     opacity: 1;
     transform: scale(1);
@@ -195,6 +198,7 @@ p, h3, h4, h5, h6 {
 .infoPopup #helpContent img {
   width: 29px;
   margin: 0 2px -7px 0px;
+  cursor: pointer;
 }
 .infoPopup #helpContent .closeHelp {
   display: block;
@@ -222,6 +226,7 @@ p, h3, h4, h5, h6 {
   }
   .infoPopup #helpContent .closeHelp {
     left: -30px;
+    top: 402px;
   }
 
   .music {
@@ -453,17 +458,23 @@ p, h3, h4, h5, h6 {
   }
 }
 footer {
+  position: relative;
   display: block;
   bottom: 0;
   max-width: 100%;
+  text-align: right;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.95) 50%, rgba(0, 0, 0, 0.9) 80%, rgba(0, 0, 0, 0.7) 100%);
 }
 footer p {
   color: rgba(197, 197, 197, 0.3);
   padding: 10px;
   margin: 0;
-  text-align: center;
+  right: 0;
   cursor: default;
+}
+footer p a {
+  color: rgba(197, 197, 197, 0.4);
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 1230px) {
@@ -479,6 +490,13 @@ footer p {
     padding-right: 14px;
     cursor: default;
     float: right;
+  }
+  footer p a {
+    color: rgba(197, 197, 197, 0.3);
+    cursor: pointer;
+  }
+  footer p a:hover {
+    color: rgba(197, 197, 197, 0.5);
   }
 }
 #main {
@@ -526,16 +544,80 @@ footer p {
     opacity: 1;
   }
 }
-#main .container select {
+#main .container input, #main .container #confirm {
   text-align: center;
-  margin: 0 5px 20px;
+  margin: 20px 5px 20px;
+  min-width: 265px;
   padding: 10px;
   background: #000000;
   border: 1px solid rgba(197, 197, 197, 0.2);
   color: #C5C5C5;
   transition: 400ms;
+  font-family: "Simonetta", serif;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+}
+#main .container input {
+  cursor: default;
+}
+#main .container #selectPlayer1 {
   animation: badges 2s ease-in;
-  opacity: 1;
+}
+#main .container #versus {
+  font-size: 1.875rem;
+  margin: 15px 20px 0;
+  background-image: -webkit-linear-gradient(#000000, #414141, #e0e0e0, #414141, #000000);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  background-clip: text;
+  font-family: "Cinzel Decorative", serif;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 200ms;
+  opacity: 0;
+}
+#main .container #selectPlayer2 {
+  animation: badges 5s ease-in;
+  opacity: 0;
+  position: relative;
+}
+#main .container #confirm {
+  position: absolute;
+  margin-left: -291px;
+  margin-top: 20px;
+  cursor: pointer;
+  background: #C5C5C5;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #000000;
+  animation: badges 2s ease-in, selectChar 2s infinite;
+  transition: 200ms;
+}
+@keyframes selectChar {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(197, 197, 197, 0);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(197, 197, 197, 0.4);
+  }
+}
+#main .container #startGame {
+  display: block;
+  height: 20px;
+  background: rgba(197, 197, 197, 0.7);
+  width: 100px;
+  padding: 5px 10px 35px;
+  border: none;
+  margin: 0 auto 15px;
+  font-family: "Simonetta", serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: 400ms;
+  opacity: 0;
+}
+#main .container #startGame:hover, #main .container #startGame:focus {
+  animation: badgeShadow 2s infinite;
+  transition: 400ms;
 }
 #main .container .badge {
   width: unset;
@@ -586,24 +668,6 @@ footer p {
   transform: translate(0);
   animation: none;
 }
-#main .container button {
-  position: relative;
-  max-height: 350px;
-  width: 100%;
-  height: 100%;
-  max-width: 215px;
-  padding: 0;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(197, 197, 197, 0.2);
-  transition: 400ms;
-}
-#main .container button:hover, #main .container button:focus {
-  transition: 400ms;
-  transform: translateY(-4px);
-  background: rgba(0, 0, 0, 0.6);
-  box-shadow: 0 0 10px rgba(197, 197, 197, 0.5);
-  animation: badgeShadow 2s infinite;
-}
 @keyframes badgeShadow {
   0%, 100% {
     box-shadow: 0 0 10px rgba(197, 197, 197, 0.2);
@@ -634,31 +698,10 @@ footer p {
   font-family: "Telex", sans-serif;
   margin: 10px 0;
 }
-#main #startGame {
-  height: 20px;
-  background: rgba(197, 197, 197, 0.7);
-  width: 100px;
-  padding: 5px 10px 35px;
-  margin-bottom: 50px;
-  animation: badges 2s ease-in, playBtn 2s infinite;
-  font-family: "Simonetta", serif;
-  font-size: 1.625rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
-}
-#main #startGame:hover, #main #startGame:focus {
-  transform: translateY(0);
-}
-@keyframes playBtn {
-  0%, 100% {
-    background: rgba(197, 197, 197, 0.7);
-  }
-  50% {
-    background: rgba(197, 197, 197, 0.5);
-  }
-}
 
+/*----------------
+   media queries
+----------------*/
 @media only screen and (min-width: 500px) {
   body {
     margin: 0;
@@ -681,6 +724,24 @@ footer p {
     }
   }
 }
+@media only screen and (max-width: 680px) {
+  #main .container #selectPlayer2 {
+    top: -55px;
+  }
+  #main .container #confirm {
+    margin-top: -35px;
+  }
+  #main .container #startGame {
+    margin: -40px auto;
+  }
+  #main .container #versus {
+    display: block;
+  }
+
+  .badge {
+    margin-top: 30px;
+  }
+}
 @media only screen and (min-width: 700px) {
   #main .container h2 {
     padding: 0 20px;
@@ -688,8 +749,8 @@ footer p {
 }
 @media only screen and (min-width: 750px) {
   #main .container h2 {
-    margin-bottom: 0;
-    margin-top: 40px;
+    margin-bottom: 10px;
+    margin-top: 30px;
   }
 }
 @media only screen and (min-width: 1230px) {
@@ -839,6 +900,7 @@ footer p {
 }
 
 #boardgame {
+  position: relative;
   margin: 0;
   background-image: url("../images/boardgame-background.jpg");
   background-size: 105% 105%;
@@ -896,6 +958,7 @@ footer p {
 }
 @supports (display: grid) {
   #boardgame #board {
+    position: relative;
     width: 750px;
     margin: 0 auto;
     display: grid;
@@ -919,28 +982,51 @@ footer p {
   width: 30px;
 }
 #boardgame .tile .starTile2, #boardgame .bonusTile .starTile2 {
-  width: 50px;
-  margin-top: -10px;
+  width: 40px;
+  margin-top: -5px;
   margin-left: 0;
 }
-#boardgame #n30 {
-  background: none;
-  margin-left: -45px;
-  margin-top: -25px;
-  width: 120px;
+#boardgame .lineX, #boardgame .lineX2 {
+  width: 67px;
+  height: 1px;
+  margin-top: -17px;
+  margin-left: 40px;
+  background: linear-gradient(to left, #00000000, rgba(129, 129, 129, 0.486), #00000000);
 }
-#boardgame #n30 img {
-  width: 180px;
-  opacity: 0.8;
+#boardgame .lineY, #boardgame .lineY2 {
+  width: 1px;
+  height: 40px;
+  margin-top: -82px;
+  margin-left: 20px;
+  background: linear-gradient(to top, #00000000, rgba(129, 129, 129, 0.486), #00000000);
+}
+#boardgame .lineX2 {
+  margin-top: 17px;
+}
+#boardgame .lineY2 {
+  margin-top: -75px;
+}
+#boardgame #tile30 {
+  background: none;
+}
+#boardgame #tile30 img {
+  width: 80px;
+  margin-top: -30px;
+  margin-left: -20px;
+  opacity: 0.6;
   animation: ironThrone 3s infinite;
+  z-index: 0;
 }
 @keyframes ironThrone {
   0%, 100% {
-    opacity: 0.8;
+    opacity: 0.6;
   }
   50% {
-    opacity: 0.65;
+    opacity: 0.5;
   }
+}
+#boardgame #tile0 {
+  margin-left: 10px;
 }
 #boardgame .empty-3, #boardgame .empty-2 {
   display: flex;
@@ -957,36 +1043,36 @@ footer p {
   width: 200px;
 }
 #boardgame .dorne {
-  background: radial-gradient(#B89A55, #2c2315);
-  color: #2c2315;
+  background: radial-gradient(#B89A55, #1b150b);
+  color: #1b150b;
 }
 #boardgame #dorne {
   color: #C7B37B;
 }
 #boardgame .stormlands {
-  background: radial-gradient(#E9E381, #333018);
-  color: #333018;
+  background: radial-gradient(#E9E381, #25230f);
+  color: #25230f;
 }
 #boardgame #stormlands {
   color: #E9E381;
 }
 #boardgame .reach {
-  background: radial-gradient(#94A77C, #19260B);
-  color: #19260B;
+  background: radial-gradient(#94A77C, #0c1305);
+  color: #0c1305;
 }
 #boardgame #reach {
   color: #94A77C;
 }
 #boardgame .riverlands {
-  background: radial-gradient(#3D788E, #0B1A26);
-  color: #0B1A26;
+  background: radial-gradient(#3D788E, #060e14);
+  color: #060e14;
 }
 #boardgame #riverlands {
   color: #89b0c0;
 }
 #boardgame .north {
-  background: radial-gradient(#596683, #0D1016);
-  color: #0D1016;
+  background: radial-gradient(#596683, #040507);
+  color: #040507;
 }
 #boardgame #titleNorth {
   color: #8EA0BD;
@@ -994,13 +1080,8 @@ footer p {
 #boardgame .crownlands, #boardgame .westerlands, #boardgame .vale, #boardgame .isles {
   background: radial-gradient(#916F8F, #2A1529);
   color: #2A1529;
-  margin-top: 15px;
-  margin-left: 15px;
-  width: 50px;
-  height: 40px;
-  padding-top: 10px;
 }
-#boardgame #crownlands {
+#boardgame #crownlands, #boardgame #westerlands, #boardgame #vale, #boardgame #isles {
   font-family: "IM Fell Great Primer SC", serif;
   font-weight: normal;
   font-size: 1.25rem;
@@ -1013,11 +1094,6 @@ footer p {
   color: #230C11;
 }
 #boardgame #westerlands {
-  font-family: "IM Fell Great Primer SC", serif;
-  font-weight: normal;
-  font-size: 1.25rem;
-  margin-left: -30px;
-  margin-top: -90px;
   color: #B99898;
 }
 #boardgame .vale {
@@ -1025,11 +1101,6 @@ footer p {
   color: #090B1C;
 }
 #boardgame #vale {
-  font-family: "IM Fell Great Primer SC", serif;
-  font-weight: normal;
-  font-size: 1.25rem;
-  margin-left: -30px;
-  margin-top: -90px;
   width: 100px;
   color: #B3AACF;
 }
@@ -1038,23 +1109,20 @@ footer p {
   color: #261C0D;
 }
 #boardgame #isles {
-  font-family: "IM Fell Great Primer SC", serif;
-  font-weight: normal;
-  font-size: 1.25rem;
-  margin-left: -30px;
-  margin-top: -90px;
   width: 100px;
   color: #A8A48A;
 }
 #boardgame .players {
   position: absolute;
+  width: 70px;
+  transition: 0.2s all;
+  margin-top: -15px;
+  margin-left: -18px;
+  z-index: 99;
 }
 #boardgame .players img {
-  margin-top: 15px;
-  margin-right: 120px;
   width: 70px;
   animation: fadeInGame 2500ms ease-in, diceIntro 2000ms ease;
-  z-index: 9;
 }
 @keyframes tokenJump {
   0%, 100% {
@@ -1067,13 +1135,9 @@ footer p {
     transform: translateY(-5px);
   }
 }
-#boardgame .players #token2 {
-  margin-right: -30px;
-  z-index: 8;
-}
 #boardgame #dice {
   position: relative;
-  margin: 0 30px 20px;
+  margin: 10px 30px 30px 0;
   width: 55px;
   height: 55px;
   border: none;
@@ -1111,6 +1175,265 @@ footer p {
   left: 2px;
   top: 2px;
   width: 50px;
+}
+#boardgame #playAgain {
+  padding: 10px 20px;
+  margin-top: 30px;
+  bottom: -40px;
+  z-index: 99;
+  background: rgba(197, 197, 197, 0.1);
+  color: rgba(197, 197, 197, 0.5);
+  font-family: "Simonetta", serif;
+  font-size: 1.25rem;
+  border-radius: 3px;
+  border: #000000;
+  transition: 200ms;
+  cursor: pointer;
+}
+#boardgame #playAgain:hover {
+  background: rgba(197, 197, 197, 0.2);
+  color: rgba(197, 197, 197, 0.9);
+  transition: 200ms;
+}
+
+#winnerOverlay {
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  background: #000000;
+  animation: winner 1s ease-in;
+  z-index: 999;
+  opacity: 1;
+  display: none;
+}
+
+@keyframes winner {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.winnerPage {
+  background-image: url("../images/background-warm.jpg");
+  background-attachment: cover;
+  cursor: default;
+  user-select: none;
+  -webkit-user-drag: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+.winnerPage .overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  animation: introFade 1800ms ease, darkFilter 8s infinite;
+}
+@keyframes darkFilter {
+  0%, 100% {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+  50% {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+}
+.winnerPage .winner {
+  height: 45vh;
+  background: radial-gradient(#000000 10%, rgba(0, 0, 0, 0) 70%);
+}
+.winnerPage .transitionOverlay {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  opacity: 0;
+  background-color: #000000;
+  animation: outroFade 2s ease-out;
+}
+.winnerPage h2 {
+  color: rgba(197, 197, 197, 0.7);
+  font-weight: normal;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.winnerPage h1 {
+  font-size: 5rem;
+  margin: 0 0 0 25px;
+  background-image: -webkit-linear-gradient(#000000, #414141, #e0e0e0, #414141, #000000);
+  background-size: 100% 150%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: title 5000ms infinite, introFade 2300ms ease-in, winner 4s ease-in-out infinite;
+  display: block;
+}
+.winnerPage #winnerToken {
+  width: 200px;
+  animation: winner 4s ease-in-out infinite;
+}
+@keyframes winner {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-3px);
+  }
+}
+@keyframes outroFade {
+  0%, 30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes introFade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes title {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.winnerPage .transitionOverlay {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  opacity: 0;
+  background-color: #000000;
+  animation: outroFade 2s ease-out;
+}
+.winnerPage button {
+  background: none;
+  border: none;
+}
+
+@media only screen and (max-width: 450px) {
+  .intro {
+    background-image: url("/images/background-warm.jpg");
+    background-size: 220% 100%;
+    cursor: default;
+    animation: introBackground 32s infinite;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  @keyframes introBackground {
+    0%, 1%, 100% {
+      background-position: 0% 0%;
+      background-size: 240% 100%;
+    }
+    20% {
+      background-position: 0% 50%;
+      background-size: 340% 150%;
+    }
+    40% {
+      background-position: 50% 100%;
+      background-size: 270% 130%;
+    }
+    60% {
+      background-position: 100% 50%;
+      background-size: 260% 120%;
+    }
+    80% {
+      background-position: 100% 100%;
+      background-size: 320% 160%;
+    }
+  }
+  .intro h1 {
+    padding: 0 20px;
+    font-size: 2.0625rem;
+  }
+  .intro h1 span {
+    font-size: 2.375rem;
+  }
+  .intro p {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 451px) and (max-width: 800px) {
+  .intro {
+    background-image: url("/images/background-warm.jpg");
+    background-size: 100% 100%;
+    cursor: default;
+    animation: introBackground 32s infinite;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  @keyframes introBackground {
+    0%, 1%, 100% {
+      background-position: 0% 0%;
+      background-size: 180% 100%;
+    }
+    20% {
+      background-position: 0% 50%;
+      background-size: 260% 150%;
+    }
+    40% {
+      background-position: 50% 100%;
+      background-size: 240% 130%;
+    }
+    60% {
+      background-position: 100% 50%;
+      background-size: 210% 120%;
+    }
+    80% {
+      background-position: 100% 100%;
+      background-size: 280% 160%;
+    }
+  }
+  .intro h1 {
+    padding: 0 20px;
+    font-size: 3.3125rem;
+  }
+  .intro h1 span {
+    font-size: 3.625rem;
+  }
+  .intro p {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 801) and (max-width: 1200px) {
+  .intro h1 {
+    padding: 0 20px;
+    font-size: 3.9375rem;
+  }
+  .intro h1 span {
+    font-size: 4.25rem;
+  }
+  .intro p {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
