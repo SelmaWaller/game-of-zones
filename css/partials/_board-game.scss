@@ -389,29 +389,7 @@
                 top: 2px;
                 width: 50px;
             }
-    }
-
-    #playAgain {
-        padding: 10px 20px;
-        margin-top: 30px;
-        bottom: -40px;
-        z-index: 99;
-        background: rgba($goz-white, 0.1);
-        color: rgba($goz-white, 0.5);
-        font-family: 'Simonetta', serif;
-        @include calcRem(20);
-        border-radius: 3px;
-        border: $goz-black;
-        transition: 200ms;
-        cursor: pointer;
-    }
-
-    #playAgain:hover {
-        background: rgba($goz-white, 0.2);
-        color: rgba($goz-white, 0.9);
-        transition: 200ms;
-    }
-    
+    }    
 }
 
 #winnerOverlay {
@@ -419,19 +397,18 @@
     text-align: center;
     width: 100%;
     height: 100vh;
-    background: $goz-black;
     animation: winner 1s ease-in;
+    background: rgba($goz-black, 0);
     z-index: 999;
-    opacity: 1;
     display: none;
 }
 
 @keyframes winner {
     from {
-        opacity: 0;
+        background: rgba($goz-black, 0);
     }
 
     to {
-        opacity: 1;
+        background: rgba($goz-black, 1);
     }
 }

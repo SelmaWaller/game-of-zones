@@ -118,13 +118,5 @@ function setBoard() {
     movePlayer(`tile${player2Position}`, 'token2holder');
 }
 
-function playAgain() {
-    localStorage.removeItem('player1position');
-    localStorage.removeItem('player2position');
-    movePlayer('tile0', 'token1holder');
-    movePlayer('tile0', 'token2holder');
-    localStorage.setItem('activePlayer', '1');
-}
-
 setBoard();
 

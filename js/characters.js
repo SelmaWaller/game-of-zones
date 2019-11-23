@@ -33,6 +33,9 @@ function createCharacter(character, index) {
     idBtn.onfocus = function () {
         idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; transition: 400ms; transform: translateY(-4px); background: #00000099; border: 1px solid #C5C5C533; box-shadow: 0 0 10px #C5C5C580; animation: badgeShadow 2s infinite;'
     }
+    idBtn.onblur = function () {
+        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms;';
+    }
     let name = document.createElement('h3');
     name.textContent = (character.name);
     let img = document.createElement('img');

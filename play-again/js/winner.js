@@ -1,3 +1,13 @@
+function introFade() {
+    let introFade = document.getElementById('transitionOverlay');
+    introFade.style.display = 'block';
+    setTimeout(function () {
+        introFade.style.display = 'none';
+    }, 2500);
+}
+
+introFade();
+
 function winner() {
     let winner = localStorage.getItem('winner');
     console.log(winner + ' reached the Iron Throne first!');
@@ -10,7 +20,18 @@ function winner() {
             document.getElementById('winnerToken').src = tokens[i];
         }
     }
-    document.getElementById('winnerName').innerHTML += winner + '!';
+    document.getElementById('winnerName').innerHTML += winner;
 }
 
 winner();
+
+function playAgain() {
+    localStorage.removeItem('player1position');
+    localStorage.removeItem('player2position');
+    localStorage.removeItem('player1');
+    localStorage.removeItem('player2');
+    localStorage.removeItem('winner');
+    localStorage.setItem('activePlayer', '1');
+    window.location = '../';
+}
+

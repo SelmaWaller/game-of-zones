@@ -1176,52 +1176,30 @@ footer p a {
   top: 2px;
   width: 50px;
 }
-#boardgame #playAgain {
-  padding: 10px 20px;
-  margin-top: 30px;
-  bottom: -40px;
-  z-index: 99;
-  background: rgba(197, 197, 197, 0.1);
-  color: rgba(197, 197, 197, 0.5);
-  font-family: "Simonetta", serif;
-  font-size: 1.25rem;
-  border-radius: 3px;
-  border: #000000;
-  transition: 200ms;
-  cursor: pointer;
-}
-#boardgame #playAgain:hover {
-  background: rgba(197, 197, 197, 0.2);
-  color: rgba(197, 197, 197, 0.9);
-  transition: 200ms;
-}
 
 #winnerOverlay {
   position: fixed;
   text-align: center;
   width: 100%;
   height: 100vh;
-  background: #000000;
   animation: winner 1s ease-in;
+  background: rgba(0, 0, 0, 0);
   z-index: 999;
-  opacity: 1;
   display: none;
 }
 
 @keyframes winner {
   from {
-    opacity: 0;
+    background: rgba(0, 0, 0, 0);
   }
   to {
-    opacity: 1;
+    background: black;
   }
 }
 .winnerPage {
   background-image: url("../images/background-warm.jpg");
   background-attachment: cover;
   cursor: default;
-  user-select: none;
-  -webkit-user-drag: none;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -1248,49 +1226,14 @@ footer p a {
     background-color: rgba(0, 0, 0, 0.85);
   }
 }
-.winnerPage .winner {
-  height: 45vh;
-  background: radial-gradient(#000000 10%, rgba(0, 0, 0, 0) 70%);
-}
-.winnerPage .transitionOverlay {
+.winnerPage #transitionOverlay {
   position: absolute;
   height: 100vh;
   width: 100%;
   top: 0;
   opacity: 0;
   background-color: #000000;
-  animation: outroFade 2s ease-out;
-}
-.winnerPage h2 {
-  color: rgba(197, 197, 197, 0.7);
-  font-weight: normal;
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-.winnerPage h1 {
-  font-size: 5rem;
-  margin: 0 0 0 25px;
-  background-image: -webkit-linear-gradient(#000000, #414141, #e0e0e0, #414141, #000000);
-  background-size: 100% 150%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: title 5000ms infinite, introFade 2300ms ease-in, winner 4s ease-in-out infinite;
-  display: block;
-}
-.winnerPage #winnerToken {
-  width: 200px;
-  animation: winner 4s ease-in-out infinite;
-}
-@keyframes winner {
-  0%, 100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 0.7;
-    transform: translateY(-3px);
-  }
+  animation: outroFade 2.5s ease-out;
 }
 @keyframes outroFade {
   0%, 30% {
@@ -1298,6 +1241,32 @@ footer p a {
   }
   100% {
     opacity: 0;
+  }
+}
+.winnerPage h1, .winnerPage h2 {
+  font-size: 3.75rem;
+  color: rgba(197, 197, 197, 0.9);
+  animation: title 5000ms infinite, introFade 2300ms ease-in, winner 4s ease-in-out infinite;
+  display: block;
+  font-weight: normal;
+}
+.winnerPage h2 {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.winnerPage #winnerToken {
+  user-select: none;
+  -webkit-user-drag: none;
+  width: 200px;
+  animation: winner 4s ease-in-out infinite;
+}
+@keyframes winner {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
   }
 }
 @keyframes introFade {
@@ -1322,117 +1291,39 @@ footer p a {
     background-position: 0% 50%;
   }
 }
-.winnerPage .transitionOverlay {
-  position: absolute;
-  height: 100vh;
-  width: 100%;
-  top: 0;
-  opacity: 0;
-  background-color: #000000;
-  animation: outroFade 2s ease-out;
+.winnerPage #playAgain {
+  padding: 10px 20px;
+  margin-top: 30px;
+  bottom: -40px;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.3);
+  color: rgba(197, 197, 197, 0.7);
+  font-family: "Simonetta", serif;
+  font-size: 1.25rem;
+  border-radius: 3px;
+  border: 1px solid rgba(197, 197, 197, 0.3);
+  transition: 200ms;
+  cursor: pointer;
+  z-index: 9999;
+  animation: introFade 2300ms ease-in;
 }
-.winnerPage button {
-  background: none;
-  border: none;
+.winnerPage #playAgain:hover {
+  background: rgba(197, 197, 197, 0.05);
+  color: #C5C5C5;
+  transition: 200ms;
 }
 
-@media only screen and (max-width: 450px) {
-  .intro {
-    background-image: url("/images/background-warm.jpg");
-    background-size: 220% 100%;
-    cursor: default;
-    animation: introBackground 32s infinite;
-    user-select: none;
-    -webkit-user-drag: none;
+@media only screen and (max-width: 1024px) {
+  .winnerPage {
+    background-position: -500px;
+    background-attachment: cover;
   }
-  @keyframes introBackground {
-    0%, 1%, 100% {
-      background-position: 0% 0%;
-      background-size: 240% 100%;
-    }
-    20% {
-      background-position: 0% 50%;
-      background-size: 340% 150%;
-    }
-    40% {
-      background-position: 50% 100%;
-      background-size: 270% 130%;
-    }
-    60% {
-      background-position: 100% 50%;
-      background-size: 260% 120%;
-    }
-    80% {
-      background-position: 100% 100%;
-      background-size: 320% 160%;
-    }
+  .winnerPage h1 {
+    font-size: 2.1875rem;
+    padding: 0 10px;
   }
-  .intro h1 {
-    padding: 0 20px;
-    font-size: 2.0625rem;
-  }
-  .intro h1 span {
-    font-size: 2.375rem;
-  }
-  .intro p {
-    margin-top: 10px;
-    font-size: 1rem;
-  }
-}
-@media only screen and (min-width: 451px) and (max-width: 800px) {
-  .intro {
-    background-image: url("/images/background-warm.jpg");
-    background-size: 100% 100%;
-    cursor: default;
-    animation: introBackground 32s infinite;
-    user-select: none;
-    -webkit-user-drag: none;
-  }
-  @keyframes introBackground {
-    0%, 1%, 100% {
-      background-position: 0% 0%;
-      background-size: 180% 100%;
-    }
-    20% {
-      background-position: 0% 50%;
-      background-size: 260% 150%;
-    }
-    40% {
-      background-position: 50% 100%;
-      background-size: 240% 130%;
-    }
-    60% {
-      background-position: 100% 50%;
-      background-size: 210% 120%;
-    }
-    80% {
-      background-position: 100% 100%;
-      background-size: 280% 160%;
-    }
-  }
-  .intro h1 {
-    padding: 0 20px;
-    font-size: 3.3125rem;
-  }
-  .intro h1 span {
-    font-size: 3.625rem;
-  }
-  .intro p {
-    margin-top: 10px;
-    font-size: 1rem;
-  }
-}
-@media only screen and (min-width: 801) and (max-width: 1200px) {
-  .intro h1 {
-    padding: 0 20px;
-    font-size: 3.9375rem;
-  }
-  .intro h1 span {
-    font-size: 4.25rem;
-  }
-  .intro p {
-    margin-top: 10px;
-    font-size: 1rem;
+  .winnerPage h2 {
+    font-size: 1.25rem;
   }
 }
 
