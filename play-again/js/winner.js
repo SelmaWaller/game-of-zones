@@ -1,13 +1,3 @@
-function introFade() {
-    let introFade = document.getElementById('transitionOverlay');
-    introFade.style.display = 'block';
-    setTimeout(function () {
-        introFade.style.display = 'none';
-    }, 2500);
-}
-
-introFade();
-
 function winner() {
     let winner = localStorage.getItem('winner');
     console.log(winner + ' reached the Iron Throne first!');

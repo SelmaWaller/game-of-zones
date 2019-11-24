@@ -15,14 +15,14 @@
     <meta property="og:alt" content="game-of-zones.jpg">
     <meta property="og:description"
         content="In Game of Zones, players roll a die to move through the seven kingdoms and reach the iron throne in The North. Watch out for traps!">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
     <title>Game of Zones</title>
 </head>
 
 <body>
 
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" allow="autoplay" autoplay loop onplay="musicOn()" onpause="musicOff()">
+        <audio id="music" preload="auto" allow="autoplay" loop onplay="musicOn()" onpause="musicOff()">
             <source src="../music/arrival-to-winterfell.mp3">
         </audio>
         <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg"
@@ -33,7 +33,8 @@
     </div>
 
     <div class="infoPopup">
-        <button class="help" id="helpBtn"><a onclick="toggleHelp()"><img src="../images/help.png" alt="help"></a>
+        <button class="help" id="helpBtn"><a onclick="toggleHelp()" onkeyup="toggleHelpKey()"><img
+                    src="../images/help.png" alt="help"></a>
         </button>
         <div id="helpContent">
             <h2>How it works:</h2>
@@ -44,9 +45,6 @@
             <p><span style="font-weight: bold; font-size: 36px; padding-left: 5px; padding-top: 10px;">! </span>: Some
                 trap tiles are hidden
                 around the board... Watch your step!</p>
-            <button class="closeHelp" id="closeBtn"><a onclick="closeHelp()"><img src="../images/help.svg"
-                        alt="help"></a>
-            </button>
         </div>
     </div>
     <div class="introAnimationHelp">
@@ -87,12 +85,12 @@
                     <div id="tile28" class="tile north">28
                         <div class="lineX"></div>
                     </div>
-                    <div id="tile29" class="tile north">29
+                    <div id="tile29" class="tile north">!
                         <div class="lineX"></div>
                     </div>
                     <div id="tile30" class="tile"><img src="../images/throne-white.png"></div>
                     <div class="empty"></div>
-                    <div class="bonusTile isles"><img class="starTile2" src="../images/star.png">
+                    <div id="tileIsles" class="bonusTile isles"><img class="starTile2" src="../images/star.png">
                         <div id="isles">Iron Isles</div>
                     </div>
                     <div id="tile25" class="tile north">25
@@ -110,7 +108,7 @@
                         <div class="lineY2"></div>
                         <div class="lineX2"></div>
                     </div>
-                    <div id="tile23" class="tile riverlands">23
+                    <div id="tile23" class="tile riverlands">!
                         <div class="lineX"></div>
                     </div>
                     <div id="tile22" class="tile riverlands">22
@@ -119,11 +117,12 @@
                     <div id="tile21" class="tile riverlands">21
                         <div class="lineX"></div>
                     </div>
-                    <div id="tile20" class="tile riverlands">20</div>
-                    <div class="bonusTile vale"><img class="starTile2" src="../images/star.png">
+                    <div id="tile20" class="tile riverlands">!</div>
+                    <div id="tileVale" class="bonusTile vale"><img class="starTile2" src="../images/star.png">
                         <div id="vale">The Vale</div>
                     </div>
-                    <div class="bonusTile westerlands"><img class="starTile2" src="../images/star.png">
+                    <div id="tileWesterlands" class="bonusTile westerlands"><img class="starTile2"
+                            src="../images/star.png">
                         <div id="westerlands">Westerlands</div>
                     </div>
                     <div class="empty-2" id="reach">
@@ -140,7 +139,7 @@
                         <div class="lineY2"></div>
                     </div>
                     <div class="empty"></div>
-                    <div id="tile13" class="tile reach">13
+                    <div id="tile13" class="tile reach">!
                         <div class="lineX"></div>
                     </div>
                     <div id="tile14" class="tile reach">14
@@ -173,12 +172,13 @@
                     <div id="tile8" class="tile stormlands">8
                         <div class="lineX"></div>
                     </div>
-                    <div id="tile7" class="tile stormlands">7
+                    <div id="tile7" class="tile stormlands">!
                     </div>
-                    <div class="bonusTile crownlands"><img class="starTile2" src="../images/star.png">
+                    <div id="tileCrownlands" class="bonusTile crownlands"><img class="starTile2"
+                            src="../images/star.png">
                         <div id="crownlands">Crownlands</div>
                     </div>
-                    <div id="tile1" class="tile dorne">1<div class="lineX"></div>
+                    <div id="tile1" class="tile dorne">!<div class="lineX"></div>
                     </div>
                     <div id="tile2" class="tile dorne">2<div class="lineX"></div>
                     </div>
@@ -221,7 +221,7 @@
         </div>
     </main>
 
-    <footer>
+    <footer id="boardgame-footer">
         <p>Copyright © <a href="https://wallerweave.com">Selma Waller</a> 2019</p>
     </footer>
     <script src="js/boardgame.js"></script>

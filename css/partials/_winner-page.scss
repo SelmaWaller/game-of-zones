@@ -1,13 +1,12 @@
+img {user-select: none; -webkit-user-drag: none;}
+
 .winnerPage {
     background-image: url('../images/background-warm.jpg');
-    background-attachment: cover;
+    background-position: 0% 0%;
+    background-size: 100% 100%;
     cursor: default;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100vh;
-    width: 100%;
-    display: flex;
+    user-select: none;
+    -webkit-user-drag: none;
 
         .overlay {
             display: flex;
@@ -39,6 +38,7 @@
             opacity: 0;
             background-color: $goz-black;
             animation: outroFade 2.5s ease-out;
+            pointer-events: none;
         }
 
         @keyframes outroFade {

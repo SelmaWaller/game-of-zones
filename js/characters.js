@@ -107,7 +107,7 @@ function createCharacter(character, index) {
                     badge.style.opacity = '0.5';
                     badge.style.animation = 'none';
                     idBtn.disabled = true;
-                    document.getElementById('confirm').style.opacity = '0';
+                    document.getElementById('confirm').style = 'opacity: 0; cursor: default;';
                     document.getElementById('versus').style.opacity = '1';
                 }
             }

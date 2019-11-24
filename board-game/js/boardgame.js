@@ -1,3 +1,82 @@
+const tiles = [{
+    id: 'tile1',
+    moveTo: 0,
+    alertMessage: (characterName) => `Oops. ${characterName} forgot their map. Embarrassing.`
+}, {
+    id: 'tile2',
+}, {
+    id: 'tile3',
+}, {
+    id: 'tile4',
+}, {
+    id: 'tile5',
+    moveTo: 8,
+    alertMessage: (characterName) => `${characterName} found a shortcut!`
+}, {
+    id: 'tile6',
+}, {
+    id: 'tile7',
+    moveTo: 6,
+    alertMessage: (characterName) => `Woah there! ${characterName} just ran their left foot shoe off! You'll need that shoe, ${characterName}. Go back one step and pick it up.`
+}, {
+    id: 'tile8',
+}, {
+    id: 'tile9',
+}, {
+    id: 'tile10',
+}, {
+    id: 'tile11',
+}, {
+    id: 'tile12',
+}, {
+    id: 'tile13',
+    moveTo: 12,
+    alertMessage: (characterName) => `${characterName} notice a crazed greyscaled figure and quickly hides behind a big tree behind them!`
+}, {
+    id: 'tile14',
+}, {
+    id: 'tile15',
+}, {
+    id: 'tile16',
+    moveTo: 19,
+    alertMessage: (characterName) => `${characterName} found a shortcut!`
+}, {
+    id: 'tile17',
+}, {
+    id: 'tile18',
+}, {
+    id: 'tile19',
+}, {
+    id: 'tile20',
+    moveTo: 19,
+    alertMessage: (characterName) => `${characterName} smells Hot Pie's delicious pastries from the bakery at tile 19 and can't resist grabbing a bite`
+}, {
+    id: 'tile21',
+}, {
+    id: 'tile22',
+}, {
+    id: 'tile23',
+    moveTo: 17,
+    alertMessage: (characterName) => `Oh no! ${characterName} just relized they've lost their right foot shoe all the way back in The Reach! Take 6 sad steps back and learn to tie your shoes.`
+}, {
+    id: 'tile24',
+}, {
+    id: 'tile25',
+}, {
+    id: 'tile26',
+}, {
+    id: 'tile27',
+}, {
+    id: 'tile28',
+}, {
+    id: 'tile29',
+    moveTo: 22,
+    alertMessage: (characterName) => `AAAH! Rhaegal snatched ${characterName} out of nowhere and dropped them all the way back in the Riverlands! That stings.`
+}, {
+    id: 'tile30',
+}]
+
+
 function checkTokens() {
     let player1 = localStorage.getItem('player1');
     let player2 = localStorage.getItem('player2');
@@ -25,98 +104,99 @@ function checkTokens() {
 
 checkTokens();
 
-function movePlayer(tileId, playerId) {
-    const player = document.getElementById(playerId);
-    const toElement = document.getElementById(tileId);
-
+function movePlayerToken(destination, player) {
+    const toElement = document.getElementById(`tile${destination}`);
     player.style.top = `${toElement.offsetTop}px`;
     player.style.left = `${toElement.offsetLeft}px`;
 }
 
+async function movePlayer(destination, activePlayer) {
+    return new Promise(function (resolve) {
+        const player = document.getElementById(`token${activePlayer}holder`);
+        let currentPosition = parseInt(localStorage.getItem(`player${activePlayer}position`) || 0, 10);
+        let tilesToMove = destination - currentPosition;
 
-function roll() {
+        if (tilesToMove > 0) {
+            for (let i = 1; i <= tilesToMove; i++) {
+                setTimeout(function () {
+                    console.log(currentPosition + i, Date.now());
+                    movePlayerToken(currentPosition + i, player);
+                    if (i === tilesToMove) {
+
+                        setTimeout(resolve, 200);  // Resolve after transitions
+
+                    }
+                }, 200 * i);
+            }
+        } else {
+            for (let i = -1; i >= tilesToMove; i--) {
+                setTimeout(function () {
+                    console.log(currentPosition + i, Date.now());
+                    movePlayerToken(currentPosition + i, player);
+                    if (i === tilesToMove) {
+
+                        setTimeout(resolve, 200);  // Resolve after transitions
+
+                    }
+                }, 200 * i * -1);
+            }
+        }
+
+        localStorage.setItem(`player${activePlayer}position`, destination);
+    })
+}
+
+async function roll() {
+    const diceBtn = document.getElementById('dice')
+    diceBtn.disabled = true;
     const activePlayer = localStorage.getItem('activePlayer') || '1';
     const playerPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
 
-    console.log(localStorage.getItem(`player${activePlayer}`) + '\'s position: ' + playerPosition)
     let dice = Math.floor(Math.random() * 6) + 1;
-    console.log(dice);
+    console.log(localStorage.getItem(`player${activePlayer}`) + '\'s position: ' + (Number(playerPosition) + Number(dice)) + '/30');
     let boardDice = document.getElementById('diceImg');
     let diceImg = ['../images/dice-1.svg', '../images/dice-2.svg', '../images/dice-3.svg', '../images/dice-4.svg', '../images/dice-5.svg', '../images/dice-6.svg'];
+
     for (let i = 0; i < dice; i++) {
         boardDice.src = diceImg[i];
     }
 
     const newPosition = Math.min(parseInt(playerPosition, 10) + dice, 30);
+    await movePlayer(newPosition, activePlayer);
 
-    movePlayer(`tile${newPosition}`, `token${activePlayer}holder`);
-
-    localStorage.setItem(`player${activePlayer}position`, newPosition);
-    localStorage.setItem('activePlayer', activePlayer === '1' ? '2' : '1');
-
-    if (localStorage.getItem(`player${activePlayer}`) && dice == 6) {
-        localStorage.setItem('activePlayer', activePlayer === '1' ? '1' : '2');
-        localStorage.setItem('activePlayer', activePlayer === '2' ? '2' : '1');
-        setTimeout(function () {
-            alert('Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!');
-        }, 300);
-    }
-    if (localStorage.getItem(`player${activePlayer}position`) === '5') {
-        localStorage.setItem(`player${activePlayer}position`, '8');
-        const playerNPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
-        setTimeout(function () {
-            movePlayer(`tile${playerNPosition}`, `token${activePlayer}holder`);
-            alert(localStorage.getItem(`player${activePlayer}`) + ' found a shortcut!');
-        }, 300);
-    }
-    if (localStorage.getItem(`player${activePlayer}position`) === '7') {
-        localStorage.setItem(`player${activePlayer}position`, '6');
-        const playerNPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
-        setTimeout(function () {
-            movePlayer(`tile${playerNPosition}`, `token${activePlayer}holder`);
-            alert('Woah there! ' + localStorage.getItem(`player${activePlayer}`) + ' just ran their left foot shoe off! You\'ll need that shoe, ' + localStorage.getItem(`player${activePlayer}`) + '. Go back one step and pick it up.');
-        }, 300);
-    }
-    if (localStorage.getItem(`player${activePlayer}position`) === '16') {
-        localStorage.setItem(`player${activePlayer}position`, '19');
-        const playerNPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
-        setTimeout(function () {
-            movePlayer(`tile${playerNPosition}`, `token${activePlayer}holder`);
-            alert(localStorage.getItem(`player${activePlayer}`) + ' found a shortcut!');
-        }, 300);
-    }
-    if (localStorage.getItem(`player${activePlayer}position`) === '23') {
-        localStorage.setItem(`player${activePlayer}position`, '17');
-        const playerNPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
-        setTimeout(function () {
-            movePlayer(`tile${playerNPosition}`, `token${activePlayer}holder`);
-            alert('Oh no! ' + localStorage.getItem(`player${activePlayer}`) + ' just relized they\'ve lost their right foot shoe all the way back in The Reach! Take 6 sad steps back and learn to tie your shoes.');
-        }, 300);
-    }
-    if (localStorage.getItem(`player${activePlayer}position`) === '29') {
-        localStorage.setItem(`player${activePlayer}position`, '22');
-        const playerNPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
-        setTimeout(function () {
-            movePlayer(`tile${playerNPosition}`, `token${activePlayer}holder`);
-            alert('AAAH! Rhaegal snatched ' + localStorage.getItem(`player${activePlayer}`) + ' out of nowhere and dropped them all the way back in the Riverlands! That stings.');
-        }, 300);
-    }
-    if (localStorage.getItem(`player${activePlayer}position`) === '30') {
+    if (newPosition == 30) {
         let winnerAnimation = document.getElementById('winnerOverlay');
-        winnerAnimation.style.display = 'block';
+        winnerAnimation.style.background = 'rgba(0, 0, 0, 1)';
         localStorage.setItem('winner', localStorage.getItem(`player${activePlayer}`));
         setTimeout(function () {
             window.location = '../play-again/index.html';
         }, 1000);
+        return
+    }
+
+    const tile = tiles[newPosition - 1]
+    if (tile.moveTo) {
+        const characterName = localStorage.getItem(`player${activePlayer}`);
+        alert(tile.alertMessage(characterName))
+        await movePlayer(tile.moveTo, activePlayer);
+    }
+
+    localStorage.setItem('activePlayer', activePlayer === '1' ? '2' : '1');
+    diceBtn.disabled = false;
+
+    if (dice == 6) {
+        localStorage.setItem('activePlayer', activePlayer === '1' ? '1' : '2');
+        alert('Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!');
     }
 }
 
 function setBoard() {
     const player1Position = localStorage.getItem('player1position') || 0;
     const player2Position = localStorage.getItem('player2position') || 0;
-    movePlayer(`tile${player1Position}`, 'token1holder');
-    movePlayer(`tile${player2Position}`, 'token2holder');
+    const player1 = document.getElementById('token1holder');
+    const player2 = document.getElementById('token2holder');
+    movePlayerToken(player1Position, player1);
+    movePlayerToken(player2Position, player2);
 }
 
 setBoard();
-

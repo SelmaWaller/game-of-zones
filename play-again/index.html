@@ -15,15 +15,15 @@
     <meta property="og:alt" content="game-of-zones.jpg">
     <meta property="og:description"
         content="In Game of Zones, players roll a die to move through the seven kingdoms and reach the iron throne in The North. Watch out for traps!">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
     <title>Game of Zones</title>
 </head>
 
 <body>
 
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" allow="autoplay" loop onplay="musicOn()" onpause="musicOff()">
-            <source src="../music/main.mp3">
+        <audio id="music" preload="auto" autoplay allow="autoplay" onplay="musicOn()" onpause="musicOff()">
+            <source src="music/winner.mp3">
         </audio>
         <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg"
                 alt="toggle-music"></a>
@@ -44,9 +44,6 @@
             <p><span style="font-weight: bold; font-size: 36px; padding-left: 5px; padding-top: 10px;">! </span>: Some
                 trap tiles are hidden
                 around the board... Watch your step!</p>
-            <button class="closeHelp" id="closeBtn"><a onclick="closeHelp()"><img src="../images/help.svg"
-                        alt="help"></a>
-            </button>
         </div>
     </div>
     <div class="introAnimationHelp">

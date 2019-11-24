@@ -4,7 +4,7 @@ music.volume = "0.15"
 // pause music on click
 function toggleMusic() {
     return music.paused ? music.play() : music.pause();
-};
+}
 
 function musicOn() {
     document.getElementById('musicIcon').src = 'images/sound.svg';

@@ -146,7 +146,7 @@ p, h3, h4, h5, h6 {
 
         .help {
             display: block;
-            position: absolute;
+            position: relative;
             z-index: 999;
             left: 0;
             bottom: 0;
@@ -165,9 +165,10 @@ p, h3, h4, h5, h6 {
         }
 
         #helpContent {
+            position: absolute;
             padding: 0px 20px;
-            top: -438px;
-            left: 60px;
+            top: -386px;
+            left: 50px;
             width: 300px;
             border-radius: 10px;
             border-bottom-left-radius: 0;
@@ -179,15 +180,15 @@ p, h3, h4, h5, h6 {
             
                 @keyframes helpContent {
                     from {
-                        top: -208px;
+                        top: -170px;
                         left: -146px;
                         opacity: 0;
                         transform: scale(0);
                     }
 
                     to {
-                        top: -438px;
-                        left: 60px;
+                        top: -386px;
+                        left: 50px;
                         opacity: 1;
                         transform: scale(1);
                     }

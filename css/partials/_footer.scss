@@ -21,6 +21,12 @@ footer {
     }
 }
 
+#boardgame-footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    background: none;
+}
 @media only screen and(min-width: 1230px) {
     footer {
         position: fixed;
