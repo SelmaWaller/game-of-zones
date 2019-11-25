@@ -862,7 +862,7 @@ img {
 .glowAnimation {
   position: relative;
   top: 0;
-  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
 }
@@ -948,23 +948,56 @@ img {
   animation: introFilter 2500ms ease-out;
   z-index: 99;
 }
-#boardgame .board-background {
-  width: 1230px;
-  margin: 0 auto;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), #000000, rgba(0, 0, 0, 0.8));
+#boardgame .overlay #stats1 {
+  position: absolute;
 }
-#boardgame .board-background h1 {
-  margin-bottom: 5px;
+#boardgame .overlay #stats1 #player1Stats {
+  box-shadow: 4px 4px 10px -6px #C5C5C566;
+  background: #00000080;
+  border-bottom-right-radius: 100px;
+  height: 250px;
+  width: 250px;
+  color: rgba(197, 197, 197, 0.8);
+  padding: 20px 0;
+}
+#boardgame .overlay h3 {
   background-image: -webkit-linear-gradient(#3D3D3D, #B4B4B4, #3D3D3D);
   background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 3.125rem;
-  animation: fadeInGame 2500ms;
+  margin-top: 10px;
+  font-size: 1.875rem;
 }
-#boardgame .board-background h1 span {
-  font-size: 2.5rem;
+#boardgame .overlay #stats2 {
+  position: absolute;
+  right: 0;
+}
+#boardgame .overlay #stats2 #player2Stats {
+  opacity: 0.5;
+  background: #00000000;
+  border-bottom-left-radius: 100px;
+  height: 250px;
+  width: 250px;
+  color: rgba(197, 197, 197, 0.8);
+  padding: 20px 0;
+}
+#boardgame .board-background {
+  position: relative;
+  width: 1230px;
+  margin: 0 auto;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), #000000, rgba(0, 0, 0, 0.8));
+}
+#boardgame .board-background h1 {
+  margin: 40px 30px 10px 0;
+  background-image: -webkit-linear-gradient(#3D3D3D, #B4B4B4, #3D3D3D);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.875rem;
+  animation: fadeInGame 2500ms;
+  transition: 200ms all;
 }
 #boardgame .board-background h2, #boardgame .board-background h3, #boardgame .board-background h4 {
   animation: fadeInGame 2500ms;
@@ -990,6 +1023,7 @@ img {
   font-size: 1.625rem;
   text-align: center;
   animation: fadeInGame 2500ms ease-out;
+  font-family: "Simonetta", serif;
 }
 #boardgame .tile .starTile, #boardgame .bonusTile .starTile {
   width: 30px;
@@ -1039,7 +1073,9 @@ img {
   }
 }
 #boardgame #tile0 {
-  margin-left: 10px;
+  max-width: 50px;
+  margin-left: 20px;
+  margin-top: 5px;
 }
 #boardgame .empty-3, #boardgame .empty-2 {
   display: flex;
@@ -1137,6 +1173,13 @@ img {
   width: 70px;
   animation: fadeInGame 2500ms ease-in, diceIntro 2000ms ease;
 }
+#boardgame .players #token1 {
+  transition: 200ms all;
+}
+#boardgame .players #token2 {
+  margin-left: -140px;
+  transition: 200ms all;
+}
 @keyframes tokenJump {
   0%, 100% {
     transform: scale(1) translateY(0);
@@ -1148,9 +1191,29 @@ img {
     transform: translateY(-5px);
   }
 }
+#boardgame #notification {
+  position: absolute;
+  background: #000000;
+  padding: 20px;
+  margin: auto;
+  color: rgba(197, 197, 197, 0.9);
+  font-family: "Telex", serif;
+  max-width: 150px;
+  box-shadow: 0 0 10px rgba(197, 197, 197, 0.1);
+  animation: notification 6s ease-out;
+  display: none;
+}
+@keyframes notification {
+  0%, 90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 #boardgame #dice {
   position: relative;
-  margin: 10px 30px 30px 0;
+  margin: 20px 30px 40px 0;
   width: 55px;
   height: 55px;
   border: none;

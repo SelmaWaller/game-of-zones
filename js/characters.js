@@ -107,7 +107,9 @@ function createCharacter(character, index) {
                     badge.style.opacity = '0.5';
                     badge.style.animation = 'none';
                     idBtn.disabled = true;
-                    document.getElementById('confirm').style = 'opacity: 0; cursor: default;';
+                    let confirm = document.getElementById('confirm');
+                    confirm.style = 'opacity: 0; cursor: default;';
+                    confirm.disabled = true;
                     document.getElementById('versus').style.opacity = '1';
                 }
             }
@@ -126,6 +128,15 @@ function createCharacter(character, index) {
             window.location = 'board-game/index.html';
         }
     }
+}
+
+window.onload = function () {
+    localStorage.removeItem('player1position');
+    localStorage.removeItem('player2position');
+    localStorage.removeItem('player1');
+    localStorage.removeItem('player2');
+    localStorage.removeItem('winner');
+    localStorage.setItem('activePlayer', '1');
 }
 
 getCharacters().then(chars => {

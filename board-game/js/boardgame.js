@@ -1,9 +1,9 @@
 const tiles = [{
     id: 'tile1',
-    moveTo: 0,
-    alertMessage: (characterName) => `Oops. ${characterName} forgot their map. Embarrassing.`
 }, {
     id: 'tile2',
+    moveTo: 1,
+    alertMessage: (characterName) => `Oops. ${characterName} forgot their map. Embarrassing.`
 }, {
     id: 'tile3',
 }, {
@@ -60,6 +60,8 @@ const tiles = [{
     alertMessage: (characterName) => `Oh no! ${characterName} just relized they've lost their right foot shoe all the way back in The Reach! Take 6 sad steps back and learn to tie your shoes.`
 }, {
     id: 'tile24',
+    moveTo: 27,
+    alertMessage: (characterName) => `${characterName} found a shortcut!`
 }, {
     id: 'tile25',
 }, {
@@ -89,7 +91,7 @@ function checkTokens() {
         if (localStorage.getItem('player1') == characters[i]) {
             console.log('Player 1 as ' + player1);
             document.getElementById('token1').src = tokens[i];
-            document.getElementById('player1Name').innerHTML += `${characters[i]}`
+            document.getElementById('statsToken1').src = tokens[i];
         }
     }
 
@@ -97,9 +99,11 @@ function checkTokens() {
         if (localStorage.getItem('player2') == characters[i]) {
             console.log('Player 2 as ' + player2);
             document.getElementById('token2').src = tokens[i];
-            document.getElementById('player2Name').innerHTML += `${characters[i]}`
+            document.getElementById('statsToken2').src = tokens[i];
         }
     }
+
+    document.getElementById('playersTurn').innerHTML += localStorage.getItem('player1') + ' starts!';
 }
 
 checkTokens();
@@ -111,6 +115,7 @@ function movePlayerToken(destination, player) {
 }
 
 async function movePlayer(destination, activePlayer) {
+
     return new Promise(function (resolve) {
         const player = document.getElementById(`token${activePlayer}holder`);
         let currentPosition = parseInt(localStorage.getItem(`player${activePlayer}position`) || 0, 10);
@@ -121,10 +126,14 @@ async function movePlayer(destination, activePlayer) {
                 setTimeout(function () {
                     console.log(currentPosition + i, Date.now());
                     movePlayerToken(currentPosition + i, player);
+                    if (activePlayer == 1) {
+                        document.getElementById('statsPosition1').innerHTML = (currentPosition + i) + '/30';
+                    }
+                    if (activePlayer == 2) {
+                        document.getElementById('statsPosition2').innerHTML = (currentPosition + i) + '/30';
+                    }
                     if (i === tilesToMove) {
-
                         setTimeout(resolve, 200);  // Resolve after transitions
-
                     }
                 }, 200 * i);
             }
@@ -133,10 +142,14 @@ async function movePlayer(destination, activePlayer) {
                 setTimeout(function () {
                     console.log(currentPosition + i, Date.now());
                     movePlayerToken(currentPosition + i, player);
+                    if (activePlayer == 1) {
+                        document.getElementById('statsPosition1').innerHTML = (currentPosition + i) + '/30';
+                    }
+                    if (activePlayer == 2) {
+                        document.getElementById('statsPosition2').innerHTML = (currentPosition + i) + '/30';
+                    }
                     if (i === tilesToMove) {
-
                         setTimeout(resolve, 200);  // Resolve after transitions
-
                     }
                 }, 200 * i * -1);
             }
@@ -147,13 +160,22 @@ async function movePlayer(destination, activePlayer) {
 }
 
 async function roll() {
+
+    document.getElementById('token1').style = 'margin: 0';
+    setTimeout(function () {
+        document.getElementById('token2').style = 'margin: 0';
+    }, 200);
+
     const diceBtn = document.getElementById('dice')
     diceBtn.disabled = true;
     const activePlayer = localStorage.getItem('activePlayer') || '1';
     const playerPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
 
+    document.getElementById('playersTurn').innerHTML = localStorage.getItem(`player${activePlayer}`) + ' rolled';
+
     let dice = Math.floor(Math.random() * 6) + 1;
     console.log(localStorage.getItem(`player${activePlayer}`) + '\'s position: ' + (Number(playerPosition) + Number(dice)) + '/30');
+
     let boardDice = document.getElementById('diceImg');
     let diceImg = ['../images/dice-1.svg', '../images/dice-2.svg', '../images/dice-3.svg', '../images/dice-4.svg', '../images/dice-5.svg', '../images/dice-6.svg'];
 
@@ -177,16 +199,36 @@ async function roll() {
     const tile = tiles[newPosition - 1]
     if (tile.moveTo) {
         const characterName = localStorage.getItem(`player${activePlayer}`);
-        alert(tile.alertMessage(characterName))
+        alert(tile.alertMessage(characterName));
         await movePlayer(tile.moveTo, activePlayer);
     }
 
     localStorage.setItem('activePlayer', activePlayer === '1' ? '2' : '1');
     diceBtn.disabled = false;
 
+
     if (dice == 6) {
         localStorage.setItem('activePlayer', activePlayer === '1' ? '1' : '2');
         alert('Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!');
+        if (activePlayer === '1') {
+            player2Stats.style = 'opacity: 1; box-shadow: -4px 4px 10px -6px #C5C5C566;';
+            player1Stats.style = 'opacity: 0.5; box-shadow: 4px 4px 10px -6px #C5C5C500;';
+        }
+        if (activePlayer === '2') {
+            player1Stats.style = 'opacity: 0.5; box-shadow: 4px 4px 10px -6px #C5C5C566;';
+            player2Stats.style = 'opacity: 1; box-shadow: -4px 4px 10px -6px #C5C5C500;';
+        }
+    }
+    //display with styling whose turn it is
+    let player1Stats = document.getElementById('player1Stats');
+    let player2Stats = document.getElementById('player2Stats');
+    if (activePlayer === '1') {
+        player2Stats.style = 'opacity: 1; box-shadow: -4px 4px 10px -6px #C5C5C566; background: #00000080;';
+        player1Stats.style = 'opacity: 0.5; box-shadow: 4px 4px 10px -6px #C5C5C500; background: #00000000;';
+    }
+    if (activePlayer === '2') {
+        player1Stats.style = 'opacity: 1; box-shadow: 4px 4px 10px -6px #C5C5C566; background: #00000080;';
+        player2Stats.style = 'opacity: 0.5; box-shadow: -4px 4px 10px -6px #C5C5C500; background: #00000000;';
     }
 }
 
@@ -200,3 +242,15 @@ function setBoard() {
 }
 
 setBoard();
+
+window.onload = function () {
+    localStorage.setItem('player1position', 0);
+    localStorage.setItem('player2position', 0);
+    const player1Position = localStorage.getItem('player1position') || 0;
+    const player2Position = localStorage.getItem('player2position') || 0;
+    const player1 = document.getElementById('token1holder');
+    const player2 = document.getElementById('token2holder');
+    movePlayerToken(player1Position, player1);
+    movePlayerToken(player2Position, player2);
+    localStorage.setItem('activePlayer', '1');
+}

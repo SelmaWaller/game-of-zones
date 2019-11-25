@@ -61,11 +61,10 @@ img {user-select: none; -webkit-user-drag: none;}
     }
 }
 
-
 .glowAnimation {
     position: relative;
     top: 0;
-    left: 0;
+    right: 0;
     display: flex;
     align-items: center;
 
@@ -162,33 +161,70 @@ img {user-select: none; -webkit-user-drag: none;}
         height: 100vh;
         animation: introFilter 2500ms ease-out;
         z-index: 99;
+
+        #stats1 {
+            position: absolute;
+
+            #player1Stats {
+                box-shadow: 4px 4px 10px -6px #C5C5C566;
+                background: #00000080;
+                border-bottom-right-radius: 100px;
+                height: 250px;
+                width: 250px;
+                color: rgba($goz-white, 0.8);
+                padding: 20px 0;
+            }
+        }
+            
+        h3 {
+            background-image: $goz-iron-title;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 10px;
+            @include calcRem(30);
+        }
+
+        #stats2 {
+            position: absolute;
+            right: 0;
+
+            #player2Stats {
+                opacity: 0.5;
+                background: #00000000;
+                border-bottom-left-radius: 100px;
+                height: 250px;
+                width: 250px;
+                color: rgba($goz-white, 0.8);
+                padding: 20px 0;
+            }
+        }
     }
 
-    
     .board-background {
+        position: relative;
         width: 1230px;
         margin: 0 auto;
         background: linear-gradient(to right, rgba($goz-black, 0.8), $goz-black, rgba($goz-black, 0.8));
 
             h1 {
-                margin-bottom: 5px;
+                margin: 40px 30px 10px 0;
                 background-image: $goz-iron-title;
                 background-clip: text;
                 -webkit-background-clip: text;
                 -moz-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                @include calcRem(50);
+                @include calcRem(30);
                 animation: fadeInGame 2500ms;
-
-
-
-                    span {
-                        @include calcRem(40);
-                    }
+                transition: 200ms all;
             }
+
             h2, h3, h4 {
                 animation: fadeInGame 2500ms;
             }
+
+            
     }
 
     @supports (display: grid) {
@@ -213,6 +249,7 @@ img {user-select: none; -webkit-user-drag: none;}
         @include calcRem(26);
         text-align: center;
         animation: fadeInGame 2500ms ease-out;
+        font-family: 'Simonetta', serif;
 
             .starTile {
                 width: 30px;
@@ -273,7 +310,9 @@ img {user-select: none; -webkit-user-drag: none;}
     }
 
     #tile0 {
-        margin-left: 10px;
+        max-width: 50px;
+        margin-left: 20px;
+        margin-top: 5px;
     }
 
     .empty-3, .empty-2 {
@@ -328,6 +367,15 @@ img {user-select: none; -webkit-user-drag: none;}
                 animation: fadeInGame 2500ms ease-in, diceIntro 2000ms ease;
             }
 
+            #token1 {
+                transition: 200ms all;
+            }
+
+            #token2 {
+                margin-left: -140px;
+                transition: 200ms all;
+            }
+
             @keyframes tokenJump {
                 0%, 100% {
                     transform: scale(1) translateY(0);
@@ -343,9 +391,32 @@ img {user-select: none; -webkit-user-drag: none;}
             }
     }
 
+    #notification {
+        position: absolute;
+        background: $goz-black;
+        padding: 20px;
+        margin: auto;
+        color: rgba($goz-white, 0.9);
+        font-family: 'Telex', serif;
+        max-width: 150px;
+        box-shadow: 0 0 10px rgba($goz-white, 0.1);
+        animation: notification 6s ease-out;
+        display: none;
+    }
+
+    @keyframes notification {
+        0%, 90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
     #dice {
         position: relative;
-        margin: 10px 30px 30px 0;
+        margin: 20px 30px 40px 0;
         width: 55px;
         height: 55px;
         border: none;
