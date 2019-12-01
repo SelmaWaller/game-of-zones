@@ -20,8 +20,9 @@ function playAgain() {
     localStorage.removeItem('player2position');
     localStorage.removeItem('player1');
     localStorage.removeItem('player2');
+    localStorage.removeItem('inputToken1');
+    localStorage.removeItem('inputToken2');
     localStorage.removeItem('winner');
     localStorage.setItem('activePlayer', '1');
     window.location = '../';
 }
-

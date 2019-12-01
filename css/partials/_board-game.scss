@@ -164,6 +164,7 @@ img {user-select: none; -webkit-user-drag: none;}
 
         #stats1 {
             position: absolute;
+            animation: fadeInGame 2500ms;
 
             #player1Stats {
                 box-shadow: 4px 4px 10px -6px #C5C5C566;
@@ -173,6 +174,7 @@ img {user-select: none; -webkit-user-drag: none;}
                 width: 250px;
                 color: rgba($goz-white, 0.8);
                 padding: 20px 0;
+                transition: 200ms all;
             }
         }
             
@@ -188,16 +190,19 @@ img {user-select: none; -webkit-user-drag: none;}
 
         #stats2 {
             position: absolute;
+            animation: fadeInGame 2500ms;
             right: 0;
 
             #player2Stats {
-                opacity: 0.5;
-                background: #00000000;
+                opacity: 0.4;
+                background: #00000099;
+                box-shadow: inset 4px -4px 10px -6px #C5C5C533;
                 border-bottom-left-radius: 100px;
                 height: 250px;
                 width: 250px;
                 color: rgba($goz-white, 0.8);
                 padding: 20px 0;
+                transition: 200ms all;
             }
         }
     }
@@ -311,8 +316,8 @@ img {user-select: none; -webkit-user-drag: none;}
 
     #tile0 {
         max-width: 50px;
-        margin-left: 20px;
-        margin-top: 5px;
+        margin-left: 50px;
+        margin-top: -60px;
     }
 
     .empty-3, .empty-2 {
@@ -344,16 +349,6 @@ img {user-select: none; -webkit-user-drag: none;}
     .north {background: radial-gradient($goz-north-3, $goz-north-1);color: $goz-north-1;}
     #titleNorth {color: $goz-north-4;}
 
-    //extra
-    .crownlands, .westerlands, .vale, .isles {background: radial-gradient($goz-crownlands-2, $goz-crownlands-1);color: $goz-crownlands-1;}
-    #crownlands, #westerlands, #vale, #isles {font-family: 'IM Fell Great Primer SC', serif; font-weight: normal; @include calcRem(20);  margin-left: -30px; margin-top: -90px; color: $goz-crownlands-3;}
-    .westerlands {background: radial-gradient($goz-westerlands-2, $goz-westerlands-1);color: $goz-westerlands-1;}
-    #westerlands {color: $goz-westerlands-3;}
-    .vale {background: radial-gradient($goz-vale-2, $goz-vale-1);color: $goz-vale-1;}
-    #vale {width: 100px; color: $goz-vale-3;}
-    .isles {background: radial-gradient($goz-iron-isles-2, $goz-iron-isles-1);color: $goz-iron-isles-1;}
-    #isles {width: 100px; color: $goz-iron-isles-3;}
-
     .players {
         position: absolute;
         width: 70px;
@@ -364,7 +359,7 @@ img {user-select: none; -webkit-user-drag: none;}
 
             img {
                 width: 70px;
-                animation: fadeInGame 2500ms ease-in, diceIntro 2000ms ease;
+                animation: fadeInGame 2500ms ease-in, rotatePieces 2500ms ease;
             }
 
             #token1 {
@@ -391,19 +386,6 @@ img {user-select: none; -webkit-user-drag: none;}
             }
     }
 
-    #notification {
-        position: absolute;
-        background: $goz-black;
-        padding: 20px;
-        margin: auto;
-        color: rgba($goz-white, 0.9);
-        font-family: 'Telex', serif;
-        max-width: 150px;
-        box-shadow: 0 0 10px rgba($goz-white, 0.1);
-        animation: notification 6s ease-out;
-        display: none;
-    }
-
     @keyframes notification {
         0%, 90% {
             opacity: 1;
@@ -424,35 +406,19 @@ img {user-select: none; -webkit-user-drag: none;}
         box-shadow: inset 0 0 10px rgba($goz-black, 1);
         @include calcRem(30);
         cursor: pointer;
-        animation: diceIntro 2000ms ease-in-out;
+        animation: fadeInGame 2500ms ease-in, rotatePieces 2500ms ease-in-out;
 
-        @keyframes diceIntro {
-            0%, 100% {
-              transform: translate(0) rotate(0deg);
-            }
-          
-            45% {
-              transform: translateY(0) rotate(0deg);
+        @keyframes rotatePieces {
+            50% {
+                transform: rotate(0deg);
             }
 
-            70% {
-                transform: translateY(-10px) rotate(20deg);
-            }
-          
             80% {
-              transform: translateY(-10px) rotate(0deg);
+                transform: rotate(405deg);
             }
-          
-            85% {
-              transform: translateY(-10px) rotate(10deg);
-            }
-          
-            90% {
-              transform: translateY(-10px) rotate(0deg);
-            }
-          
-            95% {
-                transform: translateX(0) rotate(-5deg);
+
+            100% {
+                transform: rotate(360deg);
             }
           }
 
@@ -474,4 +440,103 @@ img {user-select: none; -webkit-user-drag: none;}
     background: rgba($goz-black, 0);
     z-index: 999;
     pointer-events: none;
+}
+
+@media only screen and(max-width: 1440px) {
+    #player1Stats, #player2Stats {
+        max-width: 200px;
+        max-height: 220px;
+
+        img {
+            width: 150px;
+        }
+    }
+
+    #boardgame {
+
+        #playersTurn {
+            @include calcRem(30);
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        #dice {
+            margin-top: 0;
+            margin-bottom: 15px;
+            width: 40px;
+            height: 40px;
+
+                img {
+                    width: 35px;
+                }
+        }
+
+        .tile, .bonusTile {
+            margin: 15px;
+        }
+    }
+
+    #tile0 {
+        max-width: 50px;
+        margin-left: 50px;
+        margin-top: -58px;
+    }
+}
+
+@media only screen and(max-width: 930px) {
+    #player1Stats {
+        border-bottom-right-radius: 10px;
+        max-width: 120px;
+        max-height: 130px;
+
+        img {
+            width: 70px;
+        }
+    }
+
+    #player2Stats {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 10px;
+        max-width: 120px;
+        max-height: 130px;
+
+        img {
+            width: 70px;
+        }
+    }
+
+    #boardgame {
+        background-image: none;
+
+        #playersTurn {
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        .board-background {
+            min-height: 210vh;
+        }
+
+        .overlay {
+
+            h3 {
+                @include calcRem(20);
+            }
+        }
+        
+        .tile, .bonusTile {
+            margin: 30px;
+        }
+
+        #dice {
+            width: 55px;
+            height: 55px;
+            margin-bottom: 20px;
+
+                img {
+                    width: 50px;
+                }
+        }
+    }
+
 }

@@ -46,7 +46,7 @@ footer {
                 cursor: pointer;
             }
 
-            a:hover {
+            a:hover, a:focus {
                 color: rgba($goz-white, 0.5);
             }
         }

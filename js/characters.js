@@ -1,7 +1,7 @@
 //let url get specific names
 let gotApi = async (characterName) => {
     try {
-        const fetchResult = await fetch(`https://anapioficeandfire.com/api/characters?name=${characterName.split(' ').join('+')}`); //inserts names correctly
+        const fetchResult = await fetch(`https://anapioficeandfire.com/api/characters?name=${characterName.split(' ').join('+')}`);
         const data = await fetchResult.json();
         return data[0];
     } catch (error) {
@@ -14,71 +14,77 @@ let getCharacters = async () => {
 }
 
 window.characters = []
-//make an array for each character
 const images = ['images/arryn-badge.png', 'images/baratheon-badge.png', 'images/clegane-badge.png', 'images/greyjoy-badge.png', 'images/lannister-badge.png', 'images/martell-badge.png', 'images/mormont-badge.png', 'images/stark-badge.png', 'images/targaryen-badge.png', 'images/tyrell-badge.png'];
-//place badges in each card
 
 function createCharacter(character, index) {
     let container = document.getElementById('characters');
     let badge = document.createElement('div');
     badge.setAttribute('class', 'badge');
     let idBtn = document.createElement('button');
-    idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms;';
-    idBtn.onmouseout = function () {
-        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms;';
-    };
-    idBtn.onmouseover = function () {
-        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; transition: 400ms; transform: translateY(-4px); background: #00000099; border: 1px solid #C5C5C533; box-shadow: 0 0 10px #C5C5C580; animation: badgeShadow 2s infinite;'
-    };
-    idBtn.onfocus = function () {
-        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; transition: 400ms; transform: translateY(-4px); background: #00000099; border: 1px solid #C5C5C533; box-shadow: 0 0 10px #C5C5C580; animation: badgeShadow 2s infinite;'
-    }
-    idBtn.onblur = function () {
-        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms;';
-    }
     let name = document.createElement('h3');
     name.textContent = (character.name);
     let img = document.createElement('img');
     img.setAttribute('src', images[index]);
     img.setAttribute('id', 'a' + character.playedBy);
     img.setAttribute('alt', character.name + ' badge');
-    let choose = document.createElement('button');
-    choose.setAttribute('class', 'choose');
-    choose.textContent = ('Choose');
     let about = document.createElement('div');
     about.setAttribute('class', 'aboutChar');
     let gender = document.createElement('p');
-    gender.textContent = ('Gender: ' + character.gender);
+    gender.innerHTML = `<b>Gender:</b> <span>${character.gender}</span>`;
     let born = document.createElement('p');
-    born.textContent = ('Born: ' + character.born);
+    born.innerHTML = `<b>Born:</b> <span>${character.born}</span>`;
     let died = document.createElement('p');
-    died.textContent = ('Died: ' + character.died);
+    died.innerHTML = `<b>Died:</b> <span>${character.died}</span>`;
     if (character.died === "") {
-        died.textContent = ('Died: Still alive/unknown');
+        died.innerHTML = `<b>Died:</b> <span>Unknown</span>`;
     }
-    let title = document.createElement('p');
-    title.textContent = ('Main Title: ' + character.titles.slice(0, 1));
-    if (character.titles == "") {
-        title.textContent = ('Main Title: No title');
+    let aliases = document.createElement('p');
+    aliases.innerHTML = `<b>Main alias:</b> <span>${character.aliases.slice(0, 1)}</span>`;
+    if (character.aliases == "") {
+        aliases.innerHTML = `<b>Main alias:</b> <span>Unknown</span>`;
     }
     let culture = document.createElement('p');
-    culture.textContent = ('Culture: ' + character.culture);
+    culture.innerHTML = `<b>Culture:</b> <span>${character.culture}</span>`;
     if (character.culture == "") {
-        culture.textContent = ('Culture: Unknown')
+        culture.innerHTML = `<b>Culture:</b> <span>Unknown</span>`;
     }
+    //appendChild over innerHTML because of conditions
     container.appendChild(badge);
     badge.appendChild(idBtn);
     idBtn.appendChild(name);
     idBtn.appendChild(img);
     idBtn.appendChild(about);
-    //idBtn.appendChild(choose);
     about.appendChild(gender);
     about.appendChild(born);
     about.appendChild(died);
-    about.appendChild(title);
+    about.appendChild(aliases);
     about.appendChild(culture);
 
-    //select chars on click
+    //cards styled here for animations to work
+    idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms; cursor: default;';
+    img.style.opacity = '0';
+    about.style.opacity = '1';
+    idBtn.onmouseout = function () {
+        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms; cursor: default;';
+        img.style.opacity = '0';
+        about.style.opacity = '1';
+    };
+    idBtn.onmouseover = function () {
+        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; transition: 400ms; transform: translateY(-4px); background: #00000099; border: 1px solid #C5C5C533; box-shadow: 0 0 10px #C5C5C580; animation: badgeShadow 2s infinite; cursor: pointer;'
+        img.style.opacity = '1';
+        about.style.opacity = '0';
+    };
+    idBtn.onfocus = function () {
+        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; transition: 400ms; transform: translateY(-4px); background: #00000099; border: 1px solid #C5C5C533; box-shadow: 0 0 10px #C5C5C580; animation: badgeShadow 2s infinite; cursor: pointer;'
+        img.style.opacity = '1';
+        about.style.opacity = '0';
+    }
+    idBtn.onblur = function () {
+        idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms; cursor: default;';
+        img.style.opacity = '0';
+        about.style.opacity = '1';
+    }
+
     idBtn.onclick = () => {
         let startGame = document.getElementById('startGame');
         startGame.disabled = true;
@@ -88,10 +94,16 @@ function createCharacter(character, index) {
         player2.value = character.name;
         if (player1.value == player2.value) {
             player2.value = '';
+
+            player1.style.backgroundImage = 'url(' + `${images[index]}` + ')';
+            if (localStorage.getItem('inputToken1')) {
+                let selectedToken1 = localStorage.getItem('inputToken1');
+                player1.style.backgroundImage = 'url(' + `${selectedToken1}` + ')';
+            }
+
             document.getElementById('confirm').onclick = function () {
                 localStorage.setItem('player1', character.name);
                 player2.style.opacity = '1';
-
                 let mobile = window.matchMedia('(max-width: 680px)');
                 mobile.addListener(fitScreen);
                 function fitScreen(mobile) {
@@ -100,12 +112,14 @@ function createCharacter(character, index) {
                         document.getElementById('versus').style.marginTop = '0';
                     }
                 }
-
                 fitScreen(mobile);
-
                 if (localStorage.getItem('player1', character.name)) {
-                    badge.style.opacity = '0.5';
-                    badge.style.animation = 'none';
+                    localStorage.setItem('inputToken1', images[index]);
+                    let selectedToken1 = localStorage.getItem('inputToken1');
+                    player1.style.backgroundImage = 'url(' + `${selectedToken1}` + ')';
+                    badge.style = 'opacity: 0.5; animation: none';
+                    about.style.opacity = '0';
+                    img.style.opacity = '1';
                     idBtn.disabled = true;
                     let confirm = document.getElementById('confirm');
                     confirm.style = 'opacity: 0; cursor: default;';
@@ -120,6 +134,9 @@ function createCharacter(character, index) {
             localStorage.setItem('player2', character.name);
         }
         if (localStorage.getItem('player2', character.name)) {
+            localStorage.setItem('inputToken2', images[index]);
+            let selectedToken2 = localStorage.getItem('inputToken2');
+            player2.style.backgroundImage = 'url(' + `${selectedToken2}` + ')';
             startGame.style = 'opacity: 1; cursor: pointer; margin-bottom: 20px';
             startGame.disabled = false;
         }
@@ -135,6 +152,8 @@ window.onload = function () {
     localStorage.removeItem('player2position');
     localStorage.removeItem('player1');
     localStorage.removeItem('player2');
+    localStorage.removeItem('inputToken1');
+    localStorage.removeItem('inputToken2');
     localStorage.removeItem('winner');
     localStorage.setItem('activePlayer', '1');
 }

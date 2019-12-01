@@ -41,17 +41,17 @@ img {user-select: none; -webkit-user-drag: none;}
             height: 100vh;
             width: 100%;
             height: 100vh;
-            background-color: rgba($goz-black, 0.85);
+            background-color: rgba($goz-black, 0.75);
             animation: introFade 1800ms ease, darkFilter 8s infinite;
         }
 
         @keyframes darkFilter {
             0%, 100% {
-                background-color: rgba($goz-black, 0.75);
+                background-color: rgba($goz-black, 0.65);
             }
 
             50% {
-                background-color: rgba($goz-black, 0.85);
+                background-color: rgba($goz-black, 0.75);
             }
         }
 

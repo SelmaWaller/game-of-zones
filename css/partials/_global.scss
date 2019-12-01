@@ -60,14 +60,32 @@ p, h3, h4, h5, h6 {
     font-family: 'Simonetta', serif;
 }
 
-/* Music and Help */
+/* Logo, music and help */
+.logo {
+    background: none;
+    border: 1px solid #ffffff00;
+    margin: 20px 10px;
+    position: absolute;
+    z-index: 9999;
+
+        img {
+            width: 200px;
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+        img:hover, img:focus {
+            opacity: 0.8;
+        }
+}
+
 .music {
     display: block;
     position: fixed;
     z-index: 999;
     right: 30px;
     top: 30px;
-    border: none;
+    border: 1px solid #ffffff00;
     background: none;
     cursor: pointer;
     opacity: 0.7;

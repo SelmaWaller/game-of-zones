@@ -62,14 +62,30 @@ p, h3, h4, h5, h6 {
   font-family: "Simonetta", serif;
 }
 
-/* Music and Help */
+/* Logo, music and help */
+.logo {
+  background: none;
+  border: 1px solid #ffffff00;
+  margin: 20px 10px;
+  position: absolute;
+  z-index: 9999;
+}
+.logo img {
+  width: 200px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.logo img:hover, .logo img:focus {
+  opacity: 0.8;
+}
+
 .music {
   display: block;
   position: fixed;
   z-index: 999;
   right: 30px;
   top: 30px;
-  border: none;
+  border: 1px solid #ffffff00;
   background: none;
   cursor: pointer;
   opacity: 0.7;
@@ -295,15 +311,15 @@ img {
   height: 100vh;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.75);
   animation: introFade 1800ms ease, darkFilter 8s infinite;
 }
 @keyframes darkFilter {
   0%, 100% {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.65);
   }
   50% {
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.75);
   }
 }
 .intro h1 {
@@ -502,7 +518,7 @@ footer p a {
     color: rgba(197, 197, 197, 0.3);
     cursor: pointer;
   }
-  footer p a:hover {
+  footer p a:hover, footer p a:focus {
     color: rgba(197, 197, 197, 0.5);
   }
 }
@@ -557,7 +573,7 @@ img {
   }
 }
 #main .container input, #main .container #confirm {
-  text-align: center;
+  text-align: left;
   margin: 20px 5px 20px;
   min-width: 265px;
   padding: 10px;
@@ -571,6 +587,12 @@ img {
 }
 #main .container input {
   cursor: default;
+}
+#main .container #selectPlayer1, #main .container #selectPlayer2 {
+  background-image: none;
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: 246px 3px;
 }
 #main .container #selectPlayer1 {
   animation: badges 2s ease-in;
@@ -642,39 +664,16 @@ img {
   font-weight: bold;
   padding: 0 10px;
   text-transform: uppercase;
+  top: 0;
 }
 #main .container .badge img {
   position: absolute;
   -moz-user-select: none;
   -webkit-user-drag: none;
   left: 17px;
-  top: 29%;
+  top: 33%;
   width: 170px;
   transition: 200ms;
-  opacity: 0;
-}
-#main .container .badge .choose {
-  position: relative;
-  height: 30px;
-  width: 80px;
-  padding: 0px 10px;
-  color: rgba(197, 197, 197, 0.6);
-  background: rgba(197, 197, 197, 0.05);
-  text-transform: uppercase;
-  font-family: "Simonetta", serif;
-  font-size: 0.9375rem;
-  margin-bottom: 15px;
-  border: none;
-  opacity: 1;
-  z-index: 999;
-  transform: translate(0);
-}
-#main .container .badge .choose:hover, #main .container .badge .choose:active {
-  opacity: 1;
-  background: rgba(197, 197, 197, 0.15);
-  box-shadow: 0 0 10px rgba(197, 197, 197, 0.3);
-  transform: translate(0);
-  animation: none;
 }
 @keyframes badgeShadow {
   0%, 100% {
@@ -684,12 +683,8 @@ img {
     box-shadow: 0 0 20px rgba(197, 197, 197, 0.3);
   }
 }
-#main .container button:hover img, #main .container button:focus img {
-  opacity: 1;
-}
 #main .container button:hover .aboutChar, #main .container button:focus .aboutChar {
   transition: 300ms;
-  opacity: 0;
 }
 #main .container .aboutChar {
   position: relative;
@@ -705,6 +700,9 @@ img {
 #main .container .aboutChar p {
   font-family: "Telex", sans-serif;
   margin: 10px 0;
+}
+#main .container .aboutChar span {
+  color: rgba(197, 197, 197, 0.55);
 }
 
 /*----------------
@@ -950,6 +948,7 @@ img {
 }
 #boardgame .overlay #stats1 {
   position: absolute;
+  animation: fadeInGame 2500ms;
 }
 #boardgame .overlay #stats1 #player1Stats {
   box-shadow: 4px 4px 10px -6px #C5C5C566;
@@ -959,6 +958,7 @@ img {
   width: 250px;
   color: rgba(197, 197, 197, 0.8);
   padding: 20px 0;
+  transition: 200ms all;
 }
 #boardgame .overlay h3 {
   background-image: -webkit-linear-gradient(#3D3D3D, #B4B4B4, #3D3D3D);
@@ -971,16 +971,19 @@ img {
 }
 #boardgame .overlay #stats2 {
   position: absolute;
+  animation: fadeInGame 2500ms;
   right: 0;
 }
 #boardgame .overlay #stats2 #player2Stats {
-  opacity: 0.5;
-  background: #00000000;
+  opacity: 0.4;
+  background: #00000099;
+  box-shadow: inset 4px -4px 10px -6px #C5C5C533;
   border-bottom-left-radius: 100px;
   height: 250px;
   width: 250px;
   color: rgba(197, 197, 197, 0.8);
   padding: 20px 0;
+  transition: 200ms all;
 }
 #boardgame .board-background {
   position: relative;
@@ -1074,8 +1077,8 @@ img {
 }
 #boardgame #tile0 {
   max-width: 50px;
-  margin-left: 20px;
-  margin-top: 5px;
+  margin-left: 50px;
+  margin-top: -60px;
 }
 #boardgame .empty-3, #boardgame .empty-2 {
   display: flex;
@@ -1126,41 +1129,6 @@ img {
 #boardgame #titleNorth {
   color: #8EA0BD;
 }
-#boardgame .crownlands, #boardgame .westerlands, #boardgame .vale, #boardgame .isles {
-  background: radial-gradient(#916F8F, #2A1529);
-  color: #2A1529;
-}
-#boardgame #crownlands, #boardgame #westerlands, #boardgame #vale, #boardgame #isles {
-  font-family: "IM Fell Great Primer SC", serif;
-  font-weight: normal;
-  font-size: 1.25rem;
-  margin-left: -30px;
-  margin-top: -90px;
-  color: #D2BAE3;
-}
-#boardgame .westerlands {
-  background: radial-gradient(#8b5660, #230C11);
-  color: #230C11;
-}
-#boardgame #westerlands {
-  color: #B99898;
-}
-#boardgame .vale {
-  background: radial-gradient(#60659e, #090B1C);
-  color: #090B1C;
-}
-#boardgame #vale {
-  width: 100px;
-  color: #B3AACF;
-}
-#boardgame .isles {
-  background: radial-gradient(#A89069, #261C0D);
-  color: #261C0D;
-}
-#boardgame #isles {
-  width: 100px;
-  color: #A8A48A;
-}
 #boardgame .players {
   position: absolute;
   width: 70px;
@@ -1171,7 +1139,7 @@ img {
 }
 #boardgame .players img {
   width: 70px;
-  animation: fadeInGame 2500ms ease-in, diceIntro 2000ms ease;
+  animation: fadeInGame 2500ms ease-in, rotatePieces 2500ms ease;
 }
 #boardgame .players #token1 {
   transition: 200ms all;
@@ -1191,18 +1159,6 @@ img {
     transform: translateY(-5px);
   }
 }
-#boardgame #notification {
-  position: absolute;
-  background: #000000;
-  padding: 20px;
-  margin: auto;
-  color: rgba(197, 197, 197, 0.9);
-  font-family: "Telex", serif;
-  max-width: 150px;
-  box-shadow: 0 0 10px rgba(197, 197, 197, 0.1);
-  animation: notification 6s ease-out;
-  display: none;
-}
 @keyframes notification {
   0%, 90% {
     opacity: 1;
@@ -1221,29 +1177,17 @@ img {
   box-shadow: inset 0 0 10px black;
   font-size: 1.875rem;
   cursor: pointer;
-  animation: diceIntro 2000ms ease-in-out;
+  animation: fadeInGame 2500ms ease-in, rotatePieces 2500ms ease-in-out;
 }
-@keyframes diceIntro {
-  0%, 100% {
-    transform: translate(0) rotate(0deg);
-  }
-  45% {
-    transform: translateY(0) rotate(0deg);
-  }
-  70% {
-    transform: translateY(-10px) rotate(20deg);
+@keyframes rotatePieces {
+  50% {
+    transform: rotate(0deg);
   }
   80% {
-    transform: translateY(-10px) rotate(0deg);
+    transform: rotate(405deg);
   }
-  85% {
-    transform: translateY(-10px) rotate(10deg);
-  }
-  90% {
-    transform: translateY(-10px) rotate(0deg);
-  }
-  95% {
-    transform: translateX(0) rotate(-5deg);
+  100% {
+    transform: rotate(360deg);
   }
 }
 #boardgame #dice img {
@@ -1264,6 +1208,84 @@ img {
   pointer-events: none;
 }
 
+@media only screen and (max-width: 1440px) {
+  #player1Stats, #player2Stats {
+    max-width: 200px;
+    max-height: 220px;
+  }
+  #player1Stats img, #player2Stats img {
+    width: 150px;
+  }
+
+  #boardgame #playersTurn {
+    font-size: 1.875rem;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+  #boardgame #dice {
+    margin-top: 0;
+    margin-bottom: 15px;
+    width: 40px;
+    height: 40px;
+  }
+  #boardgame #dice img {
+    width: 35px;
+  }
+  #boardgame .tile, #boardgame .bonusTile {
+    margin: 15px;
+  }
+
+  #tile0 {
+    max-width: 50px;
+    margin-left: 50px;
+    margin-top: -58px;
+  }
+}
+@media only screen and (max-width: 930px) {
+  #player1Stats {
+    border-bottom-right-radius: 10px;
+    max-width: 120px;
+    max-height: 130px;
+  }
+  #player1Stats img {
+    width: 70px;
+  }
+
+  #player2Stats {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 10px;
+    max-width: 120px;
+    max-height: 130px;
+  }
+  #player2Stats img {
+    width: 70px;
+  }
+
+  #boardgame {
+    background-image: none;
+  }
+  #boardgame #playersTurn {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  #boardgame .board-background {
+    min-height: 210vh;
+  }
+  #boardgame .overlay h3 {
+    font-size: 1.25rem;
+  }
+  #boardgame .tile, #boardgame .bonusTile {
+    margin: 30px;
+  }
+  #boardgame #dice {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 20px;
+  }
+  #boardgame #dice img {
+    width: 50px;
+  }
+}
 img {
   user-select: none;
   -webkit-user-drag: none;
@@ -1362,7 +1384,7 @@ img {
     background-position: 0% 50%;
   }
 }
-.winnerPage #playAgain {
+.winnerPage #playAgain, .winnerPage #about {
   padding: 10px 20px;
   margin-top: 30px;
   bottom: -40px;
@@ -1378,7 +1400,7 @@ img {
   z-index: 9999;
   animation: introFade 2300ms ease-in;
 }
-.winnerPage #playAgain:hover {
+.winnerPage #playAgain:hover, .winnerPage #playAgan:focus, .winnerPage #about:hover, .winnerPage #about:focus {
   background: rgba(197, 197, 197, 0.05);
   color: #C5C5C5;
   transition: 200ms;

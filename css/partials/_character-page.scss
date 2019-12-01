@@ -53,7 +53,7 @@ img {user-select: none; -webkit-user-drag: none;}
                 
 
                 input, #confirm {
-                    text-align: center;
+                    text-align: left;
                     margin: 20px 5px 20px;
                     min-width: 265px;
                     padding: 10px;
@@ -70,6 +70,13 @@ img {user-select: none; -webkit-user-drag: none;}
                     cursor: default;
                 }
 
+                #selectPlayer1, #selectPlayer2 {
+                    background-image: none;
+                    background-size: 35px; 
+                    background-repeat: no-repeat;
+                    background-position: 246px 3px;
+                }
+                
                 #selectPlayer1 {
                     animation: badges 2s ease-in;
                 }
@@ -147,6 +154,7 @@ img {user-select: none; -webkit-user-drag: none;}
                             font-weight: bold;
                             padding: 0 10px;
                             text-transform: uppercase;
+                            top: 0;
                         }
 
                         img {
@@ -154,36 +162,11 @@ img {user-select: none; -webkit-user-drag: none;}
                             -moz-user-select: none;
                             -webkit-user-drag: none;
                             left: 17px;
-                            top: 29%;
+                            top: 33%;
                             width: 170px;
                             transition: 200ms;
-                            opacity: 0;
                         }
 
-                        .choose {
-                            position: relative;
-                            height: 30px;
-                            width: 80px;
-                            padding: 0px 10px;
-                            color: rgba($goz-white, 0.6);
-                            background: rgba($goz-white, 0.05);
-                            text-transform: uppercase;
-                            font-family: 'Simonetta', serif;
-                            @include calcRem(15);
-                            margin-bottom: 15px;
-                            border: none;
-                            opacity: 1;
-                            z-index: 999;
-                            transform: translate(0);
-                        }
-
-                        .choose:hover, .choose:active {
-                            opacity: 1;
-                            background: rgba($goz-white, 0.15);
-                            box-shadow: 0 0 10px rgba($goz-white, 0.3);
-                            transform: translate(0);
-                            animation: none;
-                        }
                     }
 
                     @keyframes badgeShadow {
@@ -195,14 +178,9 @@ img {user-select: none; -webkit-user-drag: none;}
                             box-shadow: 0 0 20px rgba($goz-white, 0.3);
                         }
                     }
-                    
-                    button:hover img, button:focus img {
-                        opacity: 1;
-                    }
 
                     button:hover .aboutChar, button:focus .aboutChar {
                         transition: 300ms;
-                        opacity: 0;
                     }
 
                     .aboutChar {
@@ -219,6 +197,10 @@ img {user-select: none; -webkit-user-drag: none;}
                             p {
                                 font-family: 'Telex', sans-serif;
                                 margin: 10px 0;
+                            }
+
+                            span {
+                                color: rgba($goz-white, 0.55);
                             }
                     }
             }

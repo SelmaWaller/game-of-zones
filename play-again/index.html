@@ -26,25 +26,32 @@
     <meta property="og:alt" content="game-of-zones.jpg">
     <meta property="og:description"
         content="In Game of Zones, players roll a die to move through the seven kingdoms and reach the iron throne in The North. Watch out for traps!">
+    <link rel="shortcut icon" href="../images/goz-favicon-new.png">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <title>Game of Zones</title>
 </head>
 
 <body>
 
+    <div class="logo">
+        <a href="../">
+            <img src="../images/goz-logo.svg" alt="goz-logo" title="Back to home">
+        </a>
+    </div>
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" autoplay allow="autoplay" onplay="musicOn()" onpause="musicOff()">
+        <audio id="music" preload="auto" autoplay onplay="musicOn()" onpause="musicOff()">
             <source src="music/winner.mp3">
         </audio>
-        <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg"
-                alt="toggle-music"></a>
+        <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg" alt="toggle-music"
+                title="Toggle music"></a>
     </button>
     <div class="introAnimationMusic">
         <p>Click here to toggle the music</p>
     </div>
 
     <div class="infoPopup">
-        <button class="help" id="helpBtn"><a onclick="toggleHelp()"><img src="../images/help.png" alt="help"></a>
+        <button class="help" id="helpBtn"><a onclick="toggleHelp()"><img src="../images/help.png" alt="help"
+                    title="Game rules"></a>
         </button>
         <div id="helpContent">
             <h2>How it works:</h2>
@@ -52,7 +59,8 @@
             <p><span id="chosenCharacter1">Player 1</span> starts</p>
             <p>Roll the die and be the first to reach the Iron Throne in the North!</p>
             <p><img src="../images/star-2.png" alt="star">: You found a shortcut! Move three tiles forward</p>
-            <p><span style="font-weight: bold; font-size: 36px; padding-left: 5px; padding-top: 10px;">! </span>: Some
+            <p><span style="font-weight: bold; font-size: 36px; padding-left: 5px; padding-top: 10px;">! </span>:
+                Some
                 trap tiles are hidden
                 around the board... Watch your step!</p>
         </div>
@@ -75,7 +83,8 @@
     </main>
 
     <footer>
-        <p>Copyright © <a href="https://wallerweave.com">Selma Waller</a> 2019</p>
+        <p>Created by <a href="https://wallerweave.com">Selma Waller</a>, music by <a
+                href="https://www.freemusicarchive.org/music/Dee_Yan-Key">Dee Yan-Key</a></p>
     </footer>
     <script src="js/winner.js"></script>
     <script src="js/music.js"></script>

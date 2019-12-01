@@ -110,7 +110,7 @@ img {user-select: none; -webkit-user-drag: none;}
             }
         }
 
-        #playAgain {
+        #playAgain, #about {
             padding: 10px 20px;
             margin-top: 30px;
             bottom: -40px;
@@ -127,7 +127,7 @@ img {user-select: none; -webkit-user-drag: none;}
             animation: introFade 2300ms ease-in;
         }
 
-        #playAgain:hover {
+        #playAgain:hover, #playAgan:focus, #about:hover, #about:focus {
             background: rgba($goz-white, 0.05);
             color: $goz-white;
             transition: 200ms;
