@@ -154,6 +154,7 @@ function createCharacter(character, index) {
             badge.style = 'opacity: 0.5; animation: none';
             about.style.opacity = '0';
             img.style.opacity = '1';
+            idBtn.disabled = true;
             let transition = document.getElementById('transitionOverlay');
             setTimeout(function () {
                 transition.style.background = 'rgba(0, 0, 0, 1)';
