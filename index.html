@@ -40,7 +40,7 @@
     </div>
 
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" autoplay onplay="musicOn()" onpause="musicOff()">
+        <audio id="music" preload="auto" onplay="musicOn()" onpause="musicOff()">
             <source src="music/Dee_Yan-Key_Betelgeuse.mp3">
         </audio>
         <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="images/sound.svg" alt="toggle-music"
@@ -93,6 +93,8 @@
                     <button id="confirm">Confirm and select player 2</button>
                     <button id="startGame" disabled="true">Play</button>
                     <div class="characters" id="characters"></div>
+                </div>
+                <div id="transitionOverlay">
                 </div>
             </div>
         </div>

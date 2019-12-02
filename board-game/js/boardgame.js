@@ -99,20 +99,6 @@ async function roll() {
     localStorage.setItem('activePlayer', activePlayer === '1' ? '2' : '1');
     diceBtn.disabled = false;
 
-
-    if (dice == 6) {
-        localStorage.setItem('activePlayer', activePlayer === '1' ? '1' : '2');
-        alert('Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!');
-        if (activePlayer === '1') { //successful fail, prevents style switch
-            player2Stats.style = 'opacity: 1; box-shadow: -4px 4px 10px -6px #63636366; background: #00000080;';
-            player1Stats.style = 'opacity: 0.4; box-shadow: inset -4px -4px 10px -6px #63636333; background: #00000099;';
-        }
-        if (activePlayer === '2') { //successful fail, prevents style switch
-            player1Stats.style = 'opacity: 0.4; box-shadow: 4px 4px 10px -6px #63636366; background: #00000080;';
-            player2Stats.style = 'opacity: 1; box-shadow: inset 4px -4px 10px -6px #63636333; background: #00000099;';
-        }
-    }
-
     let player1Stats = document.getElementById('player1Stats');
     let player2Stats = document.getElementById('player2Stats');
     if (activePlayer === '1') {
@@ -122,6 +108,19 @@ async function roll() {
     if (activePlayer === '2') {
         player1Stats.style = 'opacity: 1; box-shadow: 4px 4px 10px -6px #63636366; background: #00000080;';
         player2Stats.style = 'opacity: 0.4; box-shadow: inset 4px -4px 10px -6px #63636333; background: #00000099;';
+    }
+
+    if (dice == 6) {
+        localStorage.setItem('activePlayer', activePlayer === '1' ? '1' : '2');
+        alert('Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!');
+        if (activePlayer === '1') {
+            player1Stats.style = 'opacity: 1; box-shadow: 4px 4px 10px -6px #63636366; background: #00000080;';
+            player2Stats.style = 'opacity: 0.4; box-shadow: inset 4px -4px 10px -6px #63636333; background: #00000099;';
+        }
+        if (activePlayer === '2') {
+            player2Stats.style = 'opacity: 1; box-shadow: -4px 4px 10px -6px #63636366; background: #00000080;';
+            player1Stats.style = 'opacity: 0.4; box-shadow: inset -4px -4px 10px -6px #63636333; background: #00000099;';
+        }
     }
 }
 

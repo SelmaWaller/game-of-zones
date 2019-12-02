@@ -1,6 +1,5 @@
 let help = document.getElementById("helpContent");
 
-// open help on click
 function toggleHelp() {
     let content = document.getElementById('helpContent');
     if (content.style.display === 'none') {

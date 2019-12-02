@@ -649,6 +649,19 @@ img {
   animation: badgeShadow 2s infinite;
   transition: 400ms;
 }
+#main .container #confirmText {
+  position: absolute;
+  font-family: "Simonetta", serif;
+  font-size: 1.25rem;
+  color: white;
+  background: black;
+  border-top: 1px solid #c5c5c550;
+  left: 0;
+  right: 0;
+  padding-top: 2px;
+  bottom: -17px;
+  text-transform: uppercase;
+}
 #main .container .badge {
   width: unset;
   margin: 10px 0 30px;
@@ -671,7 +684,7 @@ img {
   -moz-user-select: none;
   -webkit-user-drag: none;
   left: 17px;
-  top: 33%;
+  top: 31%;
   width: 170px;
   transition: 200ms;
 }
@@ -703,6 +716,17 @@ img {
 }
 #main .container .aboutChar span {
   color: rgba(197, 197, 197, 0.55);
+}
+
+#transitionOverlay {
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  transition: background 1s ease-in;
+  background: rgba(0, 0, 0, 0);
+  z-index: 999;
+  pointer-events: none;
 }
 
 /*----------------

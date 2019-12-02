@@ -10,7 +10,7 @@ let gotApi = async (characterName) => {
 };
 
 let getCharacters = async () => {
-    return Promise.all(['Robert Arryn', 'Tommen Baratheon', 'Sandor Clegane', 'Theon Greyjoy', 'Tyrion Lannister', 'Oberyn Nymeros Martell', 'Lyra Mormont', 'Arya Stark', 'Daenerys Targaryen', 'Margaery Tyrell'].map(gotApi)); //wait for all promises: [gotApi('Robert Arryn'), gotApi('Robert I Baratheon') etc..]
+    return Promise.all(['Robert Arryn', 'Tommen Baratheon', 'Sandor Clegane', 'Theon Greyjoy', 'Tyrion Lannister', 'Oberyn Nymeros Martell', 'Lyanna Mormont', 'Arya Stark', 'Daenerys Targaryen', 'Margaery Tyrell'].map(gotApi)); //wait for all promises: [gotApi('Robert Arryn'), gotApi('Robert I Baratheon') etc..]
 }
 
 window.characters = []
@@ -38,16 +38,17 @@ function createCharacter(character, index) {
     if (character.died === "") {
         died.innerHTML = `<b>Died:</b> <span>Unknown</span>`;
     }
-    let aliases = document.createElement('p');
-    aliases.innerHTML = `<b>Main alias:</b> <span>${character.aliases.slice(0, 1)}</span>`;
+    let alias = document.createElement('p');
+    alias.innerHTML = `<b>Main alias:</b> <span>${character.aliases.slice(0, 1)}</span>`;
     if (character.aliases == "") {
-        aliases.innerHTML = `<b>Main alias:</b> <span>Unknown</span>`;
+        alias.innerHTML = `<b>Main alias:</b> <span>Unknown</span>`;
     }
     let culture = document.createElement('p');
     culture.innerHTML = `<b>Culture:</b> <span>${character.culture}</span>`;
     if (character.culture == "") {
         culture.innerHTML = `<b>Culture:</b> <span>Unknown</span>`;
     }
+
     //appendChild over innerHTML because of conditions
     container.appendChild(badge);
     badge.appendChild(idBtn);
@@ -57,7 +58,7 @@ function createCharacter(character, index) {
     about.appendChild(gender);
     about.appendChild(born);
     about.appendChild(died);
-    about.appendChild(aliases);
+    about.appendChild(alias);
     about.appendChild(culture);
 
     //cards styled here for animations to work
@@ -121,6 +122,10 @@ function createCharacter(character, index) {
                     about.style.opacity = '0';
                     img.style.opacity = '1';
                     idBtn.disabled = true;
+                    let confirmText = document.createElement('p');
+                    confirmText.setAttribute('id', 'confirmText');
+                    confirmText.textContent = 'Player 1';
+                    idBtn.appendChild(confirmText);
                     let confirm = document.getElementById('confirm');
                     confirm.style = 'opacity: 0; cursor: default;';
                     confirm.disabled = true;
@@ -142,7 +147,18 @@ function createCharacter(character, index) {
         }
 
         startGame.onclick = function () {
-            window.location = 'board-game/index.html';
+            let confirmText = document.createElement('p');
+            confirmText.setAttribute('id', 'confirmText');
+            confirmText.textContent = 'Player 2';
+            idBtn.appendChild(confirmText);
+            badge.style = 'opacity: 0.5; animation: none';
+            about.style.opacity = '0';
+            img.style.opacity = '1';
+            let transition = document.getElementById('transitionOverlay');
+            transition.style.background = 'rgba(0, 0, 0, 1)';
+            setTimeout(function () {
+                window.location = 'board-game/index.html';
+            }, 3000);
         }
     }
 }
