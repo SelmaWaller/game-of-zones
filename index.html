@@ -32,18 +32,16 @@
 </head>
 
 <body>
-
-    <div class="logo">
+    <div id="logo" class="logo">
         <a href="../">
             <img src="images/goz-logo.svg" alt="goz-logo" title="Back to home">
         </a>
     </div>
-
     <button class="music" id="musicBtn">
         <audio id="music" preload="auto" onplay="musicOn()" onpause="musicOff()">
             <source src="music/Dee_Yan-Key_Betelgeuse.mp3">
         </audio>
-        <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="images/sound.svg" alt="toggle-music"
+        <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="images/mute.svg" alt="toggle-music"
                 title="Toggle music"></a>
     </button>
     <div class="introAnimationMusic">
@@ -71,11 +69,11 @@
 
     <header>
         <div class="intro" id="intro">
-            <div class="overlay">
+            <div class="overlay" onclick="intro()">
                 <div class="title">
-                    <h1 onclick="intro()"><span>G</span>ame of <span>Z</span>ones</h1>
+                    <h1><span>G</span>ame of <span>Z</span>ones</h1>
                     <button id="start">
-                        <p>[press enter to start]</p>
+                        <p>[click to start]</p>
                     </button>
                 </div>
             </div>

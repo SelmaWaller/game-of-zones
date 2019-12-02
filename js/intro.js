@@ -1,17 +1,16 @@
 function intro() {
     document.getElementById('intro').style.display = 'none';
     document.getElementById('main').style.display = 'block';
-    localStorage.removeItem('player1position');
-    localStorage.removeItem('player2position');
-    localStorage.removeItem('player1');
-    localStorage.removeItem('player2');
-    localStorage.removeItem('winner');
-    localStorage.setItem('activePlayer', '1');
+    document.getElementById('logo').style.display = 'block';
 }
 
-let hideIntro = document.getElementById('start').addEventListener('keyup', function (event) {
-    if (event.keyCode === 13) {
-        document.getElementById('intro').style.display = 'none';
-        document.getElementById('main').style.display = 'block';
+document.getElementById('start').addEventListener('keyup', function (event) {
+    let keys = [13, 32, 27];
+    for (let i = 0; i <= keys.length; i++) {
+        if (event.keyCode == keys[i]) {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('main').style.display = 'block';
+            document.getElementById('logo').style.display = 'block';
+        }
     }
 });

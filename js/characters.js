@@ -155,10 +155,12 @@ function createCharacter(character, index) {
             about.style.opacity = '0';
             img.style.opacity = '1';
             let transition = document.getElementById('transitionOverlay');
-            transition.style.background = 'rgba(0, 0, 0, 1)';
+            setTimeout(function () {
+                transition.style.background = 'rgba(0, 0, 0, 1)';
+            }, 500)
             setTimeout(function () {
                 window.location = 'board-game/index.html';
-            }, 3000);
+            }, 2000);
         }
     }
 }
@@ -170,6 +172,8 @@ window.onload = function () {
     localStorage.removeItem('player2');
     localStorage.removeItem('inputToken1');
     localStorage.removeItem('inputToken2');
+    localStorage.removeItem('dieCounter1');
+    localStorage.removeItem('dieCounter2');
     localStorage.removeItem('winner');
     localStorage.setItem('activePlayer', '1');
 }

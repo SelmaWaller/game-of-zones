@@ -49,6 +49,7 @@ async function movePlayer(destination, activePlayer) {
 
 async function roll() {
 
+
     document.getElementById('token1').style = 'margin: 0';
     setTimeout(function () {
         document.getElementById('token2').style = 'margin: 0';
@@ -58,6 +59,13 @@ async function roll() {
     diceBtn.disabled = true;
     const activePlayer = localStorage.getItem('activePlayer') || '1';
     const playerPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
+
+    localStorage.setItem(`dieCounter${activePlayer}`, Number(localStorage.getItem(`dieCounter${activePlayer}`)) + 1);
+    if (Number(localStorage.getItem(`dieCounter${activePlayer}`)) == 1) {
+        document.getElementById(`dieCounter${activePlayer}`).innerHTML = (localStorage.getItem(`dieCounter${activePlayer}`) + (' roll'));
+    } else {
+        document.getElementById(`dieCounter${activePlayer}`).innerHTML = (localStorage.getItem(`dieCounter${activePlayer}`) + (' rolls'));
+    }
 
     document.getElementById('playersTurn').innerHTML = localStorage.getItem(`player${activePlayer}`) + ' rolled';
 
@@ -138,6 +146,8 @@ setBoard();
 window.onload = function () {
     localStorage.setItem('player1position', 0);
     localStorage.setItem('player2position', 0);
+    localStorage.removeItem('dieCounter1');
+    localStorage.removeItem('dieCounter2');
     const player1Position = localStorage.getItem('player1position') || 0;
     const player2Position = localStorage.getItem('player2position') || 0;
     const player1 = document.getElementById('token1holder');

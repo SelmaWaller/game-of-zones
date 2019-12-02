@@ -32,14 +32,13 @@
 </head>
 
 <body>
-
-    <button class="logo">
+    <div class="logo">
         <a href="../">
             <img src="../images/goz-logo.svg" alt="goz-logo" title="Back to home">
         </a>
-    </button>
+    </div>
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" loop onplay="musicOn()" onpause="musicOff()">
+        <audio id="music" preload="auto" autoplay loop onplay="musicOn()" onpause="musicOff()">
             <source src="../music/Dee_Yan-Key_The_Grim_Reaper.mp3">
         </audio>
         <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg" alt="toggle-music"
@@ -83,12 +82,14 @@
                 <div id="stats1">
                     <div id="player1Stats">
                         <img id="statsToken1" src="../images/white-polygon.svg">
+                        <h3 id="dieCounter1">0 rolls</h3>
                         <h3 id="statsPosition1">0/30</h3>
                     </div>
                 </div>
                 <div id="stats2">
                     <div id="player2Stats">
                         <img id="statsToken2" src="../images/black-polygon.svg">
+                        <h3 id="dieCounter2">0 rolls</h3>
                         <h3 id="statsPosition2">0/30</h3>
                     </div>
                 </div>

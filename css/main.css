@@ -332,7 +332,6 @@ img {
   -webkit-text-fill-color: transparent;
   margin-bottom: 0;
   animation: title 5000ms infinite, introFade 2300ms ease-in;
-  cursor: pointer;
 }
 @keyframes introFade {
   0% {
@@ -376,6 +375,10 @@ img {
   50% {
     color: #c5c5c5;
   }
+}
+
+#logo {
+  display: none;
 }
 
 @media only screen and (max-width: 450px) {
@@ -990,8 +993,11 @@ img {
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-top: 10px;
-  font-size: 1.875rem;
+  margin: 10px 0;
+  font-size: 1.625rem;
+}
+#boardgame .overlay [id^=dieCounter] {
+  margin-top: -10px;
 }
 #boardgame .overlay #stats2 {
   position: absolute;

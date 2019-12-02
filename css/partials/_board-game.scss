@@ -184,8 +184,12 @@ img {user-select: none; -webkit-user-drag: none;}
             -webkit-background-clip: text;
             -moz-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-top: 10px;
-            @include calcRem(30);
+            margin: 10px 0;
+            @include calcRem(26);
+        }
+
+        [id^=dieCounter] {
+            margin-top: -10px;
         }
 
         #stats2 {
