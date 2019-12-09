@@ -19,11 +19,11 @@
     <meta property="og:title" content="Game of Zones">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wallerweave.com/game-of-zones">
-    <meta property="og:image" content="../images/og-image.jpg">
+    <meta property="og:image" content="../images/lannister-badge.png">
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
-    <meta property="og:image:alt" content="gameofzones.jpg">
-    <meta property="og:alt" content="game-of-zones.jpg">
+    <meta property="og:image:alt" content="gameofzones.png">
+    <meta property="og:alt" content="game-of-zones">
     <meta property="og:description"
         content="In Game of Zones, players roll a die to move through the seven kingdoms and reach the iron throne in The North. Watch out for traps!">
     <link rel="shortcut icon" href="../images/goz-favicon-new.png">
@@ -38,7 +38,7 @@
         </a>
     </div>
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" autoplay onplay="musicOn()" onpause="musicOff()">
+        <audio id="music" preload="auto" onplay="musicOn()" onpause="musicOff()">
             <source src="music/winner.mp3">
         </audio>
         <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg" alt="toggle-music"
@@ -50,12 +50,12 @@
 
     <div class="infoPopup">
         <button class="help" id="helpBtn"><a onclick="toggleHelp()"><img src="../images/help.png" alt="help"
-                    title="Game rules"></a>
+                    title="How it works"></a>
         </button>
         <div id="helpContent">
             <h2>How it works:</h2>
             <p>Players: 2</p>
-            <p><span id="chosenCharacter1">Player 1</span> starts</p>
+            <p>Player 1 starts</p>
             <p>Roll the die and be the first to reach the Iron Throne in the North!</p>
             <p><img src="../images/star-2.png" alt="star">: You found a shortcut! Move three tiles forward</p>
             <p><span style="font-weight: bold; font-size: 36px; padding-left: 5px; padding-top: 10px;">! </span>:
@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="introAnimationHelp">
-        <p>Click here to read the rules!</p>
+        <p>Need help? Click here!</p>
     </div>
 
     <main class="winnerPage">
@@ -85,9 +85,9 @@
         <p>Created by <a href="https://wallerweave.com">Selma Waller</a>, music by <a
                 href="https://www.freemusicarchive.org/music/Dee_Yan-Key">Dee Yan-Key</a></p>
     </footer>
-    <script src="js/winner.js"></script>
-    <script src="js/music.js"></script>
-    <script src="../js/help.js"></script>
+    <script type="text/javascript" src="js/winner.js"></script>
+    <script type="text/javascript" src="js/music.js"></script>
+    <script type="text/javascript" src="../js/help.js"></script>
 </body>
 
 </html>

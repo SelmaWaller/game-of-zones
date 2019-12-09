@@ -4,7 +4,7 @@ function movePlayerToken(destination, player) {
     player.style.left = `${toElement.offsetLeft}px`;
 }
 
-async function movePlayer(destination, activePlayer) {
+function movePlayer(destination, activePlayer) {
 
     return new Promise(function (resolve) {
         const player = document.getElementById(`token${activePlayer}holder`);
@@ -49,6 +49,10 @@ async function movePlayer(destination, activePlayer) {
 
 async function roll() {
 
+    let popupTrap = document.getElementById('popup');
+    let message = document.getElementById('popupText');
+    let popupDie6 = document.getElementById('popupDie6');
+    let messageDie6 = document.getElementById('popupTextDie6');
 
     document.getElementById('token1').style = 'margin: 0';
     setTimeout(function () {
@@ -61,16 +65,11 @@ async function roll() {
     const playerPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
 
     localStorage.setItem(`dieCounter${activePlayer}`, Number(localStorage.getItem(`dieCounter${activePlayer}`)) + 1);
-    if (Number(localStorage.getItem(`dieCounter${activePlayer}`)) == 1) {
-        document.getElementById(`dieCounter${activePlayer}`).innerHTML = (localStorage.getItem(`dieCounter${activePlayer}`) + (' roll'));
-    } else {
-        document.getElementById(`dieCounter${activePlayer}`).innerHTML = (localStorage.getItem(`dieCounter${activePlayer}`) + (' rolls'));
-    }
+    document.getElementById(`dieCounter${activePlayer}`).innerHTML = 'Rolls: ' + localStorage.getItem(`dieCounter${activePlayer}`);
 
     document.getElementById('playersTurn').innerHTML = localStorage.getItem(`player${activePlayer}`) + ' rolled';
 
     let dice = Math.floor(Math.random() * 6) + 1;
-    console.log(localStorage.getItem(`player${activePlayer}`) + '\'s position: ' + (Number(playerPosition) + Number(dice)) + '/30');
 
     let boardDice = document.getElementById('diceImg');
     let diceImg = ['../images/dice-1.svg', '../images/dice-2.svg', '../images/dice-3.svg', '../images/dice-4.svg', '../images/dice-5.svg', '../images/dice-6.svg'];
@@ -92,17 +91,7 @@ async function roll() {
         return
     }
 
-    function tileScript() {
-        document.getElementById('tileScript');
-    } //fetching tiles from external script
-    tileScript();
-
     const tile = tiles[newPosition - 1];
-    if (tile.moveTo) {
-        const characterName = localStorage.getItem(`player${activePlayer}`);
-        alert(tile.alertMessage(characterName));
-        await movePlayer(tile.moveTo, activePlayer);
-    }
 
     localStorage.setItem('activePlayer', activePlayer === '1' ? '2' : '1');
     diceBtn.disabled = false;
@@ -120,7 +109,8 @@ async function roll() {
 
     if (dice == 6) {
         localStorage.setItem('activePlayer', activePlayer === '1' ? '1' : '2');
-        alert('Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!');
+        popupDie6.style.display = 'flex';
+        messageDie6.innerHTML = 'Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!';
         if (activePlayer === '1') {
             player1Stats.style = 'opacity: 1; box-shadow: 4px 4px 10px -6px #63636366; background: #00000080;';
             player2Stats.style = 'opacity: 0.4; box-shadow: inset 4px -4px 10px -6px #63636333; background: #00000099;';
@@ -129,6 +119,13 @@ async function roll() {
             player2Stats.style = 'opacity: 1; box-shadow: -4px 4px 10px -6px #63636366; background: #00000080;';
             player1Stats.style = 'opacity: 0.4; box-shadow: inset -4px -4px 10px -6px #63636333; background: #00000099;';
         }
+    }
+
+    if (tile.moveTo) {
+        const characterName = localStorage.getItem(`player${activePlayer}`);
+        popupTrap.style.display = 'flex';
+        message.innerHTML = tile.alertMessage(characterName);
+        movePlayer(tile.moveTo, activePlayer);
     }
 }
 

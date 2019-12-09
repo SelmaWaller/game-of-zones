@@ -53,7 +53,11 @@ img {user-select: none; -webkit-user-drag: none;}
 
         h1, h2 {
             @include calcRem(60);
-            color: rgba($goz-white, 0.9);
+            background-image: $goz-iron-title;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
             animation: title 5000ms infinite, introFade 2300ms ease-in, winner 4s ease-in-out infinite;
             display: block;
             font-weight: normal;
@@ -136,8 +140,7 @@ img {user-select: none; -webkit-user-drag: none;}
 
 @media only screen and(max-width: 1024px) {
     .winnerPage {
-        background-position: -500px;
-        background-attachment: cover;
+        background-image: none;
 
         h1 {
             @include calcRem(35);

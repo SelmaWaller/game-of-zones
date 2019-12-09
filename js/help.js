@@ -1,4 +1,4 @@
-let help = document.getElementById("helpContent");
+let help = document.getElementById('helpContent');
 
 function toggleHelp() {
     let content = document.getElementById('helpContent');

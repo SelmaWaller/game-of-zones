@@ -446,6 +446,92 @@ img {user-select: none; -webkit-user-drag: none;}
     pointer-events: none;
 }
 
+.popup {
+    background: rgba($goz-black, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+    animation: popupAnimation 200ms ease-in;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    @keyframes popupAnimation {
+        from {background: rgba($goz-black, 0);}
+        to{background: rgba($goz-black, 0.5);}
+    }
+
+        .popupContent {
+            width: 400px;
+            height: 200px;
+            background: $goz-white;
+            box-shadow: inset -5px -5px 50px rgba($goz-black, 0.7);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+                p {
+                    padding: 0 30px;
+                    @include calcRem(20);
+                }
+        }
+
+        #closePopup, #closePopupDie6 {
+            position: relative;
+            cursor: pointer;
+            height: 33px;
+            width: 33px;
+            top: -80px;
+            right: -390px;
+            margin-top: 16px;
+            margin-right: 0;
+            background: none;
+            border: none;
+            pointer-events: visible;
+        }
+        
+        .cross {
+            position: absolute;
+            right: -18px;
+            top: 1px;
+            width: 32px;
+            height: 32px;
+            margin-top: 2px;
+            margin-right: 19px;
+        }
+
+        .cross:before, .cross:after {
+            position: absolute;
+            left: 15px;
+            content: "";
+            height: 28px;
+            width: 3px;
+            border-radius: 5px;
+            background-color: rgba($goz-black, 0.7);
+        }
+
+        #closePopup:hover .cross:before, #closePopup:hover .cross:after, 
+        #closePopup:focus .cross:before, #closePopup:focus .cross:after,
+        #closePopupDie6:hover .cross:before, #closePopupDie6:hover .cross:after, 
+        #closePopupDie6:focus .cross:before, #closePopupDie6:focus .cross:after {
+            background-color: $goz-black;
+        }
+
+        .cross:before {
+            transform: rotate(45deg);
+        }
+
+        .cross:after {
+            transform: rotate(-45deg);
+        }
+}
+
+/*----------------
+   media queries
+----------------*/
+
 @media only screen and(max-width: 1440px) {
     #player1Stats, #player2Stats {
         max-width: 200px;

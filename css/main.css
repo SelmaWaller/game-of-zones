@@ -1238,6 +1238,86 @@ img {
   pointer-events: none;
 }
 
+.popup {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+  animation: popupAnimation 200ms ease-in;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes popupAnimation {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+.popup .popupContent {
+  width: 400px;
+  height: 200px;
+  background: #C5C5C5;
+  box-shadow: inset -5px -5px 50px rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup .popupContent p {
+  padding: 0 30px;
+  font-size: 1.25rem;
+}
+.popup #closePopup, .popup #closePopupDie6 {
+  position: relative;
+  cursor: pointer;
+  height: 33px;
+  width: 33px;
+  top: -80px;
+  right: -390px;
+  margin-top: 16px;
+  margin-right: 0;
+  background: none;
+  border: none;
+  pointer-events: visible;
+}
+.popup .cross {
+  position: absolute;
+  right: -18px;
+  top: 1px;
+  width: 32px;
+  height: 32px;
+  margin-top: 2px;
+  margin-right: 19px;
+}
+.popup .cross:before, .popup .cross:after {
+  position: absolute;
+  left: 15px;
+  content: "";
+  height: 28px;
+  width: 3px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.popup #closePopup:hover .cross:before, .popup #closePopup:hover .cross:after,
+.popup #closePopup:focus .cross:before, .popup #closePopup:focus .cross:after,
+.popup #closePopupDie6:hover .cross:before, .popup #closePopupDie6:hover .cross:after,
+.popup #closePopupDie6:focus .cross:before, .popup #closePopupDie6:focus .cross:after {
+  background-color: #000000;
+}
+.popup .cross:before {
+  transform: rotate(45deg);
+}
+.popup .cross:after {
+  transform: rotate(-45deg);
+}
+
+/*----------------
+   media queries
+----------------*/
 @media only screen and (max-width: 1440px) {
   #player1Stats, #player2Stats {
     max-width: 200px;
@@ -1368,7 +1448,11 @@ img {
 }
 .winnerPage h1, .winnerPage h2 {
   font-size: 3.75rem;
-  color: rgba(197, 197, 197, 0.9);
+  background-image: -webkit-linear-gradient(#3D3D3D, #B4B4B4, #3D3D3D);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
   animation: title 5000ms infinite, introFade 2300ms ease-in, winner 4s ease-in-out infinite;
   display: block;
   font-weight: normal;
@@ -1438,8 +1522,7 @@ img {
 
 @media only screen and (max-width: 1024px) {
   .winnerPage {
-    background-position: -500px;
-    background-attachment: cover;
+    background-image: none;
   }
   .winnerPage h1 {
     font-size: 2.1875rem;

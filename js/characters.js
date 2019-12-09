@@ -16,6 +16,12 @@ let getCharacters = async () => {
 window.characters = []
 const images = ['images/arryn-badge.png', 'images/baratheon-badge.png', 'images/clegane-badge.png', 'images/greyjoy-badge.png', 'images/lannister-badge.png', 'images/martell-badge.png', 'images/mormont-badge.png', 'images/stark-badge.png', 'images/targaryen-badge.png', 'images/tyrell-badge.png'];
 
+getCharacters().then(chars => {
+    window.characters = chars;
+    console.log(chars);
+    chars.forEach((character, index) => createCharacter(character, index))
+});
+
 function createCharacter(character, index) {
     let container = document.getElementById('characters');
     let badge = document.createElement('div');
@@ -178,9 +184,3 @@ window.onload = function () {
     localStorage.removeItem('winner');
     localStorage.setItem('activePlayer', '1');
 }
-
-getCharacters().then(chars => {
-    window.characters = chars;
-    console.log(chars);
-    chars.forEach((char, index) => createCharacter(char, index))
-});

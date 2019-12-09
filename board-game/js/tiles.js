@@ -3,7 +3,7 @@ const tiles = [{
 }, {
     id: 'tile2',
     moveTo: 1,
-    alertMessage: (characterName) => `Oops. ${characterName} forgot their map. Embarrassing.`
+    alertMessage: (characterName) => `Oops. ${characterName} forgot their map at tile 1. Embarrassing.`
 }, {
     id: 'tile3',
 }, {
@@ -11,13 +11,13 @@ const tiles = [{
 }, {
     id: 'tile5',
     moveTo: 8,
-    alertMessage: (characterName) => `${characterName} found a shortcut!`
+    alertMessage: (characterName) => `${characterName} found a shortcut and moves 3 extra steps forward!`
 }, {
     id: 'tile6',
 }, {
     id: 'tile7',
     moveTo: 6,
-    alertMessage: (characterName) => `Woah there! ${characterName} just ran their left foot shoe off! You'll need that shoe, ${characterName}. Go back one step and pick it up.`
+    alertMessage: (characterName) => `Woah there! ${characterName} just ran their shoe off at tile 6 and has to go back and pick it up`
 }, {
     id: 'tile8',
 }, {
@@ -31,7 +31,7 @@ const tiles = [{
 }, {
     id: 'tile13',
     moveTo: 12,
-    alertMessage: (characterName) => `${characterName} notice a crazed greyscaled figure and quickly hides behind a big tree behind them!`
+    alertMessage: (characterName) => `${characterName} notice a crazed greyscaled figure and quickly hides behind a big tree at tile 12!`
 }, {
     id: 'tile14',
 }, {
@@ -39,7 +39,7 @@ const tiles = [{
 }, {
     id: 'tile16',
     moveTo: 19,
-    alertMessage: (characterName) => `${characterName} found a shortcut!`
+    alertMessage: (characterName) => `${characterName} found a shortcut and moves 3 extra steps forward!`
 }, {
     id: 'tile17',
 }, {
@@ -57,11 +57,11 @@ const tiles = [{
 }, {
     id: 'tile23',
     moveTo: 17,
-    alertMessage: (characterName) => `Oh no! ${characterName} just relized they've lost their right foot shoe all the way back in The Reach! Take 6 sad steps back and learn to tie your shoes.`
+    alertMessage: (characterName) => `Oh no! ${characterName} is being chased by a tribe of wildlings and doesn't shake them off before they're at tile 17...`
 }, {
     id: 'tile24',
     moveTo: 27,
-    alertMessage: (characterName) => `${characterName} found a shortcut!`
+    alertMessage: (characterName) => `${characterName} found a shortcut and moves 3 extra steps forward!`
 }, {
     id: 'tile25',
 }, {
@@ -73,7 +73,7 @@ const tiles = [{
 }, {
     id: 'tile29',
     moveTo: 22,
-    alertMessage: (characterName) => `AAAH! Rhaegal snatched ${characterName} out of nowhere and dropped them all the way back in the Riverlands! That stings.`
+    alertMessage: (characterName) => `AAAH! Rhaegal snatched ${characterName} out of nowhere and dropped them all the way back to tile 22! That stings.`
 }, {
     id: 'tile30',
-}]
+}];
