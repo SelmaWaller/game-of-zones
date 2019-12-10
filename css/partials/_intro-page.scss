@@ -47,11 +47,11 @@ img {user-select: none; -webkit-user-drag: none;}
 
         @keyframes darkFilter {
             0%, 100% {
-                background-color: rgba($goz-black, 0.65);
+                background-color: rgba($goz-black, 0.75);
             }
 
             50% {
-                background-color: rgba($goz-black, 0.75);
+                background-color: rgba($goz-black, 0.65);
             }
         }
 

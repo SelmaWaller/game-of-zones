@@ -181,6 +181,18 @@ img {user-select: none; -webkit-user-drag: none;}
                             transition: 200ms;
                         }
 
+                        button {
+                            position: relative; 
+                            max-height: 350px; 
+                            width: 100%; height: 100%; 
+                            max-width: 215px; 
+                            padding: 0; 
+                            background: #0000004d; 
+                            border: 1px solid #C5C5C533; 
+                            transition: 400ms; 
+                            cursor: default;
+                        }
+
                     }
 
                     @keyframes badgeShadow {

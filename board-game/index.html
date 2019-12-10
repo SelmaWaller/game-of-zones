@@ -38,7 +38,7 @@
         </a>
     </div>
     <button class="music" id="musicBtn">
-        <audio id="music" preload="auto" loop autoplay onplay="musicOn()" onpause="musicOff()">
+        <audio id="music" preload="auto" loop onplay="musicOn()" onpause="musicOff()">
             <source src="../music/Dee_Yan-Key_The_Grim_Reaper.mp3">
         </audio>
         <a onclick="toggleMusic()" id="toggleMusic"><img id="musicIcon" src="../images/sound.svg" alt="toggle-music"
@@ -263,9 +263,8 @@
         <p>Created by <a href="https://wallerweave.com">Selma Waller</a>, music by <a
                 href="https://www.freemusicarchive.org/music/Dee_Yan-Key">Dee Yan-Key</a></p>
     </footer>
-    <script type="text/javascript" src="js/tiles.js"></script>
+    <script type="module" src="js/boardgame.js"></script>
     <script type="text/javascript" src="js/tokens.js"></script>
-    <script type="text/javascript" src="js/boardgame.js"></script>
     <script type="text/javascript" src="js/music.js"></script>
     <script type="text/javascript" src="../js/help.js"></script>
     <script type="text/javascript" src="js/popup.js"></script>

@@ -15,17 +15,17 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: none;
+    background: $goz-black;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 100px;
-    background-image: linear-gradient(to top, $goz-black, rgba($goz-north-2, 0.5), $goz-black);
+    background: rgba($goz-white, 0.2);
     transition: 500ms;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-image: linear-gradient(to top, $goz-black, $goz-north-2, $goz-black);
+    background: rgba($goz-white, 0.3);
 }
 
 ::-webkit-scrollbar-corner, ::-webkit-resizer {
@@ -70,12 +70,12 @@ p, h3, h4, h5, h6 {
 
         img {
             width: 200px;
-            opacity: 0.6;
+            opacity: 0.8;
             cursor: pointer;
         }
 
         img:hover, img:focus {
-            opacity: 0.8;
+            opacity: 1;
         }
 }
 

@@ -77,3 +77,5 @@ const tiles = [{
 }, {
     id: 'tile30',
 }];
+
+export default tiles;

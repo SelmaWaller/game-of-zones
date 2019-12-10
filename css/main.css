@@ -17,17 +17,17 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: none;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 100px;
-  background-image: linear-gradient(to top, #000000, rgba(35, 41, 55, 0.5), #000000);
+  background: rgba(197, 197, 197, 0.2);
   transition: 500ms;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-image: linear-gradient(to top, #000000, #232937, #000000);
+  background: rgba(197, 197, 197, 0.3);
 }
 
 ::-webkit-scrollbar-corner, ::-webkit-resizer {
@@ -72,11 +72,11 @@ p, h3, h4, h5, h6 {
 }
 .logo img {
   width: 200px;
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }
 .logo img:hover, .logo img:focus {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .music {
@@ -316,10 +316,10 @@ img {
 }
 @keyframes darkFilter {
   0%, 100% {
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 0.75);
   }
   50% {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.65);
   }
 }
 .intro h1 {
@@ -690,6 +690,18 @@ img {
   top: 31%;
   width: 170px;
   transition: 200ms;
+}
+#main .container .badge button {
+  position: relative;
+  max-height: 350px;
+  width: 100%;
+  height: 100%;
+  max-width: 215px;
+  padding: 0;
+  background: #0000004d;
+  border: 1px solid #C5C5C533;
+  transition: 400ms;
+  cursor: default;
 }
 @keyframes badgeShadow {
   0%, 100% {
@@ -1417,7 +1429,7 @@ img {
   height: 100vh;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.75);
   animation: introFade 1800ms ease, darkFilter 8s infinite;
 }
 @keyframes darkFilter {
@@ -1425,7 +1437,7 @@ img {
     background-color: rgba(0, 0, 0, 0.75);
   }
   50% {
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.65);
   }
 }
 .winnerPage #transitionOverlay {
@@ -1455,7 +1467,6 @@ img {
   -webkit-text-fill-color: transparent;
   animation: title 5000ms infinite, introFade 2300ms ease-in, winner 4s ease-in-out infinite;
   display: block;
-  font-weight: normal;
 }
 .winnerPage h2 {
   font-family: "Cinzel Decorative", serif;
@@ -1525,11 +1536,11 @@ img {
     background-image: none;
   }
   .winnerPage h1 {
-    font-size: 2.1875rem;
+    font-size: 2.375rem;
     padding: 0 10px;
   }
   .winnerPage h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }
 

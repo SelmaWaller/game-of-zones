@@ -16,7 +16,7 @@ img {user-select: none; -webkit-user-drag: none;}
             height: 100vh;
             width: 100%;
             height: 100vh;
-            background-color: rgba($goz-black, 0.85);
+            background-color: rgba($goz-black, 0.75);
             animation: introFade 1800ms ease, darkFilter 8s infinite;
         }
 
@@ -26,7 +26,7 @@ img {user-select: none; -webkit-user-drag: none;}
             }
 
             50% {
-                background-color: rgba($goz-black, 0.85);
+                background-color: rgba($goz-black, 0.65);
             }
         }
 
@@ -60,7 +60,6 @@ img {user-select: none; -webkit-user-drag: none;}
             -webkit-text-fill-color: transparent;
             animation: title 5000ms infinite, introFade 2300ms ease-in, winner 4s ease-in-out infinite;
             display: block;
-            font-weight: normal;
         }
 
         h2 {
@@ -143,12 +142,12 @@ img {user-select: none; -webkit-user-drag: none;}
         background-image: none;
 
         h1 {
-            @include calcRem(35);
+            @include calcRem(38);
             padding: 0 10px;
         }
 
         h2 {
-            @include calcRem(20);
+            @include calcRem(24);
         }
     }
 }

@@ -10,7 +10,7 @@ let gotApi = async (characterName) => {
 };
 
 let getCharacters = async () => {
-    return Promise.all(['Robert Arryn', 'Tommen Baratheon', 'Sandor Clegane', 'Theon Greyjoy', 'Tyrion Lannister', 'Oberyn Nymeros Martell', 'Lyanna Mormont', 'Arya Stark', 'Daenerys Targaryen', 'Margaery Tyrell'].map(gotApi)); //wait for all promises: [gotApi('Robert Arryn'), gotApi('Robert I Baratheon') etc..]
+    return Promise.all(['Robert Arryn', 'Tommen Baratheon', 'Sandor Clegane', 'Theon Greyjoy', 'Tyrion Lannister', 'Oberyn Nymeros Martell', 'Lyanna Mormont', 'Arya Stark', 'Daenerys Targaryen', 'Margaery Tyrell'].map(gotApi));
 }
 
 window.characters = []
@@ -68,7 +68,6 @@ function createCharacter(character, index) {
     about.appendChild(culture);
 
     //cards styled here for animations to work
-    idBtn.style = 'position: relative; max-height: 350px; width: 100%; height: 100%; max-width: 215px; padding: 0; background: #0000004d; border: 1px solid #C5C5C533; transition: 400ms; cursor: default;';
     img.style.opacity = '0';
     about.style.opacity = '1';
     idBtn.onmouseout = function () {

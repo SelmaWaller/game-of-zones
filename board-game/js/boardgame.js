@@ -1,63 +1,14 @@
-function movePlayerToken(destination, player) {
-    const toElement = document.getElementById(`tile${destination}`);
-    player.style.top = `${toElement.offsetTop}px`;
-    player.style.left = `${toElement.offsetLeft}px`;
-}
-
-function movePlayer(destination, activePlayer) {
-
-    return new Promise(function (resolve) {
-        const player = document.getElementById(`token${activePlayer}holder`);
-        let currentPosition = parseInt(localStorage.getItem(`player${activePlayer}position`) || 0, 10);
-        let tilesToMove = destination - currentPosition;
-
-        if (tilesToMove > 0) {
-            for (let i = 1; i <= tilesToMove; i++) {
-                setTimeout(function () {
-                    movePlayerToken(currentPosition + i, player);
-                    if (activePlayer == 1) {
-                        document.getElementById('statsPosition1').innerHTML = (currentPosition + i) + '/30';
-                    }
-                    if (activePlayer == 2) {
-                        document.getElementById('statsPosition2').innerHTML = (currentPosition + i) + '/30';
-                    }
-                    if (i === tilesToMove) {
-                        setTimeout(resolve, 200);  // Resolve after transitions
-                    }
-                }, 200 * i);
-            }
-        } else {
-            for (let i = -1; i >= tilesToMove; i--) {
-                setTimeout(function () {
-                    movePlayerToken(currentPosition + i, player);
-                    if (activePlayer == 1) {
-                        document.getElementById('statsPosition1').innerHTML = (currentPosition + i) + '/30';
-                    }
-                    if (activePlayer == 2) {
-                        document.getElementById('statsPosition2').innerHTML = (currentPosition + i) + '/30';
-                    }
-                    if (i === tilesToMove) {
-                        setTimeout(resolve, 200);  // Resolve after transitions
-                    }
-                }, 200 * i * -1);
-            }
-        }
-
-        localStorage.setItem(`player${activePlayer}position`, destination);
-    })
-}
+import tiles from './tiles.js';
+import move from './movePlayers.js';
+import playerstyles from './playerstyles.js';
 
 async function roll() {
-
     let popupTrap = document.getElementById('popup');
     let message = document.getElementById('popupText');
     let popupDie6 = document.getElementById('popupDie6');
     let messageDie6 = document.getElementById('popupTextDie6');
 
-    document.getElementById('token1').style = 'margin: 0';
-    setTimeout(function () {
-        document.getElementById('token2').style = 'margin: 0';
-    }, 200);
+    playerstyles.setTokens();
 
     const diceBtn = document.getElementById('dice');
     diceBtn.disabled = true;
@@ -79,7 +30,7 @@ async function roll() {
     }
 
     const newPosition = Math.min(parseInt(playerPosition, 10) + dice, 30);
-    await movePlayer(newPosition, activePlayer);
+    await move.player(newPosition, activePlayer);
 
     if (newPosition == 30) {
         let winnerAnimation = document.getElementById('winnerOverlay');
@@ -96,15 +47,13 @@ async function roll() {
     localStorage.setItem('activePlayer', activePlayer === '1' ? '2' : '1');
     diceBtn.disabled = false;
 
-    let player1Stats = document.getElementById('player1Stats');
-    let player2Stats = document.getElementById('player2Stats');
     if (activePlayer === '1') {
-        player2Stats.style = 'opacity: 1; box-shadow: -4px 4px 10px -6px #63636366; background: #00000080;';
-        player1Stats.style = 'opacity: 0.4; box-shadow: inset -4px -4px 10px -6px #63636333; background: #00000099;';
+        playerstyles.p1style2();
+        playerstyles.p2style1();
     }
     if (activePlayer === '2') {
-        player1Stats.style = 'opacity: 1; box-shadow: 4px 4px 10px -6px #63636366; background: #00000080;';
-        player2Stats.style = 'opacity: 0.4; box-shadow: inset 4px -4px 10px -6px #63636333; background: #00000099;';
+        playerstyles.p1style1();
+        playerstyles.p2style2();
     }
 
     if (dice == 6) {
@@ -112,12 +61,12 @@ async function roll() {
         popupDie6.style.display = 'flex';
         messageDie6.innerHTML = 'Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!';
         if (activePlayer === '1') {
-            player1Stats.style = 'opacity: 1; box-shadow: 4px 4px 10px -6px #63636366; background: #00000080;';
-            player2Stats.style = 'opacity: 0.4; box-shadow: inset 4px -4px 10px -6px #63636333; background: #00000099;';
+            playerstyles.p1style1();
+            playerstyles.p2style2();
         }
         if (activePlayer === '2') {
-            player2Stats.style = 'opacity: 1; box-shadow: -4px 4px 10px -6px #63636366; background: #00000080;';
-            player1Stats.style = 'opacity: 0.4; box-shadow: inset -4px -4px 10px -6px #63636333; background: #00000099;';
+            playerstyles.p1style2();
+            playerstyles.p2style1();
         }
     }
 
@@ -125,7 +74,7 @@ async function roll() {
         const characterName = localStorage.getItem(`player${activePlayer}`);
         popupTrap.style.display = 'flex';
         message.innerHTML = tile.alertMessage(characterName);
-        movePlayer(tile.moveTo, activePlayer);
+        move.player(tile.moveTo, activePlayer);
     }
 }
 
@@ -134,8 +83,8 @@ function setBoard() {
     const player2Position = localStorage.getItem('player2position') || 0;
     const player1 = document.getElementById('token1holder');
     const player2 = document.getElementById('token2holder');
-    movePlayerToken(player1Position, player1);
-    movePlayerToken(player2Position, player2);
+    move.token(player1Position, player1);
+    move.token(player2Position, player2);
 }
 
 setBoard();
@@ -149,7 +98,8 @@ window.onload = function () {
     const player2Position = localStorage.getItem('player2position') || 0;
     const player1 = document.getElementById('token1holder');
     const player2 = document.getElementById('token2holder');
-    movePlayerToken(player1Position, player1);
-    movePlayerToken(player2Position, player2);
+    move.token(player1Position, player1);
+    move.token(player2Position, player2);
     localStorage.setItem('activePlayer', '1');
+    window.roll = roll;
 }
