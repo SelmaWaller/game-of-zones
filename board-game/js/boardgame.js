@@ -5,8 +5,8 @@ import playerstyles from './playerstyles.js';
 async function roll() {
     let popupTrap = document.getElementById('popup');
     let message = document.getElementById('popupText');
-    let popupDie6 = document.getElementById('popupDie6');
-    let messageDie6 = document.getElementById('popupTextDie6');
+    let popupDice6 = document.getElementById('popupDice6');
+    let messageDice6 = document.getElementById('popupTextDice6');
 
     playerstyles.setTokens();
 
@@ -15,8 +15,8 @@ async function roll() {
     const activePlayer = localStorage.getItem('activePlayer') || '1';
     const playerPosition = localStorage.getItem(`player${activePlayer}position`) || 0;
 
-    localStorage.setItem(`dieCounter${activePlayer}`, Number(localStorage.getItem(`dieCounter${activePlayer}`)) + 1);
-    document.getElementById(`dieCounter${activePlayer}`).innerHTML = 'Rolls: ' + localStorage.getItem(`dieCounter${activePlayer}`);
+    localStorage.setItem(`diceCounter${activePlayer}`, Number(localStorage.getItem(`diceCounter${activePlayer}`)) + 1);
+    document.getElementById(`diceCounter${activePlayer}`).innerHTML = 'Rolls: ' + localStorage.getItem(`diceCounter${activePlayer}`);
 
     document.getElementById('playersTurn').innerHTML = localStorage.getItem(`player${activePlayer}`) + ' rolled';
 
@@ -30,7 +30,9 @@ async function roll() {
     }
 
     const newPosition = Math.min(parseInt(playerPosition, 10) + dice, 30);
+    const tile = tiles[newPosition - 1];
     await move.player(newPosition, activePlayer);
+    localStorage.setItem('activePlayer', activePlayer === '1' ? '2' : '1');
 
     if (newPosition == 30) {
         let winnerAnimation = document.getElementById('winnerOverlay');
@@ -42,9 +44,7 @@ async function roll() {
         return
     }
 
-    const tile = tiles[newPosition - 1];
 
-    localStorage.setItem('activePlayer', activePlayer === '1' ? '2' : '1');
     diceBtn.disabled = false;
 
     if (activePlayer === '1') {
@@ -58,8 +58,8 @@ async function roll() {
 
     if (dice == 6) {
         localStorage.setItem('activePlayer', activePlayer === '1' ? '1' : '2');
-        popupDie6.style.display = 'flex';
-        messageDie6.innerHTML = 'Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!';
+        popupDice6.style.display = 'flex';
+        messageDice6.innerHTML = 'Adrenaline rushes through ' + localStorage.getItem(`player${activePlayer}`) + ' like a hurricane! No time for breaks, roll again!';
         if (activePlayer === '1') {
             playerstyles.p1style1();
             playerstyles.p2style2();
@@ -92,8 +92,8 @@ setBoard();
 window.onload = function () {
     localStorage.setItem('player1position', 0);
     localStorage.setItem('player2position', 0);
-    localStorage.removeItem('dieCounter1');
-    localStorage.removeItem('dieCounter2');
+    localStorage.removeItem('diceCounter1');
+    localStorage.removeItem('diceCounter2');
     const player1Position = localStorage.getItem('player1position') || 0;
     const player2Position = localStorage.getItem('player2position') || 0;
     const player1 = document.getElementById('token1holder');
