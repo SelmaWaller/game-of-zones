@@ -478,7 +478,7 @@ img {user-select: none; -webkit-user-drag: none;}
                 }
         }
 
-        #closePopup, #closePopupDie6 {
+        #closePopup, #closePopupDice6 {
             position: relative;
             cursor: pointer;
             height: 33px;
@@ -514,8 +514,8 @@ img {user-select: none; -webkit-user-drag: none;}
 
         #closePopup:hover .cross:before, #closePopup:hover .cross:after, 
         #closePopup:focus .cross:before, #closePopup:focus .cross:after,
-        #closePopupDie6:hover .cross:before, #closePopupDie6:hover .cross:after, 
-        #closePopupDie6:focus .cross:before, #closePopupDie6:focus .cross:after {
+        #closePopupDice6:hover .cross:before, #closePopupDice6:hover .cross:after, 
+        #closePopupDice6:focus .cross:before, #closePopupDice6:focus .cross:after {
             background-color: $goz-black;
         }
 

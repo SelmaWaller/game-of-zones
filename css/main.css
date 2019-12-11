@@ -1283,7 +1283,7 @@ img {
   padding: 0 30px;
   font-size: 1.25rem;
 }
-.popup #closePopup, .popup #closePopupDie6 {
+.popup #closePopup, .popup #closePopupDice6 {
   position: relative;
   cursor: pointer;
   height: 33px;
@@ -1316,8 +1316,8 @@ img {
 }
 .popup #closePopup:hover .cross:before, .popup #closePopup:hover .cross:after,
 .popup #closePopup:focus .cross:before, .popup #closePopup:focus .cross:after,
-.popup #closePopupDie6:hover .cross:before, .popup #closePopupDie6:hover .cross:after,
-.popup #closePopupDie6:focus .cross:before, .popup #closePopupDie6:focus .cross:after {
+.popup #closePopupDice6:hover .cross:before, .popup #closePopupDice6:hover .cross:after,
+.popup #closePopupDice6:focus .cross:before, .popup #closePopupDice6:focus .cross:after {
   background-color: #000000;
 }
 .popup .cross:before {
