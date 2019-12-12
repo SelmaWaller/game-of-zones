@@ -1,25 +1,42 @@
-//let url get specific names
-let gotApi = async (characterName) => {
+async function gotApi(characterName) {
     try {
-        const fetchResult = await fetch(`https://anapioficeandfire.com/api/characters?name=${characterName.split(' ').join('+')}`);
+        const characterApiUrl = 'https://anapioficeandfire.com/api/characters';
+        const queryParam = `?name=${characterName.split(' ').join('+')}`;
+
+        const fetchResult = await fetch(`${characterApiUrl}${queryParam}`);
+
         const data = await fetchResult.json();
+
         return data[0];
     } catch (error) {
         console.log('Fetch error', error);
     }
-};
-
-let getCharacters = async () => {
-    return Promise.all(['Robert Arryn', 'Tommen Baratheon', 'Sandor Clegane', 'Theon Greyjoy', 'Tyrion Lannister', 'Oberyn Nymeros Martell', 'Lyanna Mormont', 'Arya Stark', 'Daenerys Targaryen', 'Margaery Tyrell'].map(gotApi));
 }
 
-window.characters = []
-const images = ['images/arryn-badge.png', 'images/baratheon-badge.png', 'images/clegane-badge.png', 'images/greyjoy-badge.png', 'images/lannister-badge.png', 'images/martell-badge.png', 'images/mormont-badge.png', 'images/stark-badge.png', 'images/targaryen-badge.png', 'images/tyrell-badge.png'];
+function getCharacters() {
+    const characterList = [
+        'Robert Arryn', 'Tommen Baratheon', 'Sandor Clegane',
+        'Theon Greyjoy', 'Tyrion Lannister', 'Oberyn Nymeros Martell',
+        'Lyanna Mormont', 'Arya Stark', 'Daenerys Targaryen',
+        'Margaery Tyrell'
+    ]
 
-getCharacters().then(chars => {
-    window.characters = chars;
-    console.log(chars);
-    chars.forEach((character, index) => createCharacter(character, index))
+    const characterPromises = characterList.map(gotApi);
+
+    return Promise.all(characterPromises);
+}
+
+const images = [
+    'images/arryn-badge.png', 'images/baratheon-badge.png',
+    'images/clegane-badge.png', 'images/greyjoy-badge.png',
+    'images/lannister-badge.png', 'images/martell-badge.png',
+    'images/mormont-badge.png', 'images/stark-badge.png',
+    'images/targaryen-badge.png', 'images/tyrell-badge.png'
+];
+
+getCharacters().then(eachChar => {
+    console.log(eachChar);
+    eachChar.forEach(createCharacter);
 });
 
 function createCharacter(character, index) {
@@ -91,7 +108,7 @@ function createCharacter(character, index) {
         about.style.opacity = '1';
     }
 
-    idBtn.onclick = () => {
+    idBtn.onclick = function () {
         let startGame = document.getElementById('startGame');
         startGame.disabled = true;
         let player1 = document.getElementById('selectPlayer1');
